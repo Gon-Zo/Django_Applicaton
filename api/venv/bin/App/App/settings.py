@@ -25,8 +25,14 @@ SECRET_KEY = 'rhd#6a-k2m42qgf^sk6yx(r!%s5utd3+w=@0ew(fr2*mqh#+ke'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+# CORS_ORIGIN_ALLOW_ALL
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3030',
+    '127.0.0.1:3030'
+)
 
 # Application definition
 
