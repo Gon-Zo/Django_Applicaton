@@ -8,17 +8,17 @@ import {
     Route,
 } from "react-router-dom";
 
-
 const Info = () => {
     return (
         <Switch>
             <Route path="/Main">
                 <Main/>
             </Route>
-            <Route path="/user">
+            <Route path="/User">
                 <User/>
             </Route>
         </Switch>
     )
 };
+
 export default Info

@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter as Router,} from "react-router-dom";
-import Page from "./script/page/indx";
+import Root from "./script/Root";
 
 function App() {
     return (
         <Router>
-            <Page/>
+            <Root/>
         </Router>
     );
 }
