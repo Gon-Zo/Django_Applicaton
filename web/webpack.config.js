@@ -3,13 +3,16 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const PATH_SOURCE = path.join(__dirname, '/src');
 const PATH_BUILD  = path.join(__dirname, '/dist');
+// import ServiceworkerWebpackPlugin from 'serviceworker-webpack-plugin';
 
 module.exports = {
 
+    // index.js file export
     entry: {
         index : PATH_SOURCE + '/index.js',
     },
 
+    // outout config
     output: {
         path: PATH_BUILD,
         filename: '[name]/[name].js',
@@ -17,6 +20,7 @@ module.exports = {
 
     module: {
         rules: [
+            // js loader
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
@@ -30,6 +34,14 @@ module.exports = {
                     }
                 }]
             },
+            // css loader
+            {
+                test: /\.css$/,
+                use: [
+                    'style-loader',
+                    'css-loader'
+                ]
+            }
         ]
     },
 
@@ -38,6 +50,13 @@ module.exports = {
         modules: [path.join(__dirname, 'src'), 'node_modules'],
         extensions: ['.js', '.jsx', '.css', '.scss', '.json'],
     },
+
+    // plugins: [
+    //     new ServiceworkerWebpackPlugin({
+    //         entry: path.join(__dirname, 'src/sw.js'),
+    //     }),
+    // ],
+
 
     devServer: {
         port: 3000,

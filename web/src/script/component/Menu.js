@@ -11,11 +11,12 @@ const getMenu = () => {
     return (
         <div>
             <a href={'/Main'}>Main</a>
-            <a href={'/USer'}>User</a>
+            <a href={'/User'}>User</a>
             <a>{test2}</a>
         </div>
     )
 };
 
 export default getMenu
+
 
