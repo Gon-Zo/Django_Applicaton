@@ -2,17 +2,16 @@ const webpack = require('webpack');
 const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const PATH_SOURCE = path.join(__dirname, '/src');
-const PATH_BUILD  = path.join(__dirname, '/dist');
+const PATH_BUILD = path.join(__dirname, '/dist');
 // import ServiceworkerWebpackPlugin from 'serviceworker-webpack-plugin';
 
 module.exports = {
 
-    // index.js file export
+    // index.js file
     entry: {
-        index : PATH_SOURCE + '/index.js',
+        index: PATH_SOURCE + '/index.js',
     },
 
-    // outout config
     output: {
         path: PATH_BUILD,
         filename: '[name]/[name].js',
@@ -36,7 +35,7 @@ module.exports = {
             },
             // css loader
             {
-                test: /\.css$/,
+                test: [/\.css$/],
                 use: [
                     'style-loader',
                     'css-loader'
