@@ -1,5 +1,5 @@
 import React from 'react'
-import Page from './page/indx'
+import Page from './page'
 import Menu from './component/Menu'
 import MarketHeader from "./component/MarketHeader";
 

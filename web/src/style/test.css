@@ -3,6 +3,23 @@
     font-size: 20px;
 }
 
-.test{
+.test {
     background-color: #f00;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 100px;
+    height: 100%;
+}
+
+.test1 {
+    background-color: #00f;
+}
+
+.page_wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 100px;
+    top: 50px;
 }

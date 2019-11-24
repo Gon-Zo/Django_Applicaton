@@ -11,12 +11,8 @@ import {
 const Info = () => {
     return (
         <Switch>
-            <Route path="/Main">
-                <Main/>
-            </Route>
-            <Route path="/User">
-                <User/>
-            </Route>
+            <Route exact path="/Main" component={Main}/>
+            <Route path="/User" component={User}/>
         </Switch>
     )
 };

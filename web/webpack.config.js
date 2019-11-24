@@ -7,6 +7,8 @@ const PATH_BUILD = path.join(__dirname, '/dist');
 
 module.exports = {
 
+    mode: 'development',
+
     // index.js file
     entry: {
         index: PATH_SOURCE + '/index.js',
@@ -44,7 +46,6 @@ module.exports = {
         ]
     },
 
-
     resolve: {
         modules: [path.join(__dirname, 'src'), 'node_modules'],
         extensions: ['.js', '.jsx', '.css', '.scss', '.json'],
@@ -58,7 +59,7 @@ module.exports = {
 
 
     devServer: {
-        port: 3000,
+        port: 7000,
         // host: '0.0.0.0',
         inline: true,
         hot: true,
@@ -66,7 +67,10 @@ module.exports = {
             index: '/src/index.html'
         },
         publicPath: '/src/index.html',
-        contentBase: './'
+        contentBase: './',
+        // contentBase: path.join(__dirname, 'dist'),
+        // open: true, // Here
+        // openPage: 'app/#/Main' // And here
     }
 
 };
