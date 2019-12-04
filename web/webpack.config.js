@@ -69,8 +69,9 @@ module.exports = {
         publicPath: '/src/index.html',
         contentBase: './',
         // contentBase: path.join(__dirname, 'dist'),
-        // open: true, // Here
-        // openPage: 'app/#/Main' // And here
+        // server start to auto open...
+        open: false, // Here
+        openPage: 'Main' // And here
     }
 
 };

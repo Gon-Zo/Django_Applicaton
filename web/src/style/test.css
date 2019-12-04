@@ -4,7 +4,7 @@
 }
 
 .test {
-    background-color: #f00;
+    /*background-color: #f00;*/
     position: fixed;
     top: 50px;
     left: 0;
@@ -14,6 +14,8 @@
 
 .test1 {
     background-color: #00f;
+    width: 100px;
+    height: 100px;
 }
 
 .page_wrap {
@@ -22,4 +24,9 @@
     height: 100%;
     left: 100px;
     top: 50px;
+    background-color: #c9c9c9;
+}
+
+.sidebar_custom{
+    background-color: #f00;
 }
