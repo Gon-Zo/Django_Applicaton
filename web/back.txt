@@ -1,0 +1,5 @@
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --hot",
+    "webpack": "webpack",
+    "build": "npm run webpack -- --mode production"
+

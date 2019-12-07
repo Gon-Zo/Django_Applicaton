@@ -26,8 +26,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "webpack-dev-server --config ./config/webpack.config.dev --hot",
-    "build": "webpack --config ./config/webpack.config.prod"
+    "prod" : "webpack-dev-server --config ./config/webpack.config.prod --hot",
+    "dev": "webpack-dev-server --config ./config/webpack.config.dev --hot",
+    "build": "webpack --config ./config/webpack.config.prod",
+    "webpack" : "webpack"
   },
   "author": "",
   "license": "ISC"
