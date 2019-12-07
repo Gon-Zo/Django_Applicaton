@@ -1,7 +1,7 @@
 const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
     entry: "./src/index.js",
@@ -11,16 +11,6 @@ module.exports = {
     },
     mode: "none",
     module: {
-
-        // loaders: [{
-        //     test: /\.jsx?$/,
-        //     loader: 'babel',
-        //     query:
-        //         {
-        //             presets: ['es2015', 'react']
-        //         }
-        // }],
-
         rules: [
             // html 로더
             {
@@ -47,6 +37,16 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+            },
+            // file loader
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'file-loader'
+            },
+            // url loader
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },
