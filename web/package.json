@@ -53,7 +53,8 @@
     "prod": "webpack-dev-server --config ./config/webpack.config.prod --hot",
     "dev": "webpack-dev-server --config ./config/webpack.config.dev --hot",
     "build": "webpack --config ./config/webpack.config.prod",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "build & dev" : "webpack && webpack-dev-server --config ./config/webpack.config.dev --hot"
   },
   "eslintConfig": {
     "extends": "react-app"
