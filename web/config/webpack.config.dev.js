@@ -41,12 +41,14 @@ module.exports = {
             },
             // file loader
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                // test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                test: /\.(pg|jpg|JPG|jpeg|png|gif|mp3|svg|ttf|woff2|woff|eot)$/,
                 loader: 'file-loader'
             },
             // url loader
             {
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                // test: /.(pg|JPG|jpeg|png|gif|mp3|svg|ttf|woff2|woff|eot)?$/,
+                test: /\.(pg|jpg|JPG|jpeg|png|gif|mp3|svg|ttf|woff2|woff|eot)$/,
                 loader: 'url-loader?limit=100000'
             }
         ]
