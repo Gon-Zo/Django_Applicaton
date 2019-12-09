@@ -1,0 +1,17 @@
+#loginWrap{
+    width: 100%;
+    height: 100%;
+    position : fixed;
+    top:0;
+    left: 0;
+    background-color: #f00;
+}
+
+#loginBox{
+    width: 25em;
+    height: 40em;
+    position: absolute;
+    top: 15em;
+    left: 53em;
+    background-color: #00f;
+}
