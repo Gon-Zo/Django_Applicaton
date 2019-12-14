@@ -1,4 +1,7 @@
 import React from 'react'
+import * as fa from "@fortawesome/free-solid-svg-icons";
+import {faSquare} from "@fortawesome/free-regular-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export default () => {
     return (
@@ -10,14 +13,16 @@ export default () => {
                 <button className="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i className="fas fa-bars tm-nav-icon"></i>
+                    {/*<i className="fas fa-bars tm-nav-icon"></i>*/}
+                    <FontAwesomeIcon icon={fa.faBars} size="2x" className="tm-nav-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav mx-auto h-100">
                         <li className="nav-item">
                             <a className="nav-link active" href="#">
-                                <i className="fas fa-tachometer-alt"></i>
+                                {/*<i className="fas fa-tachometer-alt"></i>*/}
+                                <FontAwesomeIcon icon={fa.faTachometerAlt} size="2x"/>
                                 Dashboard
                                 <span className="sr-only">(current)</span>
                             </a>
@@ -27,7 +32,8 @@ export default () => {
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <i className="far fa-file-alt"></i>
+                                {/*<i className="far fa-file-alt"></i>*/}
+                                <FontAwesomeIcon icon={fa.faFileAlt} size="2x" className="tm-nav-icon"/>
                                 <span>
                                     Reports <i className="fas fa-angle-down"></i>
                                 </span>
@@ -40,14 +46,16 @@ export default () => {
                         </li>
                         <li className="nav-item">
                             <a className="nav-link" href="products.html">
-                                <i className="fas fa-shopping-cart"></i>
+                                {/*<i className="fas fa-shopping-cart"></i>*/}
+                                <FontAwesomeIcon icon={fa.faShoppingCart} size="2x"/>
                                 Products
                             </a>
                         </li>
 
                         <li className="nav-item">
                             <a className="nav-link" href="accounts.html">
-                                <i className="far fa-user"></i>
+                                {/*<i className="far fa-user"></i>*/}
+                                <FontAwesomeIcon icon={fa.faUser} size="2x"/>
                                 Accounts
                             </a>
                         </li>
@@ -55,9 +63,12 @@ export default () => {
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown"
                                aria-haspopup="true" aria-expanded="false">
-                                <i className="fas fa-cog"></i>
+                                {/*<i className="fas fa-cog"></i>*/}
+                                <FontAwesomeIcon icon={fa.faCog} size="2x"/>
                                 <span>
-                                    Settings <i className="fas fa-angle-down"></i>
+                                    Settings
+                                    <FontAwesomeIcon icon={fa.faAngleDown} size="1x"/>
+                                    {/*<i className="fas fa-angle-down"></i>*/}
                                 </span>
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">

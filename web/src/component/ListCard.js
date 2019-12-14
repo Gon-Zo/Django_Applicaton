@@ -8,7 +8,6 @@ export default (props) => {
                 <h2 className="tm-block-title">{props.title}</h2>
 
                 <div className="tm-notification-items">
-
                     <ListItem/>
 
 
