@@ -7,6 +7,7 @@ export default () => {
     return (
         <div className="" id="home">
             <Header/>
+
             <div className="container">
 
                 <div className="row">
@@ -19,6 +20,7 @@ export default () => {
                 <ChartGroup/>
 
             </div>
+
             <Footer/>
         </div>
     )
