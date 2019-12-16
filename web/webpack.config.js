@@ -47,7 +47,7 @@ module.exports = {
             {
                 test: /\.(pg|jpg|JPG|jpeg|png|gif|mp3|svg|ttf|woff2|woff|eot)$/,
                 loader: 'url-loader?limit=100000'
-            }
+            },
         ]
     },
     plugins: [
