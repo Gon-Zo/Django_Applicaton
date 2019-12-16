@@ -2,7 +2,7 @@ import React from 'react'
 import ChartCard1 from "./ChartCard1";
 import ChartCard2 from "./ChartCard2";
 import ChartCard3 from "./ChartCard3";
-import ListCard from "./ListCard";
+import ListCard from "../list/ListCard";
 import ChartCard4 from "./ChartCard4";
 import ChartCard5 from "./ChartCard5";
 
