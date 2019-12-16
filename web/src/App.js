@@ -1,11 +1,30 @@
 import React, {useState} from "react";
+import {Route, Switch} from 'react-router-dom';
+import Header from "./component/comm/Header";
+import Footer from "./component/comm/Footer";
 
-export default () =>{
+import Dashboard from "./view/Dashboard";
+import Products from "./view/Products";
+import AddProduct from "./view/AddProduct";
+import AddCategory from "./view/AddCategory";
 
+export default () => {
+    return (
+        <div className="" id="home">
+            <Header/>
+            <Switch>
+                <Route exact path="/" component={Dashboard}/>
+                <Route path="/products" component={Products}/>
+                <Route path="/add-product" component={AddProduct}/>
+                <Route path="/add-category" component={AddCategory}/>
+            </Switch>
+            <Footer/>
+        </div>
+    )
 };
 
-const loginCard = () =>{
-    return(
+const loginCard = () => {
+    return (
         <div>
             <div>
 

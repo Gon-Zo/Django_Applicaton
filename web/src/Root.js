@@ -1,16 +1,25 @@
 import React from 'react';
-
-// index.js 로가기
-import './assets/styles/index.css'
-import './assets/js/index'
-
-import Dashboard from "./view/Dashboard";
-
+import {BrowserRouter} from 'react-router-dom';
+import App from "./App";
+import Login from "./view/Login";
 
 const Root = () => {
-    return (
-       <Dashboard/>
+    let temp = true;
+    return getApp(temp);
+};
+
+const setApp = function (flag) {
+    return flag ? (
+        <Login/>
+    ) : (
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     );
+};
+
+const getApp = function (flag) {
+    return setApp(flag)
 };
 
 export default Root;
