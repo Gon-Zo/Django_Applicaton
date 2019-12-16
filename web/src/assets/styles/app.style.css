@@ -4,3 +4,27 @@
     font-family: Roboto, Helvetica, Arial, sans-serif;
     text-align: center;
 }
+
+.text_start{
+    text-align: start;
+}
+
+.display_none {
+    display: none;
+}
+
+.none_border{
+    border: none;
+    cursor: pointer;
+}
+
+.login_wrap {
+    position: fixed;
+    top: 10em;
+    left: 42em;
+    width: 20em;
+    height: 35em;
+    padding: 2em;
+    border-radius: 1em;
+    background-color: #c9c9c9;
+}
