@@ -21,10 +21,15 @@
 .login_wrap {
     position: fixed;
     top: 10em;
-    left: 42em;
+    left: 43em;
     width: 20em;
     height: 35em;
     padding: 2em;
     border-radius: 1em;
     background-color: #c9c9c9;
 }
+
+.app-style-c9{
+    background-color: #c9c9c9;
+}
+
