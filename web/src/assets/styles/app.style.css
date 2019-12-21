@@ -5,7 +5,7 @@
     text-align: center;
 }
 
-.text_start{
+.text_start {
     text-align: start;
 }
 
@@ -13,7 +13,7 @@
     display: none;
 }
 
-.none_border{
+.none_border {
     border: none;
     cursor: pointer;
 }
@@ -29,7 +29,35 @@
     background-color: #c9c9c9;
 }
 
-.app-style-c9{
+/* color style*/
+.app-style-c9 {
     background-color: #c9c9c9;
 }
 
+.app-style-red {
+    background-color: #f00;
+}
+
+.app-style-blue {
+    background-color: #00f;
+}
+
+.app-slide-wrap {
+    width: 70em;
+    height: 47em;
+    margin-top: 1.5em;
+}
+
+.app-chart-size {
+    width: 10em;
+    height: 10em;
+    margin: auto;
+    /*background-color: #c9c9c9;*/
+}
+
+.app-card-sm{
+    width: 10em;
+    height: 10em;
+
+    background-color: #f0f;
+}
