@@ -11,7 +11,7 @@ import AddCategory from "./view/AddCategory";
 
 export default () => {
     return (
-        <div className="" id="home">
+        <div className="app-style-c9" id="home">
             <Header/>
             <Switch>
                 <Route exact path="/" component={Dashboard}/>

@@ -4,22 +4,16 @@ import App from "./App";
 import './assets/styles/index.css'
 import './assets/js/index'
 
-import {createStore} from "redux";
-import {shallowEqual, useSelector} from 'react-redux'
+import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './modules';
+import { Provider } from 'react-redux';
 
-// const selectedData = useSelector(selectorReturningObject, shallowEqual)
+const store = createStore(rootReducer, composeWithDevTools());
 
-// const store = createStore(rootReducer);
-// ReactDOM.render(<App/>, document.getElementById("root"));
-
-// const store = createStore(rootReducer)
-
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <App />
-//     </Provider>,
-//     document.getElementById('root')
-// );
-//
-
-ReactDOM.render(<App/>, document.getElementById("root"));
+ReactDOM.render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+);

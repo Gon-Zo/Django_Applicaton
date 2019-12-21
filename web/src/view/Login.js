@@ -1,36 +1,54 @@
 import React, {useState} from 'react'
 
 
-
-export default (props) => {
+export default ({onSuccess, onFall, userYn}) => {
 
     const [id, setId] = useState('');
+    const [pwd, setPwd] = useState('');
 
-    const [pwd , setPwd]  = useState('');
-
-    const onChange = function(e){
+    const onChange = function (e) {
         let target = e.target.id;
         let val = e.target.value;
-        if(target === 'id'){
+        if (target === 'id') {
             setId(val)
-        }else{
+        } else {
             setPwd(val)
         }
     };
 
-
     const onClick = function () {
-        alert("test success ID >> " + id  + "<><><> "  + pwd)
+        // console.log("test success ID >> " + id + "<><><> " + pwd)
         // todo : 정규표현식
+        if (isNotLogin(id, pwd)) {
+            onFall()
+        } else {
+            onSuccess()
+        }
 
     };
 
+    const isNotLogin = (id, pwd) => {
+        return !(isNotId(id) || isNotPwd(pwd));
+    };
+
+    const isNotId = (idStr) => {
+        return idStr !== '';
+    };
+
+    const isNotPwd = (pwdStr) => {
+        return pwdStr !== '';
+    };
+
+
     return (
         <div className="login_wrap">
+
             <div>
                 <img src="/images/logo.jpg" alt="Logo"/>
+                <span>{userYn}</span>
             </div>
             {/*Image Logo*/}
+
             <div className="row mt-2">
                 <div className="col-12">
                     <form action="" method="post" className="tm-login-form">
@@ -60,7 +78,7 @@ export default (props) => {
                             <button
                                 type="button"
                                 onClick={onClick}
-                                className="btn btn-primary btn-block text-uppercase" >
+                                className="btn btn-primary btn-block text-uppercase">
                                 Login
                             </button>
                         </div>

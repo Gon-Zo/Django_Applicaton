@@ -2,11 +2,8 @@
 import React from 'react';
 import {BrowserRouter} from 'react-router-dom';
 import Root from "./Root";
-import Login from "./view/Login";
-
-//Ex
-import Counter from "./view/ex/Counter";
-
+import LoginContainer from "./containers/LoginContainer";
+import {useSelector} from "react-redux";
 
 /**
  * setting to root view
@@ -26,7 +23,7 @@ const root = function () {
  */
 const login = function () {
     return (
-        <Login/>
+        <LoginContainer/>
     )
 };
 
@@ -36,7 +33,7 @@ const login = function () {
  * @returns {*}
  */
 const setApp = function (flag) {
-    return flag ? login() : root();
+    return flag ? root() : login();
 };
 
 /**
@@ -53,9 +50,6 @@ const getApp = function (flag) {
  * @returns {*}
  */
 export default () => {
-    let temp = false;
-    return getApp(temp)
-    // return(
-    //     <Counter/>
-    // )
+    // const users = useSelector(state => state.users, []);
+    return getApp(true)
 };
