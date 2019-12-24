@@ -25,6 +25,7 @@ SECRET_KEY = 'rhd#6a-k2m42qgf^sk6yx(r!%s5utd3+w=@0ew(fr2*mqh#+ke'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# 모든 허용
 ALLOWED_HOSTS = ['*']
 
 # CORS_ORIGIN_ALLOW_ALL
@@ -37,13 +38,26 @@ CORS_ORIGIN_WHITELIST = (
 # Application definition
 
 INSTALLED_APPS = [
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django_jenkins',
+    'rest_framework',
+
+    'User',
+    'Store',
+    'Item',
+    'Category',
+    'Image',
+    'Basket',
+    'Like',
+    'Review',
+    'Question',
 ]
 
 MIDDLEWARE = [
