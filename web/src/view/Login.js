@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import {BASE_URL} from '../assets/comm/base'
-import {param} from "../assets/comm/param";
 
 const user = class User {
     constructor(id, pwd) {
