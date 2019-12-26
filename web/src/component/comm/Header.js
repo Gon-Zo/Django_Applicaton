@@ -3,6 +3,7 @@ import * as fa from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import MenuGroup from "../menu/MenuGroup";
 import {Link} from "react-router-dom";
+import LogoutButton from "../button/LogoutButton";
 
 
 export default () => {
@@ -20,13 +21,15 @@ export default () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <MenuGroup/>
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
-                            </a>
-                        </li>
-                    </ul>
+                    <LogoutButton/>
+                    {/*<ul className="navbar-nav">*/}
+                    {/*    <li className="nav-item">*/}
+                    {/*        <a className="nav-link d-block" href="login.html">*/}
+                    {/*            Admin, <b>Logout</b>*/}
+                    {/*        </a>*/}
+                    {/*    </li>*/}
+                    {/*</ul>*/}
+
                 </div>
             </div>
         </nav>

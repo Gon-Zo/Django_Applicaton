@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from .models import User
-from .form import UserForm
+from .form import UserForm, LoginForm, UserUpdateForm
 from .serializers import UserSerializer
 from comm.JSONRenderer import JSONParser
+import comm.exception
 
 
 class UserApi(APIView):
@@ -19,7 +20,6 @@ class UserApi(APIView):
         form = UserForm(data=request.GET)
         if form.is_valid():
             form.save()
-            # return HttpResponse('{"result":"True"}', status=200)
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=403)
@@ -40,28 +40,29 @@ class UserApi2(APIView):
 
     # 유저 정보 수정
     def put(self, request, seq):
-
-        id = request.GET.get("id")
-        pwd = request.GET.get("pwd")
-        name = request.GET.get("name")
-        address = request.GET.get("address")
+        # id = request.GET.get("id")
+        # pwd = request.GET.get("pwd")
+        # name = request.GET.get("name")
+        # address = request.GET.get("address")
         # img = request.GET.get("img")
-        use_yn = request.GET.get("useYn")
+        # use_yn = request.GET.get("useYn")
 
+        form = UserUpdateForm(data=request.GET)
+        seq = form.data['seq']
         user = User.objects.filter(seq=seq)
 
-        if id is not None:
-            user.update(id=id)
-        if pwd is not None:
-            user.update(pwd=pwd)
-        if name is not None:
-            user.update(id=name)
-        if address is not None:
-            user.update(id=id)
+        # if id is not None:
+        #     user.update(id=id)
+        # if pwd is not None:
+        #     user.update(pwd=pwd)
+        # if name is not None:
+        #     user.update(id=name)
+        # if address is not None:
+        #     user.update(id=id)
         # if img is not None:
         #     user.update(id=id)
-        if use_yn is not None:
-            user.update(id=id)
+        # if use_yn is not None:
+        #     user.update(id=id)
 
         return HttpResponse(status=204)
 
@@ -74,17 +75,11 @@ class UserApi2(APIView):
 class Login(APIView):
     queryset = User.objects.all()
 
-    def get(self, request):
-        pass
-
     def post(self, request):
-        id = request.GET['id']
-        pwd = request.GET['pwd']
+        form = LoginForm(data=request.POST)
+        id = form.data['id']
+        pwd = form.data['pwd']
         user = User.objects.filter(id=id, pwd=pwd)
-        n = len(user)
-        if (n != 0):
-            # print("suuess")
-            return HttpResponse(status=200)
-        else:
-            # print("false")
-            return HttpResponse(status=400)
+        if not user:
+            return JSONParser(comm.exception.get_login_fall(), status=500)
+        return JSONParser(comm.exception.get_login_success(), status=200)

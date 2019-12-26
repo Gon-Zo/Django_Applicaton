@@ -8,6 +8,9 @@ import Dashboard from "./view/Dashboard";
 import Products from "./view/Products";
 import AddProduct from "./view/AddProduct";
 import AddCategory from "./view/AddCategory";
+import Report from "./view/Report";
+import Accounts from "./view/Accounts";
+import Settings from "./view/Settings";
 
 export default () => {
     return (
@@ -15,29 +18,14 @@ export default () => {
             <Header/>
             <Switch>
                 <Route exact path="/" component={Dashboard}/>
-                <Route path="/products" component={Products}/>
+                <Route path="/product" component={Products}/>
+                <Route path="/report" component={Report}/>
+                <Route path="/account" component={Accounts}/>
+                <Route path="/setting" component={Settings}/>
                 <Route path="/add-product" component={AddProduct}/>
                 <Route path="/add-category" component={AddCategory}/>
             </Switch>
             <Footer/>
-        </div>
-    )
-};
-
-const loginCard = () => {
-    return (
-        <div>
-            <div>
-
-            </div>
-            {/*logoBox*/}
-            <div>
-                <input/>
-                <input/>
-            </div>
-            <div>
-                <button>로그인</button>
-            </div>
         </div>
     )
 };
