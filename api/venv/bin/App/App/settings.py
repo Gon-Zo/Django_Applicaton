@@ -75,6 +75,9 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'comm.TEST.custom_exception_handler'
+}
 
 
 ROOT_URLCONF = 'App.urls'

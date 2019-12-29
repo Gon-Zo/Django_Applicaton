@@ -1,10 +1,10 @@
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from .models import User
-from .form import UserForm, LoginForm, UserUpdateForm
+from .form import UserForm, UserUpdateForm
 from .serializers import UserSerializer
 from comm.JSONRenderer import JSONParser
-import comm.exception
+from comm.auth import __encode_jwt__, __decode_jwt__
 
 
 class UserApi(APIView):
@@ -35,8 +35,7 @@ class UserApi2(APIView):
     def get(self, request, seq):
         user = User.objects.filter(seq=seq)
         serializer = UserSerializer(user, many=True)
-        # return JSONResponse(serializer.data)
-        pass
+        return JSONParser(serializer.data)
 
     # 유저 정보 수정
     def put(self, request, seq):
@@ -76,10 +75,11 @@ class Login(APIView):
     queryset = User.objects.all()
 
     def post(self, request):
-        form = LoginForm(data=request.POST)
-        id = form.data['id']
-        pwd = form.data['pwd']
+        id = request.POST.get('id', '')
+        pwd = request.POST.get('pwd', '')
         user = User.objects.filter(id=id, pwd=pwd)
         if not user:
-            return JSONParser(comm.exception.get_login_fall(), status=500)
-        return JSONParser(comm.exception.get_login_success(), status=200)
+            return JSONParser({"result": False, "msg": "login fall"}, status=500)
+        d = __encode_jwt__(user)
+        __decode_jwt__(d)
+        return JSONParser({"result": True, "msg": d}, status=200)
