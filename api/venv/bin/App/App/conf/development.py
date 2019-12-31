@@ -7,7 +7,7 @@ runserver.default_port = "3030"
 SECRET_KEY = __open_key__()
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = __get_db_conf__()
 
