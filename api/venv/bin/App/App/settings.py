@@ -100,17 +100,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'App.wsgi.application'
 
-# Database
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': "dev",
-#         'USER': "postgres",
-#         'PASSWORD': "1234",
-#         'HOST': "ec2-54-180-149-40.ap-northeast-2.compute.amazonaws.com",
-#         'PORT': "5432",
-#     }
-# }
 DATABASES = __get_database_conf__()
 
 # Password validation
