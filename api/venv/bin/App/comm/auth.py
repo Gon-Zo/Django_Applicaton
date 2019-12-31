@@ -1,28 +1,25 @@
 import jwt
+from django.http import HttpResponse
 
+SECRET_KEY = 'rhd#6a-k2m42qgf^sk6yx(r!%s5utd3+w=@0ew(fr2*mqh#+ke'
 
-# SECRET_PRE = "내가설정한비밀키값"
-#
-#
-# def validate_token(token, github_token):
-#     try:
-#         jwt.decode(token, SECRET_PRE + github_token, algorithms='HS256')
-#     except jwt.ExpiredSignatureError:
-#         return status.HTTP_401_UNAUTHORIZED
-#     except jwt.InvalidTokenError:
-#         return status.HTTP_401_UNAUTHORIZED
-#     else:
-#         return True
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
-    a = jwt.decode(jwtStr, 'secret', algorithms=['HS256'])
-    pass
+    try:
+        a = jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+        print(a)
+    except jwt.ExpiredSignatureError:
+        return HttpResponse(status=401)
+    except jwt.InvalidTokenError:
+        return HttpResponse(status=401)
+    else:
+        return True
 
 
 # User Info Encoding Jwt
 def __encode_jwt__(user):
-    encoded_jwt = jwt.encode(render(user), 'secret', algorithm='HS256')
+    encoded_jwt = jwt.encode(render(user), SECRET_KEY, algorithm='HS256')
     return encoded_jwt.decode('utf-8')
 
 
