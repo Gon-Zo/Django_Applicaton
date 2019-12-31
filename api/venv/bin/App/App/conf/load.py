@@ -1,6 +1,11 @@
 import json
 
 
+def __start_app__():
+    with open('App/conf/file/banner.txt', mode='r', encoding='utf-8') as banner:
+        banner = banner.read()
+        print(banner)
+
 def __open_key__():
     # Open json file to key.json
     with open('App/conf/json/key.json', mode='rt', encoding='utf-8') as key:

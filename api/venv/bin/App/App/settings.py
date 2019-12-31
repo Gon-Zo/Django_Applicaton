@@ -11,9 +11,16 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from App.conf.load import __get_db_conf__, __open_key__
+from App.conf.load import __get_db_conf__, __open_key__, __start_app__
+
+# Sever port Setting
+from django.core.management.commands.runserver import Command as runserver
+
+runserver.default_port = "3030"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -21,6 +28,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = __open_key__()
+
+# __start_app__()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -137,3 +146,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+__start_app__()
