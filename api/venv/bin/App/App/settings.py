@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-from App.conf.load import __get_database_conf__
+from App.conf.load import __get_db_conf__, __open_key__
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'rhd#6a-k2m42qgf^sk6yx(r!%s5utd3+w=@0ew(fr2*mqh#+ke'
+SECRET_KEY = __open_key__()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -100,7 +100,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'App.wsgi.application'
 
-DATABASES = __get_database_conf__()
+DATABASES = __get_db_conf__()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
