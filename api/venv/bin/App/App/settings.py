@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from App.conf.load import __get_database_conf__
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -79,7 +80,6 @@ REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'comm.TEST.custom_exception_handler'
 }
 
-
 ROOT_URLCONF = 'App.urls'
 
 TEMPLATES = [
@@ -101,16 +101,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'App.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "dev",
-        'USER': "postgres",
-        'PASSWORD': "1234",
-        'HOST': "ec2-54-180-149-40.ap-northeast-2.compute.amazonaws.com",
-        'PORT': "5432",
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "dev",
+#         'USER': "postgres",
+#         'PASSWORD': "1234",
+#         'HOST': "ec2-54-180-149-40.ap-northeast-2.compute.amazonaws.com",
+#         'PORT': "5432",
+#     }
+# }
+DATABASES = __get_database_conf__()
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
