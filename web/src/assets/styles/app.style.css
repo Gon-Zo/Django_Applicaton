@@ -55,9 +55,19 @@
     /*background-color: #c9c9c9;*/
 }
 
-.app-card-sm{
+.app-card-sm {
     width: 10em;
     height: 10em;
-
     background-color: #f0f;
 }
+
+.app-wrap-margin {
+    margin-top: 3em;
+}
+
+.app-logout-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+

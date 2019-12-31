@@ -9,6 +9,7 @@ export default () => {
 
     const onClick = () => {
         console.log("Logout Success");
+        localStorage.removeItem("Token");
         isFall()
     };
 

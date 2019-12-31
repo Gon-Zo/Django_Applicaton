@@ -51,15 +51,9 @@ export default ({onSuccess, onFall, userYn}) => {
         params.append("id", id);
         params.append("pwd", pwd);
 
-        // let test = new Param(id, pwd);
-        // let test = param(id, pwd).getParam();
-        // console.log(test);
-
         axios.post(`${BASE_URL}/api/login`, params)
             .then((res) => {
-                // console.log(res.status === 200)
-                // console.log(">>>>>>>>>>>>>>>>>>>")
-                console.log("Login success");
+                localStorage.setItem("Token", res.data.msg);
                 onSuccess()
             }).catch((error => console.log(error)))
 

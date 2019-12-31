@@ -4,10 +4,10 @@ import * as fa from "@fortawesome/free-solid-svg-icons";
 
 let menuItem = [
     {title: 'Dashboard', icon: fa.faTachometerAlt, url: "/"},
-    {title: 'Reports', icon: fa.faFileAlt, url: "/"},
-    {title: 'Products', icon: fa.faShoppingCart, url: "/products"},
-    {title: 'Accounts', icon: fa.faUser, url: "/"},
-    {title: 'Settings', icon: fa.faCog, url: "/"},
+    {title: 'Reports', icon: fa.faFileAlt, url: "/report"},
+    {title: 'Products', icon: fa.faShoppingCart, url: "/product"},
+    {title: 'Accounts', icon: fa.faUser, url: "/account"},
+    {title: 'Settings', icon: fa.faCog, url: "/setting"},
 ];
 
 const renderItem = function (idx, title, icon, url) {
