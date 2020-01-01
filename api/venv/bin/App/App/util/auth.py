@@ -1,14 +1,14 @@
 import jwt
 from django.http import HttpResponse
+from App.conf.setting import __open_key__
 
-SECRET_KEY = 'rhd#6a-k2m42qgf^sk6yx(r!%s5utd3+w=@0ew(fr2*mqh#+ke'
+SECRET_KEY = __open_key__()
 
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
     try:
         a = jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
-        print(a)
     except jwt.ExpiredSignatureError:
         return HttpResponse(status=401)
     except jwt.InvalidTokenError:

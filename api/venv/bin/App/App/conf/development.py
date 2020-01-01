@@ -1,5 +1,5 @@
 from .base import *
-from App.conf.util import __get_db_conf__, __open_key__, __start_app__
+from App.conf.setting import __get_db_conf__, __open_key__
 from django.core.management.commands.runserver import Command as runserver
 
 runserver.default_port = "3030"
@@ -20,9 +20,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
+    'App.util.app_handlers.StartAppMiddleware'
 ]
 
-WSGI_APPLICATION = 'App.wsgi.application'
+# WSGI_APPLICATION = 'App.wsgi.application'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -53,4 +55,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-__start_app__()
+# __start_app__()

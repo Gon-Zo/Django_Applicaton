@@ -41,7 +41,7 @@ INSTALLED_APPS = MY_APPLICATION + ADD_PLUGIN + [
 
 # Error Handler
 REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'comm.TEST.custom_exception_handler'
+    'EXCEPTION_HANDLER': 'App.util.exception_handler.custom_exception_handler'
 }
 
 TEMPLATES = [

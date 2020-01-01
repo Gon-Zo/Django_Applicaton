@@ -3,8 +3,11 @@ from django.http import HttpResponse
 from .models import User
 from .form import UserForm, UserUpdateForm
 from .serializers import UserSerializer
-from comm.JSONRenderer import JSONParser
-from comm.auth import __encode_jwt__, __decode_jwt__
+from App.util.comm import ReqJSONRenderer
+from App.util.auth import __encode_jwt__, __decode_jwt__
+
+
+# from App.util.exceptions import BusinessLogicException
 
 
 class UserApi(APIView):
@@ -13,7 +16,7 @@ class UserApi(APIView):
         # 유저 리스트 출력
         user = User.objects.all()
         serializer = UserSerializer(user, many=True)
-        return JSONParser(serializer.data)
+        return ReqJSONRenderer(serializer.data)
 
     #  회원 가입
     def post(self, request):
@@ -35,7 +38,7 @@ class UserApi2(APIView):
     def get(self, request, seq):
         user = User.objects.filter(seq=seq)
         serializer = UserSerializer(user, many=True)
-        return JSONParser(serializer.data)
+        return ReqJSONRenderer(serializer.data)
 
     # 유저 정보 수정
     def put(self, request, seq):
@@ -72,14 +75,12 @@ class UserApi2(APIView):
 
 
 class Login(APIView):
-    queryset = User.objects.all()
 
     def post(self, request):
-        id = request.POST.get('id', '')
-        pwd = request.POST.get('pwd', '')
+        id = request.GET.get('id', '')
+        pwd = request.GET.get('pwd', '')
         user = User.objects.filter(id=id, pwd=pwd)
         if not user:
-            return JSONParser({"result": False, "msg": "login fall"}, status=500)
+            return ReqJSONRenderer({"result": False, "msg": "login fall"}, status=500)
         d = __encode_jwt__(user)
-        __decode_jwt__(d)
-        return JSONParser({"result": True, "msg": d}, status=200)
+        return ReqJSONRenderer({"result": True, "msg": d}, status=200)
