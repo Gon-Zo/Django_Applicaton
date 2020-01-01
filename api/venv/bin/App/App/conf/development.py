@@ -11,7 +11,12 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 DATABASES = __get_db_conf__()
 
-MIDDLEWARE = [
+MY_MIDDLEWARE = [
+    'App.util.app_handlers.StartAppMiddleware'
+    # 'App.util.request_interceptor.StatisticsMiddleware'
+]
+
+MIDDLEWARE = MY_MIDDLEWARE + [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -20,8 +25,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-
-    'App.util.app_handlers.StartAppMiddleware'
 ]
 
 # WSGI_APPLICATION = 'App.wsgi.application'

@@ -4,7 +4,7 @@ from .models import User
 from .form import UserForm, UserUpdateForm
 from .serializers import UserSerializer
 from App.util.comm import ReqJSONRenderer
-from App.util.auth import __encode_jwt__, __decode_jwt__
+from App.util.auth import __encode_jwt__, __token_auth__
 
 
 # from App.util.exceptions import BusinessLogicException
@@ -14,6 +14,8 @@ class UserApi(APIView):
 
     def get(self, request):
         # 유저 리스트 출력
+        # a = __token_auth__(request)
+
         user = User.objects.all()
         serializer = UserSerializer(user, many=True)
         return ReqJSONRenderer(serializer.data)
@@ -77,8 +79,8 @@ class UserApi2(APIView):
 class Login(APIView):
 
     def post(self, request):
-        id = request.GET.get('id', '')
-        pwd = request.GET.get('pwd', '')
+        id = request.POST.get('id', '')
+        pwd = request.POST.get('pwd', '')
         user = User.objects.filter(id=id, pwd=pwd)
         if not user:
             return ReqJSONRenderer({"result": False, "msg": "login fall"}, status=500)

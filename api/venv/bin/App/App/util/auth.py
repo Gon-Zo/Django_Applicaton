@@ -1,6 +1,7 @@
 import jwt
 from django.http import HttpResponse
 from App.conf.setting import __open_key__
+from App.util.comm import ReqJSONRenderer
 
 SECRET_KEY = __open_key__()
 
@@ -8,13 +9,12 @@ SECRET_KEY = __open_key__()
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
     try:
-        a = jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+        jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+        return ReqJSONRenderer({"state": True, "msg": "Success To Auth"}, status=200)
     except jwt.ExpiredSignatureError:
-        return HttpResponse(status=401)
+        return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
     except jwt.InvalidTokenError:
-        return HttpResponse(status=401)
-    else:
-        return True
+        return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
 
 
 # User Info Encoding Jwt
@@ -35,3 +35,11 @@ def render(user):
         "use_yn": user[0].use_yn,
         "regdate": str(user[0].regdate)
     }
+
+
+def __token_auth__(request):
+    token = request.META.get('HTTP_AUTHORIZATION')
+    token = token.replace("Bearer ", "", 1)
+    if token is None:
+        return ReqJSONRenderer({"state": False, "error_msg": "Not Token"}, status=405)
+    return __decode_jwt__(token)
