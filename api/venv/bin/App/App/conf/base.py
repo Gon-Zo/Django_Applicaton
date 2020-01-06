@@ -10,6 +10,7 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:3030'
 )
 
+
 # Market Application to Setting
 MY_APPLICATION = [
     'User',
@@ -40,9 +41,9 @@ INSTALLED_APPS = MY_APPLICATION + ADD_PLUGIN + [
 ]
 
 # Error Handler
-REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'App.util.exception_handler.custom_exception_handler'
-}
+# REST_FRAMEWORK = {
+#     'EXCEPTION_HANDLER': 'App.util.exception_handler.custom_exception_handler'
+# }
 
 TEMPLATES = [
     {

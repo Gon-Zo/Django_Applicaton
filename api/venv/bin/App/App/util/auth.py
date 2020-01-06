@@ -1,8 +1,9 @@
+# 인증 관련
 import jwt
-from django.http import HttpResponse
 from App.conf.setting import __open_key__
 from App.util.comm import ReqJSONRenderer
 
+# 비밀키
 SECRET_KEY = __open_key__()
 
 
@@ -37,6 +38,7 @@ def render(user):
     }
 
 
+# 인증 관련한 함수
 def __token_auth__(request):
     token = request.META.get('HTTP_AUTHORIZATION')
     token = token.replace("Bearer ", "", 1)

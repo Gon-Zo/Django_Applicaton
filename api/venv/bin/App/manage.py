@@ -14,6 +14,11 @@ def main():
             "forget to activate a virtual environment?"
         ) from exc
 
+    if os.getpid() % 2 != 0:
+        if 'runserver' in sys.argv:
+            with open('App/conf/file/banner.txt', mode='r', encoding='utf-8') as banner:
+                banner = banner.read()
+            print(banner)
     execute_from_command_line(sys.argv)
 
 

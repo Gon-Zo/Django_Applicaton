@@ -1,2 +1,16 @@
-# Market App Setting
 # docker-setting
+#version: '1'
+#
+#volumes:
+#  python-market-app: {}
+
+#services:
+#  db:
+#    image: postgres
+#    volumes:
+#
+
+#django :
+#  build:
+#    context : .
+#    dockerfile:

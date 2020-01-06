@@ -2,6 +2,7 @@ from rest_framework.views import exception_handler
 from App.util.comm import ReqJSONRenderer
 
 
+# exception Handler Function
 def custom_exception_handler(exc, context):
     response = exception_handler(exc, context)
 
@@ -12,7 +13,10 @@ def custom_exception_handler(exc, context):
         # errors = []
         # for field, value in data.items():
         #     errors.append("{} : {}".format(field, " ".join(value)))
-        temp = {"status": False, "exception": str(exc)}
+        temp = {"status": status, "flag": False, "exception": str(exc)}
+
         return ReqJSONRenderer(temp, status=status)
 
     return None
+
+

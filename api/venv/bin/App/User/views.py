@@ -1,37 +1,48 @@
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 from django.http import HttpResponse
 from .models import User
 from .form import UserForm, UserUpdateForm
 from .serializers import UserSerializer
-from App.util.comm import ReqJSONRenderer
+from App.util.comm import ReqJSONRenderer, Result
 from App.util.auth import __encode_jwt__, __token_auth__
-
-
-# from App.util.exceptions import BusinessLogicException
+from App.util.QueryHandler import __log_query__
 
 
 class UserApi(APIView):
+    permission_classes = [AllowAny]
 
     def get(self, request):
-        # 유저 리스트 출력
-        # a = __token_auth__(request)
-
+        #     # 유저 리스트 출력
+        #     # a = __token_auth__(request)
         user = User.objects.all()
         serializer = UserSerializer(user, many=True)
-        return ReqJSONRenderer(serializer.data)
+        #     # return Result(200, "User List", serializer.data, )
+        #     return ReqJSONRenderer(serializer.data)
 
-    #  회원 가입
-    def post(self, request):
-        form = UserForm(data=request.GET)
-        if form.is_valid():
-            form.save()
-            return HttpResponse(status=200)
-        else:
-            return HttpResponse(status=403)
+        # def get(self, request, *args, **kwargs):
+        __log_query__(user)
 
-    def delete(self, request, seq):
-        User.objects.filter(seq=seq).delete()
-        return HttpResponse(status=204)
+        return Response({
+            'message': 'None',
+            'result': serializer.data
+        })
+
+
+#  회원 가입
+def post(self, request):
+    form = UserForm(data=request.GET)
+    if form.is_valid():
+        form.save()
+        return HttpResponse(status=200)
+    else:
+        return HttpResponse(status=403)
+
+
+def delete(self, request, seq):
+    User.objects.filter(seq=seq).delete()
+    return HttpResponse(status=204)
 
 
 class UserApi2(APIView):
@@ -79,10 +90,23 @@ class UserApi2(APIView):
 class Login(APIView):
 
     def post(self, request):
-        id = request.POST.get('id', '')
-        pwd = request.POST.get('pwd', '')
+        # POST params
+        # id = request.POST.get('id', '')
+        # pwd = request.POST.get('pwd', '')
+
+        # GET params
+        id = request.GET.get('id', '')
+        pwd = request.GET.get('pwd', '')
+
         user = User.objects.filter(id=id, pwd=pwd)
+        __log_query__(user)
         if not user:
-            return ReqJSONRenderer({"result": False, "msg": "login fall"}, status=500)
-        d = __encode_jwt__(user)
-        return ReqJSONRenderer({"result": True, "msg": d}, status=200)
+            # return Result(500, "Login Fall", None).__render_response__()
+            return Response({"message": "Login Fail"}, status=500)
+
+        jwt = __encode_jwt__(user)
+        return Response({
+            'message': 'LOGIN_SUCCESS',
+            'result': jwt
+        })
+        # return Result(200, "Login Success", jwt).__render_response__()
