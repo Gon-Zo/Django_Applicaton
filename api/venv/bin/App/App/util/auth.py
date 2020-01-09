@@ -9,13 +9,19 @@ SECRET_KEY = __open_key__()
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
-    try:
-        jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
-        return ReqJSONRenderer({"state": True, "msg": "Success To Auth"}, status=200)
-    except jwt.ExpiredSignatureError:
-        return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
-    except jwt.InvalidTokenError:
-        return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
+    if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
+        return False
+    else:
+        return True
+
+
+# try:
+#     jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+#     return ReqJSONRenderer({"state": True, "msg": "Success To Auth"}, status=200)
+# except jwt.ExpiredSignatureError:
+#     return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
+# except jwt.InvalidTokenError:
+#     return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
 
 
 # User Info Encoding Jwt
@@ -39,9 +45,12 @@ def render(user):
 
 
 # 인증 관련한 함수
-def __token_auth__(request):
-    token = request.META.get('HTTP_AUTHORIZATION')
+def __token_auth__(token):
     token = token.replace("Bearer ", "", 1)
-    if token is None:
-        return ReqJSONRenderer({"state": False, "error_msg": "Not Token"}, status=405)
     return __decode_jwt__(token)
+
+    # token = request.META.get('HTTP_AUTHORIZATION')
+    # token = token.replace("Bearer ", "", 1)
+    # if token is None:
+    #     return ReqJSONRenderer({"state": False, "error_msg": "Not Token"}, status=405)
+    # return __decode_jwt__(token)

@@ -102,7 +102,7 @@ class Login(APIView):
         __log_query__(user)
         if not user:
             # return Result(500, "Login Fall", None).__render_response__()
-            return Response({"message": "Login Fail"}, status=500)
+            return Response({"detail": "Login Fail"}, status=500)
 
         jwt = __encode_jwt__(user)
         return Response({
