@@ -14,16 +14,9 @@ class UserApi(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        #     # 유저 리스트 출력
-        #     # a = __token_auth__(request)
         user = User.objects.all()
         serializer = UserSerializer(user, many=True)
-        #     # return Result(200, "User List", serializer.data, )
-        #     return ReqJSONRenderer(serializer.data)
-
-        # def get(self, request, *args, **kwargs):
         __log_query__(user)
-
         return Response({
             'message': 'None',
             'result': serializer.data
