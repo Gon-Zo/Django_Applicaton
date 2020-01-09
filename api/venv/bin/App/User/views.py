@@ -13,6 +13,7 @@ from App.util.QueryHandler import __log_query__
 class UserApi(APIView):
     permission_classes = [AllowAny]
 
+    # User All List
     def get(self, request):
         user = User.objects.all()
         serializer = UserSerializer(user, many=True)
@@ -22,20 +23,21 @@ class UserApi(APIView):
             'result': serializer.data
         })
 
+    #  User Sign up
+    def post(self, request):
+        form = UserForm(data=request.GET)
+        if form.is_valid():
+            result = form.save()
+            __log_query__(result)
+            return HttpResponse(status=200)
+        else:
+            return HttpResponse(status=403)
 
-#  회원 가입
-def post(self, request):
-    form = UserForm(data=request.GET)
-    if form.is_valid():
-        form.save()
-        return HttpResponse(status=200)
-    else:
-        return HttpResponse(status=403)
-
-
-def delete(self, request, seq):
-    User.objects.filter(seq=seq).delete()
-    return HttpResponse(status=204)
+    # User Delete
+    def delete(self, request, seq):
+        result = User.objects.filter(seq=seq).delete()
+        __log_query__(result)
+        return HttpResponse(status=204)
 
 
 class UserApi2(APIView):
@@ -82,6 +84,7 @@ class UserApi2(APIView):
 
 class Login(APIView):
 
+    # User Login
     def post(self, request):
         # POST params
         # id = request.POST.get('id', '')
