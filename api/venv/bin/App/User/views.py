@@ -1,106 +1,86 @@
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from django.http import HttpResponse
 from .models import User
-from .form import UserForm, UserUpdateForm
 from .serializers import UserSerializer
-from App.util.comm import ReqJSONRenderer, Result
 from App.util.auth import __encode_jwt__, __token_auth__
 from App.util.QueryHandler import __log_query__
+from App.util.ResponseMsg import *
+from App.util.comm import param_parser
 
 
 class UserApi(APIView):
     permission_classes = [AllowAny]
 
-    # User All List
+    # Type is User Type
+    # IF type is None App User List
+    # Type is not None Type filter User List
     def get(self, request):
-        user = User.objects.all()
+        type = request.GET.get('type', '')
+        user = _user_object_(type)
         serializer = UserSerializer(user, many=True)
         __log_query__(user)
-        return Response({
-            'message': 'None',
-            'result': serializer.data
-        })
+        return Response(RESULT_LIST(serializer.data), status=200)
 
-    #  User Sign up
+    #  User 회원가입
     def post(self, request):
-        form = UserForm(data=request.GET)
-        if form.is_valid():
-            result = form.save()
-            __log_query__(result)
-            return HttpResponse(status=200)
-        else:
-            return HttpResponse(status=403)
+        data = param_parser(request.GET)
+        try:
+            user = User.objects
+            user.create(**data)
+        except Exception as e:
+            return Response(EXCEPTION_DETAIL(e), status=500)
 
-    # User Delete
-    def delete(self, request, seq):
-        result = User.objects.filter(seq=seq).delete()
-        __log_query__(result)
-        return HttpResponse(status=204)
+        return Response(SIGN_UP_SUCCESS, status=200)
 
 
 class UserApi2(APIView):
 
-    # 유저 디테일
+    # 유저 상세
     def get(self, request, seq):
         user = User.objects.filter(seq=seq)
-        serializer = UserSerializer(user, many=True)
-        return ReqJSONRenderer(serializer.data)
+        if not user:
+            # User is temp
+            return Response(USER_IS_NONE, status=500)
+        else:
+            serializer = UserSerializer(user, many=True)
+            return Response(RESULT_LIST(serializer.data), status=200)
 
     # 유저 정보 수정
     def put(self, request, seq):
-        # id = request.GET.get("id")
-        # pwd = request.GET.get("pwd")
-        # name = request.GET.get("name")
-        # address = request.GET.get("address")
-        # img = request.GET.get("img")
-        # use_yn = request.GET.get("useYn")
-
-        form = UserUpdateForm(data=request.GET)
-        seq = form.data['seq']
         user = User.objects.filter(seq=seq)
+        data = param_parser(request.GET)
+        user.update(**data)
+        return Response(USER_UPDATE_SUCCESS, status=200)
 
-        # if id is not None:
-        #     user.update(id=id)
-        # if pwd is not None:
-        #     user.update(pwd=pwd)
-        # if name is not None:
-        #     user.update(id=name)
-        # if address is not None:
-        #     user.update(id=id)
-        # if img is not None:
-        #     user.update(id=id)
-        # if use_yn is not None:
-        #     user.update(id=id)
-
-        return HttpResponse(status=204)
-
-    # 유저 삭제
+    # User Delete
     def delete(self, request, seq):
-        User.objects.filter(seq=seq).delete()
-        return HttpResponse(status=204)
+        user = User.objects.filter(seq=seq)
+        if not user:
+            return Response(USER_IS_NONE, status=500)
+        else:
+            user.delete()
+            return Response(USER_DELETE_SUCCESS, status=200)
 
 
 class Login(APIView):
 
     # User Login
     def post(self, request):
-        # POST params
-        # id = request.POST.get('id', '')
-        # pwd = request.POST.get('pwd', '')
-
-        # GET params
-        id = request.GET.get('id', '')
-        pwd = request.GET.get('pwd', '')
-
-        user = User.objects.filter(id=id, pwd=pwd)
+        data = param_parser(request.GET)
+        user = User.objects.filter(**data)
         __log_query__(user)
         if not user:
-            return Response({"detail": "Login Fail"}, status=500)
+            return Response(LOGIN_FAIL, status=500)
 
         jwt = __encode_jwt__(user)
-        return Response({
-            'message': 'LOGIN_SUCCESS',
-            'result': jwt
-        })
+        return Response(LOGIN_SUCCESS(jwt))
+
+
+# User List to check type
+# return type is Object ( User )
+def _user_object_(type):
+    if type == '':
+        return User.objects.all()
+    else:
+        return User.objects.filter(type=type)

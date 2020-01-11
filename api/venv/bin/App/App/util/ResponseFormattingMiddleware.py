@@ -86,7 +86,11 @@ def __result_response__(request, response):
             getattr(response, 'data') is not None:
         data = response.data
         if is_success(response.status_code):
-            str_format = __render_format__(status_yn, data.pop('message'), data.pop('result'))
+            try:
+                result_val = data.pop('result')
+            except KeyError as k:
+                result_val = None
+            str_format = __render_format__(status_yn, data.pop('message'), result_val)
         else:
             str_format = __render_format__(status_yn, "[Mka Error] " + str(status), data.get('detail'))
     else:
