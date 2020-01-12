@@ -8,6 +8,8 @@ SEQ_IS_NONE = {"detail": "SEQ_IS_NONE"}
 STORE_SUCCESS = {"detail": "STORE_SUCCESS"}
 STORE_FAIL = {"detail": "STORE_FAIL"}
 STORE_IS_NONE = {"detail": "STORE_IS_NONE"}
+ITEM_SUCCESS = {"detail": "ITEM_SUCCESS"}
+ITEM_FAIL = {"detail": "ITEM_FAIL"}
 
 
 def EXCEPTION_DETAIL(e):
