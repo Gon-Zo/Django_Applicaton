@@ -3,13 +3,13 @@
 #
 #volumes:
 #  python-market-app: {}
-
+#
 #services:
 #  db:
 #    image: postgres
 #    volumes:
 #
-
+#
 #django :
 #  build:
 #    context : .

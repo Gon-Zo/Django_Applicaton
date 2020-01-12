@@ -39,7 +39,7 @@ MIDDLEWARE = [
              ] + MY_MIDDLEWARE
 
 # ???
-# WSGI_APPLICATION = 'App.wsgi.application'
+WSGI_APPLICATION = 'App.wsgi.application'
 
 # ??
 AUTH_PASSWORD_VALIDATORS = [
