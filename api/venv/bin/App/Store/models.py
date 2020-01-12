@@ -14,7 +14,7 @@ class Store(models.Model):
     # 가게 주소
     address = models.TextField()
     # 가게 이미지 명
-    img = models.TextField()
+    # img = models.TextField()
     # 저장 날짜
     regdate = models.DateTimeField(auto_now_add=True)
     # 유저 매핑
