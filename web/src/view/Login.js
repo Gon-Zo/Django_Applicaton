@@ -53,7 +53,9 @@ export default ({onSuccess, onFall, userYn}) => {
 
         axios.post(`${BASE_URL}/api/login`, params)
             .then((res) => {
-                localStorage.setItem("Token", res.data.msg);
+                let token = res.data.result;
+                localStorage.setItem("Token", token);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 onSuccess()
             }).catch((error => console.log(error)))
 
@@ -83,7 +85,9 @@ export default ({onSuccess, onFall, userYn}) => {
 
             <div className="row mt-2">
                 <div className="col-12">
-                    <form action="" method="post" className="tm-login-form">
+                    {/*<form action="" method="post" className="tm-login-form">*/}
+                    <div className="tm-login-form">
+
                         <div className="form-group">
                             <label htmlFor="username">Username</label>
                             <input
@@ -117,7 +121,8 @@ export default ({onSuccess, onFall, userYn}) => {
                         <button className="mt-5 btn btn-primary btn-block text-uppercase">
                             Forgot your password?
                         </button>
-                    </form>
+                    </div>
+                    {/*</form>*/}
                 </div>
             </div>
         </div>

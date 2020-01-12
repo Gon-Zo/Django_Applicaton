@@ -9,7 +9,6 @@ export default (props) => {
     const [userId, setUserId] = useState(0);
 
     const bindData = (temp) => {
-
         let tempList = {
             key: Object.keys(temp[0]),
             data: temp
@@ -19,9 +18,11 @@ export default (props) => {
 
 
     const axiosUser = () => {
+        let token = localStorage.getItem("Token");
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios(`${BASE_URL}/api/user`)
             .then((res) => {
-                bindData(res.data)
+                bindData(res.data.result)
             }).catch((error => console.log(error)))
     };
 

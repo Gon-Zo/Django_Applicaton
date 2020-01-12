@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import Loding from "../comm/Loding";
 
 const isNotTemp = (temp) => {
@@ -7,38 +7,11 @@ const isNotTemp = (temp) => {
 
 let json = require('../../assets/data/field');
 
-const renderTHead = (keys) => {
-    return (
-        <tr>
-            {
-                keys.map((k, i) => (
-                    <th scope="col" key={i}>{json.user[`${k}`]}</th>
-                ))
-            }
-        </tr>
-    )
-};
-
-const renderTBody = (temp) => {
-    return (
-        <tr>
-            {
-                temp.data.map(d => (
-                    temp.key.map((k, i) => (
-                        <th scope="row" key={i}>{d[`${k}`]}</th>
-                    ))
-                ))
-            }
-        </tr>
-    )
-};
-
 const renderRoding = () => {
     return (
         <Loding/>
     )
 };
-
 
 export default (props) => {
     let temp = props.data;
@@ -47,10 +20,30 @@ export default (props) => {
         return (
             <table className="table">
                 <thead>
-                {renderTHead(temp.key)}
+                <tr>
+                    {
+                        temp.key.map((k, i) => (
+                            <th scope="col" key={i}>{json.user[`${k}`]}</th>
+                        ))
+                    }
+                </tr>
                 </thead>
                 <tbody>
-                {renderTBody(temp)}
+                <Fragment>
+                    {
+                        temp.data.map((d, i) => (
+                            <tr key={i}>
+                                {
+                                    temp.key.map((k, i) => (
+                                        <td key={i}>
+                                            <b>{d[`${k}`]}</b>
+                                        </td>
+                                    ))
+                                }
+                            </tr>
+                        ))
+                    }
+                </Fragment>
                 </tbody>
             </table>
         )
