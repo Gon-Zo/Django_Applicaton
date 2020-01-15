@@ -7,6 +7,8 @@ from User.views import UserApi, UserApi2, Login
 from Store.views import StoreApi, StoreRestApi
 from Item.views import ItemApi, ItemRestApi
 
+from Basket.views import BasketApi
+
 urlpatterns = [
     # user
     path('api/user', UserApi.as_view()),
@@ -19,4 +21,8 @@ urlpatterns = [
     # item
     path('api/item', ItemApi.as_view()),
     path('api/item/<int:seq>', ItemRestApi.as_view()),
+
+    # Basket
+    path('api/basket', BasketApi.as_view()),
+
 ]

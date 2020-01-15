@@ -8,7 +8,7 @@ class Basket(models.Model):
     class Meta:
         db_table = '"mk_basket"'
 
-    # pk
+    # pk‘‘
     seq = models.AutoField(primary_key=True)
     # 아이템 번호
     # item = models.ForeignKey("item.Item", related_name='basket_item', on_delete=models.CASCADE, null=False,editable=True)
@@ -17,3 +17,5 @@ class Basket(models.Model):
     user = models.ForeignKey(User, related_name='basket_user', on_delete=models.CASCADE)
     # 등록일
     regdate = models.DateTimeField(auto_now_add=True)
+
+  
