@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .serializers import ReviewSerializer
 from App.util.comm import param_parser
 from .models import Review
+from App.util.RequesetMsg import (RESULT_LIST, REVIEW_SUCCESS, REVIEW_FAIL)
 
 
 # checking to seq
@@ -12,6 +13,8 @@ def check_seq(seq):
     else:
         return review_object(seq)
 
+
+# review 필터
 def review_object(seq):
     return Review.objects.filter(seq=seq)
 
@@ -26,7 +29,7 @@ class ReviewApi(APIView):
     def post(self, request):
         data = param_parser(request.GET)
         Review.objects.create(**data)
-        return Response(REIVEW_SUCCESS, status=200)
+        return Response(REVIEW_SUCCESS, status=200)
 
 
 class ReviewRestApi(APIView):
@@ -39,7 +42,7 @@ class ReviewRestApi(APIView):
         review = review_object(seq)
         data = param_parser(request.GET)
         review.update(**data)
-        return Response(REIVEW_SUCCESS, status=200)
+        return Response(REVIEW_SUCCESS, status=200)
 
     def delete(self, request, seq):
         review = review_object(seq)

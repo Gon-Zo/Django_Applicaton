@@ -1,9 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from App.util.ResponseMsg import *
 from .models import Store
 from .serializers import StoreSerializer
 from App.util.comm import param_parser
+from App.util.ResponseMsg import (RESULT_LIST,
+                                  STORE_SUCCESS,
+                                  OBJECT_IS_NONE)
 
 
 class StoreApi(APIView):
@@ -41,7 +43,7 @@ class StoreRestApi(APIView):
     def delete(self, request, seq):
         store = Store.objects.filter(seq=seq)
         if not store:
-            return Response(STORE_IS_NONE, status=500)
+            return Response(OBJECT_IS_NONE, status=500)
         store.delete()
         return Response(STORE_SUCCESS, status=200)
 

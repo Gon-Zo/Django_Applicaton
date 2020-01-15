@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Item
 from App.util.comm import param_parser
-from App.util.ResponseMsg import *
+from App.util.ResponseMsg import (RESULT_LIST, ITEM_SUCCESS, ITEM_FAIL)
 from .serializers import ItemSerializer
 
 
