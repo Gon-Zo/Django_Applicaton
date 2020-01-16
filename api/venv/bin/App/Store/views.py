@@ -20,22 +20,19 @@ class StoreApi(APIView):
 
     # Market Save
     def post(self, request):
-        print("POST SUCCESS TO")
-        # data = param_parser(request.GET)
-        # if
-        # Store.objects.create(**data)
-        data = param_parser(request.GET)
-        print(data)
-        print(data['user'])
-        # print("before")
-        a = data['user']
-        u = User.objects.filter(seq=a)
-        print(u.get())
-        test = u.get()
-        data.setdefault("test", test)
-        # data.update(u.get())
-        print(">>>>>>>>>>>>>")
-        return Response(status=200)
+        user_seq = request.GET.get('user')
+        u = User.objects.filter(seq=user_seq)
+        user = u.get()
+        if user.type == 'M':
+            Store.objects.create(
+                title=request.GET.get('title'),
+                address=request.GET.get('address'),
+                phone=request.GET.get('phone'),
+                user=user
+            )
+            return Response(STORE_SUCCESS, status=200)
+        else:
+            return Response({"detail": "USER IS NOT MANAGER"}, status=500)
 
 
 class StoreRestApi(APIView):
@@ -64,7 +61,7 @@ class StoreRestApi(APIView):
 
 # User Seq Checking
 def user_check(user_seq):
-    if user_seq == '':
+    if user_seq is None:
         # All
         store = Store.objects.all()
     else:
