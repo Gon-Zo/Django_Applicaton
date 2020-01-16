@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
-from App.util.ResponseMsg import *
+from App.util.ResponseMsg import (EXCEPTION_DETAIL)
 
 
 #  JSON 랜더링 함수

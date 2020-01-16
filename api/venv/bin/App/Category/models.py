@@ -12,7 +12,7 @@ class Category(models.Model):
     # 카테고리 명
     title = models.CharField(max_length=250)
     # 순서
-    count = models.IntegerField()
+    order = models.IntegerField()
     # 등록일
     regdate = models.DateTimeField(auto_now_add=True)
 

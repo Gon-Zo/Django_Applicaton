@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Store
+from User.models import User
 from .serializers import StoreSerializer
 from App.util.comm import param_parser
 from App.util.ResponseMsg import (RESULT_LIST,
@@ -19,9 +20,22 @@ class StoreApi(APIView):
 
     # Market Save
     def post(self, request):
+        print("POST SUCCESS TO")
+        # data = param_parser(request.GET)
+        # if
+        # Store.objects.create(**data)
         data = param_parser(request.GET)
-        Store.objects.create(**data)
-        return Response(STORE_SUCCESS, status=200)
+        print(data)
+        print(data['user'])
+        # print("before")
+        a = data['user']
+        u = User.objects.filter(seq=a)
+        print(u.get())
+        test = u.get()
+        data.setdefault("test", test)
+        # data.update(u.get())
+        print(">>>>>>>>>>>>>")
+        return Response(status=200)
 
 
 class StoreRestApi(APIView):
@@ -35,7 +49,7 @@ class StoreRestApi(APIView):
     # Market Update
     def put(self, request, seq):
         store = Store.objects.fiter(seq=seq)
-        data = param_parser(request.GET)
+        data = (param_parser)(request.GET)
         store.update(**data)
         return Response(STORE_SUCCESS, status=200)
 
