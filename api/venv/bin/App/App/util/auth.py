@@ -2,6 +2,8 @@
 import jwt
 from App.conf.setting import __open_key__
 from App.util.comm import ReqJSONRenderer
+import datetime
+from rest_framework.response import Response
 
 # 비밀키
 SECRET_KEY = __open_key__()
@@ -9,10 +11,13 @@ SECRET_KEY = __open_key__()
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
-    if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
-        return False
-    else:
-        return True
+    try:
+        if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
+            return False
+        else:
+            return True
+    except jwt.ExpiredSignatureError as e:
+        return Response({"detail": e}, status=500)
 
 
 # try:
@@ -40,7 +45,9 @@ def render(user):
         "address": user[0].address,
         "type": user[0].type,
         "use_yn": user[0].use_yn,
-        "regdate": str(user[0].regdate)
+        "regdate": str(user[0].regdate),
+        # 30 초 유효 기간
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)
     }
 
 
