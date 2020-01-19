@@ -17,7 +17,7 @@ class Category(models.Model):
     regdate = models.DateTimeField(auto_now_add=True)
 
 
-class item_category(models.Model):
+class ItemCategory(models.Model):
     class Meta:
         db_table = '"mk_item_category"'
 

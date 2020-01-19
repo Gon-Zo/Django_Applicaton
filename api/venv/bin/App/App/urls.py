@@ -15,6 +15,9 @@ from Basket.views import BasketApi
 # Image
 from Image.views import ImageApi
 
+# Category
+from Category.views import CategoryApi
+
 # from App.conf.base import MEDIA_ROOT
 
 urlpatterns = [
@@ -35,6 +38,10 @@ urlpatterns = [
 
     # Image
     path('api/image', ImageApi.as_view()),
+
+    # Category
+    path('api/category', CategoryApi.as_view()),
+
 
     # path('test/image', ImageApi.as_view(), document_root=MEDIA_ROOT)
 ]
