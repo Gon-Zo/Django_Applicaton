@@ -11,7 +11,8 @@ class Image(models.Model):
     # image name
     title = models.CharField(max_length=250)
     # Image File
-    photo = models.ImageField(blank=True)
+    photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    # Image Type
     # type
     type = models.CharField(max_length=250, null=True)
     # 등록일
