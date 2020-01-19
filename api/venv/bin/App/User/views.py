@@ -67,7 +67,7 @@ class Login(APIView):
 
     # User Login
     def post(self, request):
-        data = param_parser(request.GET)
+        data = param_parser(request.POST)
         user = User.objects.filter(**data)
         if not user:
             return Response(LOGIN_FAIL, status=500)
