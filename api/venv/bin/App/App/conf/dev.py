@@ -73,25 +73,30 @@ STATIC_URL = '/static/'
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': False,
     'formatters': {
         'default': {
             'format': "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
             'datefmt': "%Y-%m-%d %H:%M:%S"
         },
     },
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        }
+    },
     'handlers': {
         'console': {
-            'level': 'INFO',
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
             'class': 'logging.StreamHandler',
-            'formatter': 'default'
-        },
+        }
     },
     'loggers': {
-        'django': {
+        'django.db.backends': {
+            'level': 'DEBUG',
             'handlers': ['console'],
-            'propagate': True,
-            'level': 'INFO',
-        },
+        }
     }
 }
+
+
