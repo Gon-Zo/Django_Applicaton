@@ -10,6 +10,12 @@ module.exports = {
         path: path.resolve(__dirname + "/build")
     },
     mode: "none",
+    resolve: {
+        modules: ['node_modules'],
+        alias: {
+            public: path.join(__dirname, './public')
+        }
+    },
     module: {
         rules: [
             // html 로더

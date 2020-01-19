@@ -25,9 +25,7 @@ export default () => {
                         <Link to="/add-product" className="btn btn-primary btn-block text-uppercase mb-3">Add new
                             product</Link>
 
-                        <ProductButton title={"Delete selected products"} onClick={() => {
-                            alert("test success1")
-                        }}/>
+                        <ProductButton title={"Delete selected products"} åß/>
 
                         {/*<button className="btn btn-primary btn-block text-uppercase">*/}
                         {/*    Delete selected products*/}
