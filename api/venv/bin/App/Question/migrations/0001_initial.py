@@ -21,7 +21,6 @@ class Migration(migrations.Migration):
                 ('title', models.TextField()),
                 ('content', models.TextField()),
                 ('lockYn', models.BooleanField()),
-                ('review_seq', models.IntegerField()),
                 ('regdate', models.DateTimeField(auto_now_add=True)),
                 ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_item', to='Item.Item')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='question_user', to='User.User')),

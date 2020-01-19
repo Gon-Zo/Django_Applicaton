@@ -17,7 +17,7 @@ class Question(models.Model):
     # 비밀글
     lockYn = models.BooleanField()
     # review seq
-    review_seq = models.IntegerField()
+    # review_seq = models.IntegerField()
     # 아이템 번호
     item = models.ForeignKey(Item, related_name='question_item', on_delete=models.CASCADE, null=False)
     # 유저  번호

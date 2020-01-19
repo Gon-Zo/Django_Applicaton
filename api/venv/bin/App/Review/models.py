@@ -23,6 +23,7 @@ class Review(models.Model):
     # 유저  번호
     user = models.ForeignKey(User, related_name='user_seq', on_delete=models.CASCADE)
     # 마켓 번호
-    store = models.ForeignKey(Store, related_name="store_seq", on_delete=models.CASCADE , null=False)
+    store = models.ForeignKey(Store, related_name="store_seq", on_delete=models.CASCADE, null=False,
+                              default=0)
     # 등록일
     regdate = models.DateTimeField(auto_now_add=True)

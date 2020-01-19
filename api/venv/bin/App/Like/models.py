@@ -16,6 +16,7 @@ class Like(models.Model):
     # 유저  번호
     user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
     # 가게 번호
-    store = models.ForeignKey(Store, related_name='store', on_delete=models.CASCADE, null=False, editable=True)
+    store = models.ForeignKey(Store, related_name='store', on_delete=models.CASCADE, null=False, editable=True,
+                              default=0)
     # 등록일
     regdate = models.DateTimeField(auto_now_add=True)
