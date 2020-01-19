@@ -12,12 +12,21 @@ SECRET_KEY = __open_key__()
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
     try:
-        if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
-            return False
-        else:
-            return True
+        a = jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+        return True
     except jwt.ExpiredSignatureError as e:
-        return Response({"detail": e}, status=500)
+        return Response({'detail': e}, status=500)
+    except a is None:
+        return False
+
+
+    # try:
+    #     if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
+    #         return False
+    #     else:
+    #         return True
+    # except jwt.ExpiredSignatureError as e:
+    #     return Response({"detail": e}, status=500)
 
 
 # try:
