@@ -54,7 +54,8 @@ def getMkaErrorMessage(status):
 
 # login url checking
 def __url_check__(url):
-    return not str(url).__contains__('login')
+    # todo : not commit
+    return not str(url).__contains__('login') and not str(url).__contains__("image")
 
 
 # json format
