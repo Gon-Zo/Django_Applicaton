@@ -10,12 +10,12 @@ class ImageApi(APIView):
 
     def get(self, request):
         seq = request.GET.get('seq')
-
         if seq is None:
             return Response(status=500)
-
         i = Image.objects.filter(seq=seq)
-        serializer = ImageSerializer(i, many=True)
+        resized_img = i.get().photo
+        return HttpResponse(resized_img, content_type="image/png")
+
         # print(i)
         # print(i.get().title)
         # print(i.get().photo)
@@ -25,7 +25,7 @@ class ImageApi(APIView):
         #     image = r.read()
         # print(image)
         # return HttpResponse()
-        return Response({'message': 'None', 'result': serializer.data}, content_type="image/jpeg", status=200)
+        # return Response({'message': 'None', 'result': serializer.data}, content_type="image/jpeg", status=200)
         # return HttpResponse({"result": image}, content_type="image/jpeg")
 
     def post(self, request):
