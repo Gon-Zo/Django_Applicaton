@@ -4,7 +4,7 @@ import * as fa from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 import axios from "axios"
 import {BASE_URL} from "../assets/comm/base";
-import imageSrc from '../assets/img/arrow-down.png'
+import imageSrc from '../assets/img/avatar.png'
 
 let data = [
     {val: 0, title: "Select category"},
@@ -23,12 +23,11 @@ const getSelectVal = function () {
 };
 
 
-
 export default () => {
 
     let [fileVal, setFilVal] = useState(null)
 
-    const onChange = (e)=>{
+    const onChange = (e) => {
         console.log("test success")
         // this.setState({file:e.target.files[0]})
         let test = e.target.files[0]
@@ -51,7 +50,9 @@ export default () => {
         <div className="container tm-mt-big tm-mb-big">
             <div className="row">
 
-                <input type="file"  onChange={onChange}/>
+                {/*<img src={require(`${imageSrc}`)}/>*/}
+                <img src={imageSrc}/>
+                <input type="file" onChange={onChange}/>
 
                 <button type="button" onClick={() => {
 
@@ -71,7 +72,7 @@ export default () => {
 
                 {/*<img src={require('../assets/images/bg-title-01.jpg')} />*/}
                 {/*<img src={require('./assets/images/bg-title-01.jpg')} />*/}
-                <img src={imageSrc} />
+                {/*<img src={imageSrc} />*/}
                 {/*<image src={image} width="100" height="100"/>*/}
 
                 {/*<div className="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">*/}
