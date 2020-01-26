@@ -42,6 +42,5 @@ urlpatterns = [
     # Category
     path('api/category', CategoryApi.as_view()),
 
-
     # path('test/image', ImageApi.as_view(), document_root=MEDIA_ROOT)
 ]

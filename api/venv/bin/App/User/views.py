@@ -4,6 +4,7 @@ from .models import User
 from .serializers import UserSerializer
 from App.util.auth import __encode_jwt__
 from App.util.comm import param_parser
+from django.core.paginator import Paginator
 from App.util.ResponseMsg import (RESULT_LIST,
                                   EXCEPTION_DETAIL,
                                   USER_SUCCESS,
@@ -19,11 +20,21 @@ class UserApi(APIView):
     # Type is not None Type filter User List
     def get(self, request):
         type = request.GET.get('type', '')
+        page = request.GET.get('page', '1')
+        page_num = request.GET.get('pageNum', '10')
         user = _user_object_(type)
-        serializer = UserSerializer(user, many=True)
-        return Response(RESULT_LIST(serializer.data), status=200)
+        # paging
+        page_list = Paginator(user, page_num)
+        a = page_list.page(page)
+        serializer = UserSerializer(a, many=True)
+        temp = {
+            "count": page_list.count,
+            "numPages": page_list.num_pages,
+            "data": serializer.data,
+        }
+        return Response(RESULT_LIST(temp), status=200)
 
-    #  User 회원가입
+    #  User sign up
     def post(self, request):
         data = param_parser(request.GET)
         try:
@@ -84,6 +95,8 @@ def user_object(seq):
 # return type is Object ( User )
 def _user_object_(type):
     if type == '':
-        return User.objects.all()
+        # return User.objects.all()[offset:limit]
+        # return User.objects.all()
+        return User.objects.get_queryset().order_by('seq')
     else:
         return User.objects.filter(type=type)

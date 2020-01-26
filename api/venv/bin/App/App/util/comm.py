@@ -34,3 +34,22 @@ def param_parser(data):
         return Response(EXCEPTION_DETAIL(e), status=500)
 
     return temp
+
+
+def page_parser(page):
+    count = page.count()
+    num_page = page.num_pages()
+    # page_range = page.page_range()
+    # get_page = page.get_page()
+    # has_next = page.has_next()
+    # has_previous = page.has_previous()
+    # previous_page_number = page.previous_page_number()
+    return {
+        "count": count,
+        "numPage": num_page,
+        # page_range: page_range,
+        # get_page: get_page,
+        # has_next: has_next,
+        # has_previous: has_previous,
+        # previous_page_number: previous_page_number,
+    }
