@@ -23,6 +23,12 @@ from Admin.views import UserApi
 # from App.conf.base import MEDIA_ROOT
 
 urlpatterns = [
+
+    # Admin
+    path('api/admin/user', UserApi.as_view()),
+
+    ####################### URL #######################
+
     # user
     path('api/user', UserApi.as_view()),
     path('api/user/<int:seq>', UserRestApi.as_view()),
@@ -46,6 +52,4 @@ urlpatterns = [
 
     # path('test/image', ImageApi.as_view(), document_root=MEDIA_ROOT)
 
-    #Admin
-    path('api/admin/user', UserApi.as_view()),
 ]

@@ -4,7 +4,7 @@ import re
 from rest_framework.status import is_client_error, is_success
 from App.util.comm import ReqJSONRenderer
 from App.util.auth import __token_auth__
-
+from App.util.exceptions import BusinessLogicException
 
 class ResponseFormattingMiddleware:
     METHOD = ('GET', 'POST', 'PUT', 'PATCH', 'DELETE')
@@ -28,8 +28,6 @@ class ResponseFormattingMiddleware:
 
         path = request.path_info.lstrip('/')
         valid_urls = (url.match(path) for url in self.API_URLS)
-        # if not content_type == 'image/png':
-        #     print("TEST SUCCESS")
 
         if request.method in self.METHOD and any(valid_urls):
 
@@ -38,19 +36,31 @@ class ResponseFormattingMiddleware:
             if not content_type == 'image/png':
 
                 if __url_check__(request.path_info):
-                    auth = request.META.get('HTTP_AUTHORIZATION')
-                    if auth is None:
-                        return __render_response__(500, False, "[Mka Error] 500 ", "NONE AUTHORIZATION ERROR")
-                    elif not __token_auth__(auth):
-                        return __render_response__(500, False, "[Mkaxssxs Error] 500 ", "NOT JWT ERROR")
+
+                    jwt = request.META.get('HTTP_AUTHORIZATION')
+
+                    if jwt is None:
+                        # token is none
+                        raise BusinessLogicException("TEST RAISE !!!")
                     else:
+                        __token_auth__(auth)
                         return __result_response__(request, response)
+
+                # if auth is None:
+                #     # No Token
+                #     return __render_response__(500, False, "[Mka Error] 500 ", "NONE AUTHORIZATION ERROR")
+                # elif not __token_auth__(auth):
+                #
+                #     return __render_response__(500, False, "[Mkaxssxs Error] 500 ", "NOT JWT ERROR")
+                # else:
+                #     return __result_response__(request, response)
+
                 else:
                     return __result_response__(request, response)
 
-            else:
-                # content type is to image
-                return response
+        else:
+            # content type is to image
+            return response
 
 
 # ERROR message

@@ -1,7 +1,6 @@
 # 인증 관련
 import jwt
 from App.conf.setting import __open_key__
-from App.util.comm import ReqJSONRenderer
 import datetime
 from rest_framework.response import Response
 
@@ -9,33 +8,25 @@ from rest_framework.response import Response
 SECRET_KEY = __open_key__()
 
 
+# jwt.decode(jwt_payload, 'secret', leeway=datetime.timedelta(seconds=10), algorithms=['HS256'])
+
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
     try:
-        a = jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
+        a = jwt.decode(jwtStr, SECRET_KEY,
+                       leeway=datetime.timedelta(seconds=30),
+                       algorithms=['HS256'])
+        print(">>>>>>>>>>>>>>>>>>>>")
+        print(a)
         return True
     except jwt.ExpiredSignatureError as e:
+        # print(">>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<< THIS")
+        # print(e)
+        # raise jwt.ExpiredSignatureError()
         return Response({'detail': e}, status=500)
     except a is None:
+        print("None !!")
         return False
-
-
-    # try:
-    #     if jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256']) is None:
-    #         return False
-    #     else:
-    #         return True
-    # except jwt.ExpiredSignatureError as e:
-    #     return Response({"detail": e}, status=500)
-
-
-# try:
-#     jwt.decode(jwtStr, SECRET_KEY, algorithms=['HS256'])
-#     return ReqJSONRenderer({"state": True, "msg": "Success To Auth"}, status=200)
-# except jwt.ExpiredSignatureError:
-#     return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
-# except jwt.InvalidTokenError:
-#     return ReqJSONRenderer({"state": False, "error_msg": "Fail To Auth"}, status=405)
 
 
 # User Info Encoding Jwt
@@ -63,10 +54,11 @@ def render(user):
 # 인증 관련한 함수
 def __token_auth__(token):
     token = token.replace("Bearer ", "", 1)
-    return __decode_jwt__(token)
+    try:
+        a = jwt.decode(token, SECRET_KEY,
+                       leeway=datetime.timedelta(seconds=30),
+                       algorithms=['HS256'])
+    except jwt.ExpiredSignatureError as e:
+        raise jwt.ExpiredSignatureError
 
-    # token = request.META.get('HTTP_AUTHORIZATION')
-    # token = token.replace("Bearer ", "", 1)
-    # if token is None:
-    #     return ReqJSONRenderer({"state": False, "error_msg": "Not Token"}, status=405)
-    # return __decode_jwt__(token)
+# return __decode_jwt__(token)
