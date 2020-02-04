@@ -4,7 +4,7 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
 # User
-from User.views import UserApi, UserApi2, Login
+from User.views import UserApi, UserRestApi, Login
 # Store
 from Store.views import StoreApi, StoreRestApi
 # Item
@@ -18,12 +18,14 @@ from Image.views import ImageApi
 # Category
 from Category.views import CategoryApi
 
+from Admin.views import UserApi
+
 # from App.conf.base import MEDIA_ROOT
 
 urlpatterns = [
     # user
     path('api/user', UserApi.as_view()),
-    path('api/user/<int:seq>', UserApi2.as_view()),
+    path('api/user/<int:seq>', UserRestApi.as_view()),
     # login
     path('api/login', Login.as_view()),
     # store
@@ -43,4 +45,7 @@ urlpatterns = [
     path('api/category', CategoryApi.as_view()),
 
     # path('test/image', ImageApi.as_view(), document_root=MEDIA_ROOT)
+
+    #Admin
+    path('api/admin/user', UserApi.as_view()),
 ]

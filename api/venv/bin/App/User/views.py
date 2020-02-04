@@ -45,7 +45,7 @@ class UserApi(APIView):
         return Response(USER_SUCCESS, status=200)
 
 
-class UserApi2(APIView):
+class UserRestApi(APIView):
 
     # 유저 상세
     def get(self, request, seq):
@@ -95,8 +95,6 @@ def user_object(seq):
 # return type is Object ( User )
 def _user_object_(type):
     if type == '':
-        # return User.objects.all()[offset:limit]
-        # return User.objects.all()
         return User.objects.get_queryset().order_by('seq')
     else:
         return User.objects.filter(type=type)

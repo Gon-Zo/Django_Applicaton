@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from .serializers import ReviewSerializer
 from App.util.comm import param_parser
 from .models import Review
+from django.core.paginator import Paginator
 from App.util.RequesetMsg import (RESULT_LIST, REVIEW_SUCCESS, REVIEW_FAIL)
 
 
@@ -20,11 +21,21 @@ def review_object(seq):
 
 
 class ReviewApi(APIView):
+
     def get(self, request):
         seq = request.GET.get('seq')
+        page_num = request.GET.get('pageNum')
+        page = request.GET.get('page')
         review = check_seq(seq)
-        serializer = ReviewSerializer(review, many=True)
-        return Response(RESULT_LIST(serializer.data), status=200)
+        page_obj = Paginator(review, page_num)
+        page_list = page_obj.page(page)
+        serializer = ReviewSerializer(page_list, many=True)
+        temp = {
+            "count": page_obj.count,
+            "numPage": page_obj.num_pages,
+            "data": serializer.data
+        }
+        return Response(RESULT_LIST(temp), status=200)
 
     def post(self, request):
         data = param_parser(request.GET)

@@ -17,3 +17,15 @@ class Image(models.Model):
     type = models.CharField(max_length=250, null=True)
     # 등록일
     regdate = models.DateTimeField(auto_now_add=True)
+
+
+class mapping_img(models.Model):
+    class Meta:
+        db_table = "mk_mapping_img"
+
+    # seq value
+    seq = models.AutoField(primary_key=True)
+    # seq value
+    num = models.IntegerField()
+    # 등록일
+    regdate = models.DateTimeField(auto_now_add=True)

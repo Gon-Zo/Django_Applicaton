@@ -39,18 +39,6 @@ INSTALLED_APPS = MY_APPLICATION + ADD_PLUGIN + [
     'django.contrib.staticfiles',
 ]
 
-# # Error Handler
-# #     'EXCEPTION_HANDLER': 'App.util.exception_handler.custom_exception_handler'
-# REST_FRAMEWORK = {
-#     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-#     # 'PAGE_SIZE': 100,
-#
-#     'DEFAULT_PAGINATION_CLASS': 'App.util.pagination.CustomPagination'
-#
-#     # 'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-#     # 'PAGE_SIZE': 3,
-# }
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
