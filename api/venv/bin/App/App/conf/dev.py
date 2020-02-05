@@ -20,9 +20,12 @@ DATABASES = __get_db_conf__()
 
 # 커스텀 미들웨어
 MY_MIDDLEWARE = [
-    'App.util.error_handlers.HandleBusinessExceptionMiddleware',
-    'App.util.ResponseFormattingMiddleware.ResponseFormattingMiddleware'
+    # 'App.util.ResponseFormattingMiddleware.ResponseFormattingMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'App.util.exception_handlers.get_exception_handler'
+}
 
 # 미들웨어 설정
 MIDDLEWARE = [
