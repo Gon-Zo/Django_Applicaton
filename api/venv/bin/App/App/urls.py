@@ -20,8 +20,6 @@ from Category.views import CategoryApi
 
 from Admin.views import UserApi
 
-# from App.conf.base import MEDIA_ROOT
-
 urlpatterns = [
 
     # Admin

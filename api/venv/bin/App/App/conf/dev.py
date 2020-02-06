@@ -18,14 +18,15 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 # 데이터 베이스 정보
 DATABASES = __get_db_conf__()
 
-# 커스텀 미들웨어
-MY_MIDDLEWARE = [
-    # 'App.util.ResponseFormattingMiddleware.ResponseFormattingMiddleware',
-]
 
 REST_FRAMEWORK = {
     'EXCEPTION_HANDLER': 'App.util.exception_handlers.get_exception_handler'
 }
+
+# 커스텀 미들웨어
+MY_MIDDLEWARE = [
+    'App.util.test.ResponseFormattingMiddleware',
+]
 
 # 미들웨어 설정
 MIDDLEWARE = [
@@ -72,8 +73,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 LOGGING = {
     'version': 1,
+    'disable_existing_loggers': False,
     'filters': {
         'require_debug_true': {
             '()': 'django.utils.log.RequireDebugTrue',
@@ -87,9 +90,14 @@ LOGGING = {
         }
     },
     'loggers': {
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'DEBUG', # change debug level as appropiate
+            'propagate': False,
+        },
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': ['console'],
-        }
+        },
     }
 }

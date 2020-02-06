@@ -10,7 +10,7 @@ from App.util.comm import ReqJSONRenderer
 
 def get_exception_handler(exc, content):
     response = exception_handler(exc, content);
-
+    print("Handeler")
     print(response.status_code)
 
     if response is not None:
