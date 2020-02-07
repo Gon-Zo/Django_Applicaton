@@ -17,12 +17,6 @@ def get_exception_handler(exc, content):
         response['status_code'] = response.status_code
         response.data = {"status": response.status_code, "detail": response.data['detail']}
 
-        # if not DEBUG:
-        # errors can be more generic
-    # if response.data['status_code'] == 500:
-    #     print("404")
-        # t = loader.get_template('404.html')
-        # c = RequestContext(get_current_request(), {})
-        # return HttpResponse(t.render(c), content_type="text/html")
-
     return response
+
+

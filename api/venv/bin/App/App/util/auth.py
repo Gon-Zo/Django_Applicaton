@@ -2,7 +2,8 @@
 import jwt
 from App.conf.setting import __open_key__
 import datetime
-from rest_framework.response import Response
+
+from rest_framework.exceptions import APIException
 
 # 비밀키
 SECRET_KEY = __open_key__()
@@ -12,21 +13,34 @@ SECRET_KEY = __open_key__()
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
-    try:
-        a = jwt.decode(jwtStr, SECRET_KEY,
-                       leeway=datetime.timedelta(seconds=30),
-                       algorithms=['HS256'])
-        print(">>>>>>>>>>>>>>>>>>>>")
-        print(a)
-        return True
-    except jwt.ExpiredSignatureError as e:
-        # print(">>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<< THIS")
-        # print(e)
-        # raise jwt.ExpiredSignatureError()
-        return Response({'detail': e}, status=500)
-    except a is None:
-        print("None !!")
-        return False
+    print("Token Test")
+    if jwtStr is None:
+        print("TEST SUCCESS ... ")
+        # print("TEST ...")
+        # data = {"status": 500, "detail": "JWT IS NONE"}
+        # return HttpResponse(json.dumps(data), content_type="application/json", status=500)
+
+    # if jwtStr is None:
+    #     raise APIException("Token none")
+
+    pass
+
+    #
+    # try:
+    #     a = jwt.decode(jwtStr, SECRET_KEY,
+    #                    leeway=datetime.timedelta(seconds=30),
+    #                    algorithms=['HS256'])
+    #     print(">>>>>>>>>>>>>>>>>>>>")
+    #     print(a)
+    #     return True
+    # except jwt.ExpiredSignatureError as e:
+    #     # print(">>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<< THIS")
+    #     # print(e)
+    #     # raise jwt.ExpiredSignatureError()
+    #     return Response({'detail': e}, status=500)
+    # except a is None:
+    #     print("None !!")
+    #     return False
 
 
 # User Info Encoding Jwt

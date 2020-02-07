@@ -4,6 +4,8 @@ from rest_framework.status import is_client_error, is_success
 from django.http import HttpResponse
 import json
 
+from App.util.auth import __decode_jwt__
+
 
 class ResponseFormattingMiddleware:
     METHOD = ('GET', 'POST', 'PUT', 'PATCH', 'DELETE')
@@ -16,6 +18,10 @@ class ResponseFormattingMiddleware:
         ]
 
     def __call__(self, request):
+        print("여기")
+        jwt = request.META.get('HTTP_AUTHORIZATION')
+        # print(jwt)
+        __decode_jwt__(jwt)
         response = None
         if not response:
             response = self.get_response(request)
@@ -28,10 +34,13 @@ class ResponseFormattingMiddleware:
         valid_urls = (url.match(path) for url in self.API_URLS)
 
         # print(request.path_info)
-        # jwt = request.META.get('HTTP_AUTHORIZATION')
 
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code
+
+            jwt = request.META.get('HTTP_AUTHORIZATION')
+
+            # __decode_jwt__(jwt)
 
             if not is_success(status_code):
 
