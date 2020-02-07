@@ -3,8 +3,6 @@ from rest_framework.response import Response
 from .models import User
 from .serializers import UserSerializer
 from App.util.auth import __encode_jwt__
-from App.util.comm import param_parser
-from django.core.paginator import Paginator
 from App.util.ResponseMsg import (RESULT_LIST,
                                   EXCEPTION_DETAIL,
                                   USER_SUCCESS,

@@ -18,12 +18,15 @@ from Image.views import ImageApi
 # Category
 from Category.views import CategoryApi
 
+# Aamin
 from Admin.views import UserApi
+from Admin.views import UserRestApi
 
 urlpatterns = [
 
     # Admin
     path('api/admin/user', UserApi.as_view()),
+    path('api/admin/user/<int:seq>', UserRestApi.as_view()),
 
     ####################### URL #######################
 
