@@ -34,7 +34,8 @@ class ResponseFormattingMiddleware:
             status_code = response.status_code
 
             # __decode_jwt__(jwt)
-
+            print(status_code)
+            print(">>>>>>>>>>>>>>>>>>>>>")
             if not is_success(status_code):
 
                 if status_code == 404:

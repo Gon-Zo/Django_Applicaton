@@ -17,8 +17,7 @@ export default () => {
         <div className="app-style-c9" id="home">
             <Header/>
             <Switch>
-                <Route exact path="/" component={AddProduct}/>
-                {/*<Route exact path="/" component={Dashboard}/>*/}
+                <Route exact path="/" component={Dashboard}/>
                 <Route path="/product" component={Products}/>
                 <Route path="/report" component={Report}/>
                 <Route path="/account" component={Accounts}/>

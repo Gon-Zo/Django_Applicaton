@@ -50,6 +50,6 @@ const getApp = function (flag) {
  * @returns {*}
  */
 export default () => {
-    // let loginYn = useSelector(state => state.users, [])
-    return getApp(true)
+    let loginYn = useSelector(state => state.users, [])
+    return getApp(loginYn)
 };
