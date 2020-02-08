@@ -14,15 +14,28 @@ const renderRoding = () => {
 };
 
 export default (props) => {
+
     let temp = props.data;
 
     if (isNotTemp(temp)) {
+
+        let data = temp.data.data
+        let keys = Object.keys(data[0])
+
+        let test = (e) => {
+            let k = e.target.key
+            console.log(k)
+            // console.log(JSON.stringify(e.target.index))
+            // alert(" test success...  >> " + idx)
+            // console.log("test ...")
+        };
+
         return (
             <table className="table">
                 <thead>
                 <tr>
                     {
-                        temp.key.map((k, i) => (
+                        keys.map((k, i) => (
                             <th scope="col" key={i}>{json.user[`${k}`]}</th>
                         ))
                     }
@@ -31,10 +44,10 @@ export default (props) => {
                 <tbody>
                 <Fragment>
                     {
-                        temp.data.map((d, i) => (
-                            <tr key={i}>
+                        data.map((d, i) => (
+                            <tr key={i} onClick={test}>
                                 {
-                                    temp.key.map((k, i) => (
+                                    keys.map((k, i) => (
                                         <td key={i}>
                                             <b>{d[`${k}`]}</b>
                                         </td>

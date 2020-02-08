@@ -21,7 +21,7 @@ class User(models.Model):
     # 유저의 타입
     type = models.CharField(max_length=2)
     # 이미지 명
-    # img = models.TextField()
+    img = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
     # 유저 아이디 사용유무
     use_yn = models.BooleanField()
     # 회원 가입 날짜

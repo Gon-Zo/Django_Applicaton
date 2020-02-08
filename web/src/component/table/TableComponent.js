@@ -10,7 +10,7 @@ export default (props) => {
 
     const bindData = (temp) => {
         let tempList = {
-            key: Object.keys(temp[0]),
+            key: Object.keys(temp),
             data: temp
         };
         setUsers(tempList);
@@ -22,7 +22,7 @@ export default (props) => {
         axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         axios(`${BASE_URL}/api/user`)
             .then((res) => {
-                bindData(res.data.result)
+                bindData(res.data)
             }).catch((error => console.log(error)))
     };
 
