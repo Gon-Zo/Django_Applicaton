@@ -3,22 +3,21 @@ from Store.models import Store
 
 
 # Create your models here.
-class Item(models.Model):
+class Product(models.Model):
     class Meta:
-        db_table = '"mk_item"'
+        db_table = '"mk_product"'
 
+    # pk
     seq = models.AutoField(primary_key=True)
-    # 아이템 명
+    # product title
     title = models.CharField(max_length=250)
-    # 아이템 갯수
+    # product number
     count = models.IntegerField()
-    # 아이템 가격
+
     price = models.IntegerField()
-    # 아이템 정보
+
     info = models.TextField()
-    # 아이템 상태 품절 true / 반대 false
-    state = models.BooleanField()
-    # 가게 번호
+    # sold yn
+    is_sold = models.BooleanField()
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
-    # 등록일
-    regdate = models.DateTimeField(auto_now_add=True)
+    create_at = models.DateTimeField(auto_now_add=True)

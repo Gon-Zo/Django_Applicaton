@@ -3,45 +3,45 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Item
+from .models import Product
 from App.util.comm import param_parser
-from App.util.ResponseMsg import (RESULT_LIST, ITEM_SUCCESS, ITEM_FAIL)
-from .serializers import ItemSerializer
+# from App.util.ResponseMsg import (RESULT_LIST, ITEM_SUCCESS, ITEM_FAIL)
+from .serializers import ProductSerializer
 
 
-class ItemApi(APIView):
+class ProductApi(APIView):
 
-    # Item All List & Store's Item List
+    # Product All List & Store's Product List
     def get(self, request):
-        item = Item.objects.all()
-        serializer = ItemSerializer(item, many=True)
+        Product = Product.objects.all()
+        serializer = ProductSerializer(Product, many=True)
         return Response(RESULT_LIST(serializer.data), status=200)
 
-    # Item save
+    # Product save
     def post(self, request):
         data = param_parser(request.GET)
-        Item.objects.create(**data)
+        Product.objects.create(**data)
         return Response(ITEM_SUCCESS, status=200)
 
 
 class ItemRestApi(APIView):
 
-    # detail item Info
+    # detail Product Info
     def get(self, request, seq):
-        item = Item.objects.filter(seq=seq)
-        serializer = ItemSerializer(item, many=True)
+        Product = Product.objects.filter(seq=seq)
+        serializer = ItemSerializer(Product, many=True)
         return Response(RESULT_LIST(serializer.data), status=200)
 
-    # item update
+    # Product update
     def put(self, request, seq):
         data = param_parser(request.GET)
-        item = Item.objects.filter(seq=seq)
-        item.update(**data)
+        Product = Product.objects.filter(seq=seq)
+        Product.update(**data)
         return Response(ITEM_SUCCESS, status=200)
 
-    # one item delete
+    # one Product delete
     def delete(self, request, seq):
-        item = Item.objects.filter(seq=seq)
-        if not item:
+        Product = Product.objects.filter(seq=seq)
+        if not Product:
             return Response(ITEM_FAIL, status=500)
         return Response(ITEM_SUCCESS, status=200)

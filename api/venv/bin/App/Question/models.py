@@ -1,26 +1,27 @@
 from django.db import models
-from Item.models import Item
+from Product.models import Product
 from User.models import User
 
 
-# Create your models here.
 class Question(models.Model):
     class Meta:
         db_table = '"mk_question"'
 
-    # pk
     seq = models.AutoField(primary_key=True)
-    # 문의 제목
     title = models.TextField()
-    # 문의 내용
     content = models.TextField()
-    # 비밀글
     lockYn = models.BooleanField()
-    # review seq
-    # review_seq = models.IntegerField()
-    # 아이템 번호
-    item = models.ForeignKey(Item, related_name='question_item', on_delete=models.CASCADE, null=False)
-    # 유저  번호
+    product = models.ForeignKey(Product, related_name='question_product', on_delete=models.CASCADE, null=False)
     user = models.ForeignKey(User, related_name='question_user', on_delete=models.CASCADE, null=False)
-    # 등록일
-    regdate = models.DateTimeField(auto_now_add=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+class ReQuestion(models.Model):
+    class Meta:
+        db_table = "'mk_re_question'"
+
+    seq = models.AutoField(primary_key=True)
+    content = models.TextField()
+    question = models.ForeignKey(Question, related_name='question_sea', on_delete=models.CASCADE, null=False)
+    re_num = models.IntegerField()
+    create_at = models.DateTimeField(auto_now_add=True)

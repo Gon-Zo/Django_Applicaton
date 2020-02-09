@@ -1,11 +1,11 @@
 from rest_framework import serializers
-from .models import Item
+from .models import Product
 from Store.serializers import StoreSerializer
 
 
-class ItemSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     store = StoreSerializer(read_only=True)
 
     class Meta:
-        model = Item
+        model = Product
         fields = '__all__'

@@ -14,7 +14,7 @@ CORS_ORIGIN_WHITELIST = (
 MY_APPLICATION = [
     'User',
     'Store',
-    'Item',
+    'Product',
     'Category',
     'Image',
     'Basket',

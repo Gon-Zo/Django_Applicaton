@@ -6,23 +6,22 @@ class User(models.Model):
     class Meta:
         db_table = '"mk_user"'
 
+    # pk
     seq = models.AutoField(primary_key=True)
-    # 아이디
+    # email
     id = models.CharField(max_length=250)
-    # 비밀번호
+    # password
     pwd = models.CharField(max_length=250)
-    # 유저 이름
+    # name
     name = models.CharField(max_length=250)
-    # 생년월일
-    # todo birthDate change
+    # 0000-00-00
     birthDate = models.DateField()
-    # 집 주소
+    # address
     address = models.TextField()
-    # 유저의 타입
+    # type >> M & U
     type = models.CharField(max_length=2)
-    # 이미지 명
+    # Image
     img = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
-    # 유저 아이디 사용유무
-    use_yn = models.BooleanField()
-    # 회원 가입 날짜
-    regdate = models.DateTimeField(auto_now_add=True)
+    # state
+    is_use = models.BooleanField()
+    create_at = models.DateTimeField(auto_now_add=True)
