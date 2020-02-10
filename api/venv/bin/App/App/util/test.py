@@ -34,8 +34,6 @@ class ResponseFormattingMiddleware:
             status_code = response.status_code
 
             # __decode_jwt__(jwt)
-            print(status_code)
-            print(">>>>>>>>>>>>>>>>>>>>>")
             if not is_success(status_code):
 
                 if status_code == 404:
@@ -47,5 +45,6 @@ class ResponseFormattingMiddleware:
                         data = response.data
 
                 return HttpResponse(json.dumps(data), content_type="application/json", status=status_code)
-
+        
         return response
+        # return HttpResponse(json.dumps(response.data), content_type="application/json", status=status_code)

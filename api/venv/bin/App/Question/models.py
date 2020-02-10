@@ -18,7 +18,7 @@ class Question(models.Model):
 
 class ReQuestion(models.Model):
     class Meta:
-        db_table = "'mk_re_question'"
+        db_table = "mk_re_question"
 
     seq = models.AutoField(primary_key=True)
     content = models.TextField()

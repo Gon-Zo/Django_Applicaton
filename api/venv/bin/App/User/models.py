@@ -1,5 +1,5 @@
 from django.db import models
-
+# from my_app.models import ImageModel, FileModel
 
 # Create your models here.
 class User(models.Model):
