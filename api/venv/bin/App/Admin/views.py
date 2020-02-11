@@ -14,27 +14,16 @@ from django.core.paginator import Paginator
 from rest_framework.exceptions import APIException
 from rest_framework.decorators import api_view, throttle_classes
 from App.util.comm import param_parser
-from django.core.files import File
+from App.util.comm import image_as_base64
+# from App.util.comm import Test
 
 # 트랜잭션
 from django.db import transaction
 
-# from base64 import b64decode
-
-import os
-import base64
-
-
-def image_as_base64(src, format='png'):
-    encoded_string = ''
-    with open(src, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    return encoded_string
-
 
 # Admin User
 @api_view(['GET'])
-# @transaction.atomic
+@transaction.atomic
 def user_api(request):
     method = request.method
     if method == 'GET':
@@ -47,19 +36,12 @@ def user_api(request):
             user = User.objects.filter(type=type).order_by('seq')
             # paging
             page_list = Paginator(user, pageNum)
-            a = page_list.page(page)
-            serializer = UserSerializer(a, many=True)
-            temp_array = serializer.data
-
-            for t in temp_array:
-                src = 'App' + t['img']
-                base = image_as_base64(src)
-                t['img'] = base
-
+            page_data = page_list.page(page)
+            serializer = UserSerializer(page_data, many=True)
             temp = {
                 "count": page_list.count,
                 "numPages": page_list.num_pages,
-                "data": temp_array,
+                "data": serializer.data,
             }
             return Response(temp, status=200)
     else:
