@@ -1,4 +1,3 @@
-# Create your views here.
 from rest_framework.response import Response
 # User
 from User.models import User
@@ -9,6 +8,9 @@ from Store.serializers import StoreSerializer
 # Review
 from Review.models import Review
 from Review.serializers import ReviewSerializer
+# Proudct
+from Product.models import Product
+from Product.serializers import ProductSerializer
 
 from django.core.paginator import Paginator
 from rest_framework.exceptions import APIException
@@ -38,10 +40,16 @@ def user_api(request):
             page_list = Paginator(user, pageNum)
             page_data = page_list.page(page)
             serializer = UserSerializer(page_data, many=True)
+            temp_array = serializer.data
+
+            for t in temp_array:
+                src = "App" + t['img']
+                t['img'] = image_as_base64(src)
+
             temp = {
                 "count": page_list.count,
                 "numPages": page_list.num_pages,
-                "data": serializer.data,
+                "data": temp_array,
             }
             return Response(temp, status=200)
     else:
@@ -110,7 +118,36 @@ def review_api(request):
     else:
         return Response(status=404)
 
-# class ItemApi(APIView):
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def product_api(request):
+    method = request.method
+
+    if method == 'GET':
+        product = Product.objects.all().order_by('seq')
+        pageNum = request.GET.get('pageNum')
+        page = request.GET.get('page')
+        page_list = Paginator(product, pageNum)
+        page_data = page_list.page(page)
+        serializer = ProductSerializer(page_data, many=True)
+        temp = {
+            "count": page_list.count,
+            "numPages": page_list.num_pages,
+            "data": serializer.data
+        }
+        return Response(temp, status=200)
+    elif method == 'POST':
+        pass
+    elif method == 'PUT':
+        pass
+    elif method == 'DELETE':
+        pass
+    else:
+        return Response(status=404)
+
+
+
+    # class ItemApi(APIView):
 #
 #     # Item - list
 #     def get(self, request):
