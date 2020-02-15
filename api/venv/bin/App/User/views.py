@@ -73,6 +73,30 @@
 #             return Response(USER_SUCCESS, status=200)
 #
 #
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+# 트랜잭션
+from django.db import transaction
+from User.models import User
+from App.util.comm import param_parser
+from App.util.auth import __encode_jwt__
+
+
+@api_view(['POST'])
+@transaction.atomic
+def user_login(request):
+    method = request.method
+    if method == 'POST':
+        data = param_parser(request.GET)
+        user = User.objects.filter(**data)
+        # print(user.get())
+        jwt = __encode_jwt__(user.get())
+        return Response(jwt, status=200)
+        # return Response(status=200)
+    else:
+        pass
+        return Response(status=404)
+
 # class Login(APIView):
 #
 #     # User Login
@@ -88,8 +112,7 @@
 #
 # def user_object(seq):
 #     return User.objects.filter(seq=seq)
-#
-#
+
 # # User List to check type
 # # return type is Object ( User )
 # def _user_object_(type):
