@@ -1,3 +1,16 @@
-.box-test{
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+
+body {
+    font-family: 'Noto Sans KR', sans-serif !important;
+    /*background-color: #f8f9fa;*/
+}
+
+#appTitle {
+    font-weight: bold;
+}
+
+.box-test {
     background-color: #f00;
 }
+
+
