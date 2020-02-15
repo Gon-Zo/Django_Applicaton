@@ -24,6 +24,8 @@ from Admin.views import user_rest_api
 from Admin.views import store_rest_api
 from Admin.views import review_api
 
+from User.views import user_login
+
 urlpatterns = [
 
     # Admin
@@ -35,13 +37,14 @@ urlpatterns = [
 
     path('api/admin/review', review_api),
 
+    path('api/login', user_login),
+
     ####################### URL #######################
 
     # user
     # path('api/user', UserApi.as_view()),
     # path('api/user/<int:seq>', UserRestApi.as_view()),
     # login
-    # path('api/login', Login.as_view()),
     # store
     # path('api/store', StoreApi.as_view()),
     # path('api/store/<int:seq>', StoreRestApi.as_view()),

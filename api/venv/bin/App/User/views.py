@@ -2,7 +2,6 @@
 # from rest_framework.response import Response
 # from .models import User
 # from .serializers import UserSerializer
-# from App.util.auth import __encode_jwt__
 # from App.util.comm import param_parser
 # from App.util.ResponseMsg import (RESULT_LIST,
 #                                   EXCEPTION_DETAIL,
@@ -73,6 +72,28 @@
 #             return Response(USER_SUCCESS, status=200)
 #
 #
+from rest_framework.response import Response
+from User.models import User
+from App.util.comm import param_parser
+from App.util.auth import __encode_jwt__
+from rest_framework.decorators import api_view
+
+# 트랜잭션
+from django.db import transaction
+
+@api_view(['POST'])
+@transaction.atomic
+def user_login(request):
+    method = request.method
+    if method == 'POST':
+        data = param_parser(request.GET)
+        user = User.objects.filter(**data)
+        jwt = __encode_jwt__(user[0])
+        return Response(jwt,status=200)
+    else:
+        return Response(status=404)
+
+
 # class Login(APIView):
 #
 #     # User Login
@@ -84,7 +105,7 @@
 #
 #         jwt = __encode_jwt__(user)
 #         return Response(LOGIN_SUCCESS(jwt))
-#
+
 #
 # def user_object(seq):
 #     return User.objects.filter(seq=seq)
