@@ -3,6 +3,8 @@ from rest_framework.status import is_client_error, is_success
 
 from django.http import HttpResponse
 import json
+from App.util.auth import __token_auth__
+from rest_framework.exceptions import APIException
 
 
 class ResponseFormattingMiddleware:
@@ -19,21 +21,22 @@ class ResponseFormattingMiddleware:
         response = None
         if not response:
             response = self.get_response(request)
+
+        jwt = request.META.get('HTTP_AUTHORIZATION')
+        __token_auth__(jwt)
         if hasattr(self, 'process_response'):
             response = self.process_response(request, response)
+
         return response
 
     def process_response(self, request, response):
         path = request.path_info.lstrip('/')
         valid_urls = (url.match(path) for url in self.API_URLS)
-
+        print("여기 2")
         # print(request.path_info)
-        # jwt = request.META.get('HTTP_AUTHORIZATION')
 
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code
-
-            # __decode_jwt__(jwt)
             if not is_success(status_code):
 
                 if status_code == 404:
@@ -45,6 +48,6 @@ class ResponseFormattingMiddleware:
                         data = response.data
 
                 return HttpResponse(json.dumps(data), content_type="application/json", status=status_code)
-        
+
         return response
         # return HttpResponse(json.dumps(response.data), content_type="application/json", status=status_code)

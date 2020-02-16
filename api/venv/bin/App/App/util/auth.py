@@ -50,7 +50,6 @@ def __encode_jwt__(user):
 
 
 def render(user):
-
     return {
         "seq": user.seq,
         "id": user.id,
@@ -62,18 +61,23 @@ def render(user):
         "is_use": user.is_use,
         "create_at": str(user.create_at),
         # 30 초 유효 기간
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
     }
 
 
 # 인증 관련한 함수
 def __token_auth__(token):
-    token = token.replace("Bearer ", "", 1)
-    try:
-        a = jwt.decode(token, SECRET_KEY,
-                       leeway=datetime.timedelta(seconds=30),
-                       algorithms=['HS256'])
-    except jwt.ExpiredSignatureError as e:
-        raise jwt.ExpiredSignatureError
+    if not token is None:
+        token = token.replace("Bearer ", "", 1)
+        a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
+    else:
+        raise APIException()
+
+# try:
+#     a = jwt.decode(token, SECRET_KEY,
+#                    leeway=datetime.timedelta(seconds=30),
+#                    algorithms=['HS256'])
+# except jwt.ExpiredSignatureError as e:
+#     raise jwt.ExpiredSignatureError
 
 # return __decode_jwt__(token)
