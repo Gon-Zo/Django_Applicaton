@@ -3,44 +3,18 @@ import jwt
 from App.conf.setting import __open_key__
 import datetime
 
-from rest_framework.exceptions import APIException
+# from django.http import HttpResponseForbidden
+from App.util.test import ViewException
+
+# from rest_framework.exceptions import V
 
 # 비밀키
 SECRET_KEY = __open_key__()
 
 
-# jwt.decode(jwt_payload, 'secret', leeway=datetime.timedelta(seconds=10), algorithms=['HS256'])
-
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
-    print("Token Test")
-    if jwtStr is None:
-        print("TEST SUCCESS ... ")
-        # print("TEST ...")
-        # data = {"status": 500, "detail": "JWT IS NONE"}
-        # return HttpResponse(json.dumps(data), content_type="application/json", status=500)
-
-    # if jwtStr is None:
-    #     raise APIException("Token none")
-
     pass
-
-    #
-    # try:
-    #     a = jwt.decode(jwtStr, SECRET_KEY,
-    #                    leeway=datetime.timedelta(seconds=30),
-    #                    algorithms=['HS256'])
-    #     print(">>>>>>>>>>>>>>>>>>>>")
-    #     print(a)
-    #     return True
-    # except jwt.ExpiredSignatureError as e:
-    #     # print(">>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<< THIS")
-    #     # print(e)
-    #     # raise jwt.ExpiredSignatureError()
-    #     return Response({'detail': e}, status=500)
-    # except a is None:
-    #     print("None !!")
-    #     return False
 
 
 # User Info Encoding Jwt
@@ -67,17 +41,5 @@ def render(user):
 
 # 인증 관련한 함수
 def __token_auth__(token):
-    if not token is None:
-        token = token.replace("Bearer ", "", 1)
-        a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
-    else:
-        raise APIException()
-
-# try:
-#     a = jwt.decode(token, SECRET_KEY,
-#                    leeway=datetime.timedelta(seconds=30),
-#                    algorithms=['HS256'])
-# except jwt.ExpiredSignatureError as e:
-#     raise jwt.ExpiredSignatureError
-
-# return __decode_jwt__(token)
+    token = token.replace("Bearer ", "", 1)
+    a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])

@@ -13,13 +13,11 @@ from Product.models import Product
 from Product.serializers import ProductSerializer
 
 from django.core.paginator import Paginator
-from rest_framework.exceptions import APIException
 from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
 from App.util.comm import param_parser
 from App.util.comm import image_as_base64
-# from App.util.comm import Test
-
+from rest_framework.exceptions import APIException
 # 트랜잭션
 from django.db import transaction
 
@@ -33,7 +31,8 @@ def user_api(request):
         type = request.GET.get('type', 'U')
         pageNum = request.GET.get("pageNum", '10')
         page = request.GET.get("page", '1')
-        if type is 'M':
+        # if Not type  is  'U':
+        if not type is 'U':
             raise APIException("TYPE IS ERROR")
         else:
             user = User.objects.filter(type=type).order_by('seq')

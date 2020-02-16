@@ -1,10 +1,9 @@
 import re
-from rest_framework.status import is_client_error, is_success
-
-from django.http import HttpResponse
-import json
+from rest_framework.status import is_success
+from rest_framework.status import is_client_error
+# from django.http import HttpResponse
 from App.util.auth import __token_auth__
-from rest_framework.exceptions import APIException
+from django.http import JsonResponse
 
 
 class ResponseFormattingMiddleware:
@@ -32,8 +31,6 @@ class ResponseFormattingMiddleware:
     def process_response(self, request, response):
         path = request.path_info.lstrip('/')
         valid_urls = (url.match(path) for url in self.API_URLS)
-        print("여기 2")
-        # print(request.path_info)
 
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code
@@ -47,7 +44,7 @@ class ResponseFormattingMiddleware:
                     else:
                         data = response.data
 
-                return HttpResponse(json.dumps(data), content_type="application/json", status=status_code)
+                return JsonResponse(data, status=status_code)
 
         return response
         # return HttpResponse(json.dumps(response.data), content_type="application/json", status=status_code)
