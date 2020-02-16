@@ -1,6 +1,6 @@
 import React from "react";
 import AppSideBar from "./component/AppSideBar";
-import Main from "./view";
+import Main from "./views";
 
 export default () => {
     return (
