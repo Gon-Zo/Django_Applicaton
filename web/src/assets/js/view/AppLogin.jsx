@@ -1,11 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
+import axios from 'axios'
+import {UserDto} from "../dto/AppDto";
 
+const changeId = () => {
+
+}
 
 export default () => {
 
+    let [id, setId] = useState('')
+    let [pwd, setPwd] = useState('')
 
+    let idInput
+    let pwdInput
 
+    const loginUser = () => {
+        let user = new UserDto(id, pwd)
+        axios.post(`http://localhost:3030/api/login`, user)
+            .then((res) => {
+                let token = res.data;
+                localStorage.setItem("Token", token);
+                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            }).catch((err) => console.log(err))
+    };
 
     return (
         <div id="loginWrap">
@@ -13,7 +31,7 @@ export default () => {
                 <Container>
                     <Row className="test">
                         <p>
-                            TEST
+                            Logo Box
                         </p>
                     </Row>
                     <Row className="test">
@@ -21,15 +39,21 @@ export default () => {
                             <Form>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
-                                    <Form.Control type="email" placeholder="Enter email"/>
+                                    <Form.Control type="email" placeholder="Enter email" ref={input => idInput = input}
+                                                  onChange={() => {
+                                                      let val = idInput.value
+                                                      setId(val)
+                                                  }}/>
                                 </Form.Group>
                                 <Form.Group controlId="formBasicPassword">
                                     <Form.Label>Password</Form.Label>
-                                    <Form.Control type="password" placeholder="Password"/>
+                                    <Form.Control type="password" placeholder="Password" ref={input => pwdInput = input}
+                                                  onChange={() => {
+                                                      let val = pwdInput.value
+                                                      setPwd(val)
+                                                  }}/>
                                 </Form.Group>
-                                <Button variant="dark" size="lg" block onClick={() => {
-                                    alert("Test")
-                                }}>
+                                <Button variant="dark" size="lg" block onClick={loginUser}>
                                     Login
                                 </Button>
                             </Form>
