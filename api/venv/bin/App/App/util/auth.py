@@ -51,15 +51,15 @@ def __encode_jwt__(user):
 
 def render(user):
     return {
-        "seq": user.seq,
-        "id": user.id,
-        "pwd": user.pwd,
-        "name": user.name,
-        "birthDate": str(user.birthDate),
-        "address": user.address,
-        "type": user.type,
-        "is_use": user.is_use,
-        "create_at": str(user.create_at),
+        "seq": user[0].seq,
+        "id": user[0].id,
+        "pwd": user[0].pwd,
+        "name": user[0].name,
+        "birthDate": str(user[0].birthDate),
+        "address": user[0].address,
+        "type": user[0].type,
+        "use_yn": user[0].use_yn,
+        "regdate": str(user[0].regdate),
         # 30 초 유효 기간
         'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)
     }

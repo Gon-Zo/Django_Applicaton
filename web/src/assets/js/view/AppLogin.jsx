@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from "react";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
 import axios from 'axios'
@@ -25,13 +26,24 @@ export default () => {
             }).catch((err) => console.log(err))
     };
 
+=======
+import React from "react";
+import {Container, Form, Button, Row, Col} from "react-bootstrap";
+
+
+export default () => {
+>>>>>>> origin/master
     return (
         <div id="loginWrap">
             <div id="loginBox">
                 <Container>
                     <Row className="test">
                         <p>
+<<<<<<< HEAD
                             Logo Box
+=======
+                            TEST
+>>>>>>> origin/master
                         </p>
                     </Row>
                     <Row className="test">
@@ -39,6 +51,7 @@ export default () => {
                             <Form>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
+<<<<<<< HEAD
                                     <Form.Control type="email" placeholder="Enter email" ref={input => idInput = input}
                                                   onChange={() => {
                                                       let val = idInput.value
@@ -54,6 +67,17 @@ export default () => {
                                                   }}/>
                                 </Form.Group>
                                 <Button variant="dark" size="lg" block onClick={loginUser}>
+=======
+                                    <Form.Control type="email" placeholder="Enter email"/>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder="Password"/>
+                                </Form.Group>
+                                <Button variant="dark" size="lg" block onClick={() => {
+                                    alert("Test")
+                                }}>
+>>>>>>> origin/master
                                     Login
                                 </Button>
                             </Form>
