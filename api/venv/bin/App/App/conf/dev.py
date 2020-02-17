@@ -25,6 +25,7 @@ REST_FRAMEWORK = {
 
 # 커스텀 미들웨어
 MY_MIDDLEWARE = [
+    'App.util.test.StackOverflowMiddleware',
     'App.util.response_middleware.ResponseFormattingMiddleware',
 ]
 

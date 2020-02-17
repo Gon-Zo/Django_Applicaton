@@ -2,11 +2,7 @@
 import jwt
 from App.conf.setting import __open_key__
 import datetime
-
-# from django.http import HttpResponseForbidden
-from App.util.test import ViewException
-
-# from rest_framework.exceptions import V
+from App.util.app_exception import AppException
 
 # 비밀키
 SECRET_KEY = __open_key__()
@@ -41,5 +37,8 @@ def render(user):
 
 # 인증 관련한 함수
 def __token_auth__(token):
-    token = token.replace("Bearer ", "", 1)
-    a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
+    if not token is None:
+        token = token.replace("Bearer ", "", 1)
+        a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
+    else:
+        raise AppException()

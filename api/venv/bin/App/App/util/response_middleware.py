@@ -21,8 +21,6 @@ class ResponseFormattingMiddleware:
         if not response:
             response = self.get_response(request)
 
-        jwt = request.META.get('HTTP_AUTHORIZATION')
-        __token_auth__(jwt)
         if hasattr(self, 'process_response'):
             response = self.process_response(request, response)
 
@@ -31,6 +29,9 @@ class ResponseFormattingMiddleware:
     def process_response(self, request, response):
         path = request.path_info.lstrip('/')
         valid_urls = (url.match(path) for url in self.API_URLS)
+
+        jwt = request.META.get('HTTP_AUTHORIZATION')
+        __token_auth__(jwt)
 
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code
@@ -45,6 +46,8 @@ class ResponseFormattingMiddleware:
                         data = response.data
 
                 return JsonResponse(data, status=status_code)
+        else:
+            print("test.... 여기")
 
         return response
         # return HttpResponse(json.dumps(response.data), content_type="application/json", status=status_code)
