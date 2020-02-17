@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
-import axios from 'axios'
-import {UserDto} from "../dto/AppDto";
 
-export default () => {
+export default ({checkLogin}) => {
 
     let [id, setId] = useState('')
     let [pwd, setPwd] = useState('')
@@ -12,13 +10,7 @@ export default () => {
     let pwdInput
 
     const loginUser = () => {
-        let user = new UserDto(id, pwd)
-        axios.post(`http://localhost:3030/api/login`, user)
-            .then((res) => {
-                let token = res.data;
-                localStorage.setItem("Token", token);
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            }).catch((err) => console.log(err))
+        checkLogin(id, pwd)
     };
 
     return (
