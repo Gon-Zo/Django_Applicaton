@@ -4,9 +4,13 @@ const LOGOUT = 'user/logout'
 export const onLogin = () => ({type: LOGIN});
 export const onLogout = () => ({type: LOGOUT});
 
-const loginFlag = false;
+// const loginFlag = false;
 
-const isLogin = (state = loginFlag, action) => {
+const test = {
+    loginFlag : false
+}
+
+const isLogin = (state = test, action) => {
     switch (action.type) {
         case LOGIN:
             state = true;
