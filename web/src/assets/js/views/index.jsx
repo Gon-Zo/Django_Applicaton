@@ -5,7 +5,6 @@ export default () => {
     return (
         <Container fluid={true}>
 
-
             <Container fluid={true}>
                 <Row>
                     <Col sm={8}>sm=8</Col>
