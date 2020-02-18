@@ -6,7 +6,8 @@ import {UserDto} from "../dto/AppDto";
 
 export default () => {
 
-    const isLogin = useSelector(state => state.isLogin, []);
+    const user = useSelector(state => state.appUser, []);
+
     const dispatch = useDispatch();
 
     const onLogin = useCallback(() => dispatch({type: 'user/login'}), [dispatch])

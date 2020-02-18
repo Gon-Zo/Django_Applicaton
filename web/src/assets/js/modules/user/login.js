@@ -6,11 +6,11 @@ export const onLogout = () => ({type: LOGOUT});
 
 // const loginFlag = false;
 
-const test = {
-    loginFlag : false
+const user = {
+    isLogin: false
 }
 
-const isLogin = (state = test, action) => {
+const appUser = (state = user, action) => {
     switch (action.type) {
         case LOGIN:
             state = true;
@@ -22,4 +22,4 @@ const isLogin = (state = test, action) => {
     return state;
 };
 
-export default isLogin
+export default appUser
