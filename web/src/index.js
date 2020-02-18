@@ -11,13 +11,28 @@ import {Provider} from 'react-redux';
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-// const networkConfig = {
-//     baseURL: 'http://localhost:3030/api',
-//     timeout: 30000,
-// };
-// axios.create(networkConfig)
 
 const store = createStore(rootReducer, composeWithDevTools());
+
+axios.defaults.baseURL = 'http://localhost:3030/api'
+
+axios.interceptors.request.use(request => {
+    console.log(request);
+    // Edit request config
+    return request;
+}, error => {
+    console.log(error);
+    return Promise.reject(error);
+});
+
+axios.interceptors.response.use(response => {
+    console.log(response);
+    // Edit response config
+    return response;
+}, error => {
+    console.log(error);
+    return Promise.reject(error);
+});
 
 ReactDOM.render(
     <Provider store={store}>

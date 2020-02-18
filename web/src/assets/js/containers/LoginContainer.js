@@ -15,8 +15,9 @@ export default () => {
 
     const checkLogin = (id, pwd) => {
 
-        let user = new UserDto(id, pwd)
-        axios.post(`http://localhost:3030/api/login`, user)
+        // let user = new UserDto(id, pwd)
+        let temp = {id: id, pwd: pwd}
+        axios.post(`http://localhost:3030/api/login`, temp)
             .then((res) => {
                 let token = res.data;
                 localStorage.setItem("Token", token);

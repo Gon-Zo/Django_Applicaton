@@ -1,36 +1,58 @@
-import React from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 
-export default () => {
-    return (
-        <Table striped bordered hover>
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Username</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td colSpan="2">Larry the Bird</td>
-                <td>@twitter</td>
-            </tr>
-            </tbody>
-        </Table>
-    )
+
+const test1 = () => {
+    alert("TEST...")
+}
+
+export default (props) => {
+
+    // let [data, setData] = useState([])
+
+    let test = props.data
+
+    if (typeof test.data !== 'undefined') {
+        let keys = new Array();
+        let data = test.data;
+
+        keys = Object.keys(test.data[0])
+
+        return (
+            <Table striped bordered hover>
+                <thead>
+                <tr>
+                    {
+                        keys.map((k, i) => (
+                            <th key={i}>{k}</th>
+                        ))
+                    }
+                </tr>
+                </thead>
+                <tbody>
+                <Fragment>
+                    {
+                        data.map((d, i) => (
+                            <tr key={i} onClick={test1}>
+                                {
+                                    keys.map((k, i) => (
+                                        <td key={i}>
+                                            <b>{d[`${k}`]}</b>
+                                        </td>
+                                    ))
+                                }
+                            </tr>
+                        ))
+                    }
+                </Fragment>
+                </tbody>
+            </Table>
+        )
+    } else {
+        return (
+            <div>
+                <span>Loding</span>
+            </div>
+        )
+    }
 }
