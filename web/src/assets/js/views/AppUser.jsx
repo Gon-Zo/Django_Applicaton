@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
-import {Container} from "react-bootstrap";
+import {Container, Pagination} from "react-bootstrap";
 import AppTable from "../components/app/AppTable";
 import axios from 'axios'
 import {ListDto, UserDto} from "../dto/AppDto";
-import AxiosConf from "../conf/axiosConf";
+import AppPagination from "../components/app/AppPagination";
+import {useSelector} from "react-redux";
 
 function AppUser() {
 
@@ -16,11 +17,14 @@ function AppUser() {
         setUserList(new ListDto(count, numPage, data))
     }
 
+    const user = useSelector(state => state.appUser, []);
+
     useEffect(() => {
 
-        AxiosConf.get(`http://localhost:3030/api/admin/user?type=U`, {
+        axios.get(`http://localhost:3030/api/admin/user?type=U`, {
             params: {
-                type: 'U'
+                type: 'U',
+                page : user.clickPage
             }
         }).then((res) => {
             // console.log(JSON.stringify(res.data))
@@ -35,7 +39,11 @@ function AppUser() {
             <div>
                 <span>UserApp</span>
             </div>
-            <AppTable data={userList}/>
+            <AppTable data={userList.data}/>
+            <div>
+                <AppPagination count={userList.count} numPage={userList.numPage}/>
+            </div>
+
         </Container>
     )
 }

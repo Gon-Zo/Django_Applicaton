@@ -8,15 +8,13 @@ const test1 = () => {
 
 export default (props) => {
 
-    // let [data, setData] = useState([])
-
     let test = props.data
 
-    if (typeof test.data !== 'undefined') {
+    if (typeof test !== 'undefined') {
         let keys = new Array();
-        let data = test.data;
+        let data = test;
 
-        keys = Object.keys(test.data[0])
+        keys = Object.keys(test[0])
 
         return (
             <Table striped bordered hover>
