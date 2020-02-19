@@ -1,15 +1,23 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 
-
-const test1 = () => {
-    alert("TEST...")
+let $undefinedData = (data) => {
+    if (typeof data == 'undefined') {
+        return (
+            <div>
+                <span>로딩중</span>
+            </div>
+        )
+    }
 }
-
 
 export default (props) => {
 
     let test = props.data
+
+    const onClick = (idx) => {
+        console.log(JSON.stringify(test[idx]))
+    }
 
     if (typeof test == 'undefined') {
         return (
@@ -39,7 +47,7 @@ export default (props) => {
             <Fragment>
                 {
                     data.map((d, i) => (
-                        <tr key={i} onClick={test1}>
+                        <tr key={i} onClick={() => onClick(i)}>
                             {
                                 keys.map((k, i) => (
                                     <td key={i}>

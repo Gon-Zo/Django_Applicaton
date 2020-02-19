@@ -4,7 +4,7 @@ const PAGELIST = 'user/pageList'
 
 export const onLogin = () => ({type: LOGIN});
 export const onLogout = () => ({type: LOGOUT});
-export const onUser = (data) => ({type: PAGELIST , data : data});
+export const onUser = (data) => ({type: PAGELIST, data: data});
 
 // const loginFlag = false;
 
