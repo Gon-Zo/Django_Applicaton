@@ -7,7 +7,7 @@ export default (props) => {
 
     let cnt = props.count;
     let numPage = props.numPage;
-
+    let fetchUser = props.fetchUser;
 
     if (typeof numPage !== 'undefined') {
         let temp = new Array();
@@ -19,6 +19,7 @@ export default (props) => {
         let onCLick = (e) => {
             let vl = e.target.text
             user.clickPage = vl
+            fetchUser()
         }
 
         return (

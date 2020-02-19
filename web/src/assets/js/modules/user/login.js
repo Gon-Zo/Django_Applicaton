@@ -4,12 +4,14 @@ const PAGELIST = 'user/pageList'
 
 export const onLogin = () => ({type: LOGIN});
 export const onLogout = () => ({type: LOGOUT});
+export const onUser = (data) => ({type: PAGELIST , data : data});
 
 // const loginFlag = false;
 
 const user = {
     isLogin: false,
-    clickPage : 1
+    clickPage: 1,
+    data: []
 }
 
 const appUser = (state = user, action) => {
@@ -20,7 +22,7 @@ const appUser = (state = user, action) => {
         case LOGOUT:
             state.isLogin = false;
         case PAGELIST:
-            // state = false;
+            state.data = action.data
             break;
     }
     return state;

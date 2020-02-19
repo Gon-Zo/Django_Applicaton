@@ -6,51 +6,52 @@ const test1 = () => {
     alert("TEST...")
 }
 
+
 export default (props) => {
 
     let test = props.data
 
-    if (typeof test !== 'undefined') {
-        let keys = new Array();
-        let data = test;
-
-        keys = Object.keys(test[0])
-
-        return (
-            <Table striped bordered hover>
-                <thead>
-                <tr>
-                    {
-                        keys.map((k, i) => (
-                            <th key={i}>{k}</th>
-                        ))
-                    }
-                </tr>
-                </thead>
-                <tbody>
-                <Fragment>
-                    {
-                        data.map((d, i) => (
-                            <tr key={i} onClick={test1}>
-                                {
-                                    keys.map((k, i) => (
-                                        <td key={i}>
-                                            <b>{d[`${k}`]}</b>
-                                        </td>
-                                    ))
-                                }
-                            </tr>
-                        ))
-                    }
-                </Fragment>
-                </tbody>
-            </Table>
-        )
-    } else {
+    if (typeof test == 'undefined') {
         return (
             <div>
-                <span>Loding</span>
+                <span>로딩중</span>
             </div>
         )
     }
+
+    let keys = new Array();
+    let data = test;
+
+    keys = Object.keys(test[0])
+
+    return (
+        <Table striped bordered hover>
+            <thead>
+            <tr>
+                {
+                    keys.map((k, i) => (
+                        <th key={i}>{k}</th>
+                    ))
+                }
+            </tr>
+            </thead>
+            <tbody>
+            <Fragment>
+                {
+                    data.map((d, i) => (
+                        <tr key={i} onClick={test1}>
+                            {
+                                keys.map((k, i) => (
+                                    <td key={i}>
+                                        <b>{d[`${k}`]}</b>
+                                    </td>
+                                ))
+                            }
+                        </tr>
+                    ))
+                }
+            </Fragment>
+            </tbody>
+        </Table>
+    )
 }
