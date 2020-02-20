@@ -9,7 +9,7 @@ import AppUser from "./views/AppUser";
 function Root() {
     let user = useSelector(state => state.appUser, [])
     return (
-        <div className="d-flex" id="wrapper">
+        <div className="d-flex content-bg" id="wrapper">
             <AppSideBar/>
             <Switch>
                 <Route exact path="/" component={Main}/>

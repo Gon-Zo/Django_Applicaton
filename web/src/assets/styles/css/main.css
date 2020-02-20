@@ -2,7 +2,12 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif !important;
+    background-color: #c9c9c9;
     /*background-color: #f8f9fa;*/
+}
+
+.content-bg {
+    background-color: #e8e8e8;
 }
 
 #appTitle {
@@ -14,3 +19,38 @@ body {
 }
 
 
+.min-hg {
+    min-height: 557px;
+}
+
+
+.page-title {
+    font-weight: bold;
+    /*font-size: 30px;*/
+}
+
+.page-box {
+
+}
+
+.page-wrap {
+    padding: 20px 0 20px 0;
+    /*background-color: #f00;*/
+}
+
+.pagination-wrap {
+    float: right;
+}
+
+.pagination-sm-title {
+    font-size: 0.8rem !important;
+    color: #d4d4d4;
+}
+
+.content-wrap {
+    padding: 15px;
+    /*border: 3px #f00;*/
+    /*background-color: #f00;*/
+    background-color: #fff;
+    border-radius: 10px;
+}

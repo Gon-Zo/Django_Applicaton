@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import appUser from "./user/login";
+import appUser from "./user.modles";
 
 const rootReducer = combineReducers({
     appUser,

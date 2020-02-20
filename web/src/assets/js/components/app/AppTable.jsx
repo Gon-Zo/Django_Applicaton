@@ -1,7 +1,10 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 
-let $undefinedData = (data) => {
+export default (props) => {
+
+    let data = props.data
+
     if (typeof data == 'undefined') {
         return (
             <div>
@@ -9,28 +12,28 @@ let $undefinedData = (data) => {
             </div>
         )
     }
+
+    return (
+        <div className="row">
+            <div className="col min-hg">
+                {renderTable(data)}
+            </div>
+        </div>
+    )
 }
 
-export default (props) => {
+/**
+ * Table 랜더링
+ * @param data 테이블 데이터
+ * @returns {*}
+ */
+const renderTable = (data) => {
 
-    let test = props.data
+    let keys = Object.keys(data[0])
 
-    const onClick = (idx) => {
-        console.log(JSON.stringify(test[idx]))
+    const $onClick = (idx) => {
+        console.log(JSON.stringify(data[idx]))
     }
-
-    if (typeof test == 'undefined') {
-        return (
-            <div>
-                <span>로딩중</span>
-            </div>
-        )
-    }
-
-    let keys = new Array();
-    let data = test;
-
-    keys = Object.keys(test[0])
 
     return (
         <Table striped bordered hover>
@@ -43,11 +46,12 @@ export default (props) => {
                 }
             </tr>
             </thead>
+            {/*thead end*/}
             <tbody>
             <Fragment>
                 {
                     data.map((d, i) => (
-                        <tr key={i} onClick={() => onClick(i)}>
+                        <tr key={i} onClick={() => $onClick(i)}>
                             {
                                 keys.map((k, i) => (
                                     <td key={i}>
@@ -60,6 +64,8 @@ export default (props) => {
                 }
             </Fragment>
             </tbody>
+            {/*tbody end*/}
         </Table>
     )
+
 }
