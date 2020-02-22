@@ -42,7 +42,7 @@ function AppUser() {
 
             <div className="content-wrap">
                 <div>
-                    <h4 className="page-title">유저 리스트</h4>
+                    <h4 className="page-title">유저 목록</h4>
                 </div>
                 <AppTable data={user.data.data}/>
                 <AppPagination fetchUser={fetchUser} count={user.data.count} numPage={user.data.numPage}/>
