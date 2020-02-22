@@ -26,11 +26,12 @@ export default () => {
                 </Row>
             </div>
             <div className="list-group list-group-flush">
+                <Link to="/" className="list-group-item list-group-item-action bg-light">Home</Link>
                 <Link to="/user" className="list-group-item list-group-item-action bg-light">
                     <FontAwesomeIcon icon={faUser}/>
                     User
                 </Link>
-                <Link to="/" className="list-group-item list-group-item-action bg-light">Dashboard</Link>
+                <Link to="/dashboard" className="list-group-item list-group-item-action bg-light">Dashboard</Link>
             </div>
         </div>
     );

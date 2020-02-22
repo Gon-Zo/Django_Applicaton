@@ -5,7 +5,7 @@ import LoginContainer from "./containers/LoginContainer";
 import {useSelector} from "react-redux";
 import {Switch, Route} from 'react-router-dom';
 import AppUser from "./views/AppUser";
-
+import AppDashboard from "./views/AppDashboard";
 function Root() {
     let user = useSelector(state => state.appUser, [])
     return (
@@ -14,6 +14,7 @@ function Root() {
             <Switch>
                 <Route exact path="/" component={Main}/>
                 <Route path="/user" component={AppUser}/>
+                <Route path="/dashboard" component={AppDashboard}/>
             </Switch>
         </div>
     )
