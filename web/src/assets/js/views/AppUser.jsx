@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
-import {Col, Container, Pagination, Row} from "react-bootstrap";
+import React, {useEffect} from "react";
+import {Container} from "react-bootstrap";
 import AppTable from "../components/app/AppTable";
-import axios from 'axios'
 import {ListDto, UserDto} from "../dto/AppDto";
 import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
-import {onUser} from "../modules/user.modles";
+import {onUser} from "../modules/user";
+import axios from 'axios'
 
 function AppUser() {
 
@@ -20,7 +20,6 @@ function AppUser() {
     }
 
     const user = useSelector(state => state.appUser, []);
-
 
     const fetchUser = () => {
         axios.get(`http://localhost:3030/api/admin/user?type=U`, {
@@ -41,17 +40,10 @@ function AppUser() {
     return (
         <Container fluid={true}>
 
-            <Row className="page-wrap">
-                <Col>
-                    <h4 className="page-title">
-                        User Management
-                    </h4>
-                    {/*.page-title end*/}
-                </Col>
-            </Row>
-            {/*page-wrap*/}
-
-            <div className="container content-wrap">
+            <div className="content-wrap">
+                <div>
+                    <h4 className="page-title">유저 리스트</h4>
+                </div>
                 <AppTable data={user.data.data}/>
                 <AppPagination fetchUser={fetchUser} count={user.data.count} numPage={user.data.numPage}/>
             </div>

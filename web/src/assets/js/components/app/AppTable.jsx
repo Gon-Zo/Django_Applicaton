@@ -55,7 +55,7 @@ const renderTable = (data) => {
                             {
                                 keys.map((k, i) => (
                                     <td key={i}>
-                                        <b>{d[`${k}`]}</b>
+                                        <b>{$checkToValue(d[`${k}`])}</b>
                                     </td>
                                 ))
                             }
@@ -68,4 +68,27 @@ const renderTable = (data) => {
         </Table>
     )
 
+}
+
+let test = (data) => {
+    // console.log(data)
+
+    // let $onChange = () => {
+    //     console.log("change to value ")
+    // }
+    // onChange={$onChange}
+
+    return (
+        <input type="checkbox" defaultChecked={data} disabled={true}/>
+    )
+
+}
+
+let $checkToValue = (val) => {
+    // console.log(typeof val)
+    if (typeof val === "boolean") {
+        // console.log("TEST SUCCESS")
+        val = test(val)
+    }
+    return val
 }

@@ -6,6 +6,20 @@
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
     transition: margin .25s ease-out;
+    background-color: #10008c;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+.sidebar-profile {
+    height: 230px;
+    /*background-color: #f00;*/
+    text-align: center;
+}
+
+.user-profile {
+    background-color: #fff;
+    border-radius: 100px;
 }
 
 #sidebar-wrapper .sidebar-heading {
@@ -14,7 +28,7 @@
 }
 
 #sidebar-wrapper .list-group {
-    width: 15rem;
+    width: 17rem;
 }
 
 #page-content-wrapper {

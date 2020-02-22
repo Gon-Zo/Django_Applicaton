@@ -1,8 +1,8 @@
-const UserModles = 'user/login';
+const User = 'user/login';
 const LOGOUT = 'user/logout'
 const PAGELIST = 'user/pageList'
 
-export const onLogin = () => ({type: UserModles});
+export const onLogin = () => ({type: User});
 export const onLogout = () => ({type: LOGOUT});
 export const onUser = (data) => ({type: PAGELIST, data: data});
 
@@ -16,7 +16,7 @@ const user = {
 
 const appUser = (state = user, action) => {
     switch (action.type) {
-        case UserModles:
+        case User:
             state.isLogin = true;
             break;
         case LOGOUT:

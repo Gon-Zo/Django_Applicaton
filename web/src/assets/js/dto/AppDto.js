@@ -13,7 +13,7 @@ export class UserDto {
         this.birthDate = birthDate
         this.address = address
         this.type = type
-        this.isUse = this.changeIsUser(isUse)
+        this.isUse = isUse
         this.createAt = createAt
     }
 
