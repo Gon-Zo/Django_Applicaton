@@ -150,8 +150,6 @@ def product_api(request):
 #     # Item - list
 #     def get(self, request):
 #         pass
-#
-#
 # class StoreApi(APIView):
 #     # store view list
 #     def get(self, requset):

@@ -4,9 +4,10 @@ from App.conf.setting import __open_key__
 import datetime
 from App.util.app_exception import AppException
 
+# from rest_framework.exceptions import AuthenticationFailed
+
 # 비밀키
 SECRET_KEY = __open_key__()
-
 
 # User Info Decoding Jwt
 def __decode_jwt__(jwtStr):
@@ -33,7 +34,6 @@ def render(user):
         # 30 초 유효 기간
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
     }
-
 
 # 인증 관련한 함수
 def __token_auth__(token):

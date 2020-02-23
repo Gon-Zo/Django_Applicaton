@@ -21,6 +21,7 @@ MY_APPLICATION = [
     'Like',
     'Review',
     'Question',
+    'Apps',
 ]
 
 # Install pip

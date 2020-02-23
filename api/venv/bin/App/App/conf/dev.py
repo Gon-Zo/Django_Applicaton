@@ -19,9 +19,9 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 DATABASES = __get_db_conf__()
 
 
-REST_FRAMEWORK = {
-    'EXCEPTION_HANDLER': 'App.util.exception_handlers.get_exception_handler'
-}
+# REST_FRAMEWORK = {
+#     'EXCEPTION_HANDLER': 'App.util.exception_handlers.get_exception_handler'
+# }
 
 # 커스텀 미들웨어
 MY_MIDDLEWARE = [
