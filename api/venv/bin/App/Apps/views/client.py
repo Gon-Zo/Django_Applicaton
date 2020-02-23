@@ -1,5 +1,5 @@
 from rest_framework.response import Response
-from User.models import User
+from Apps.models.user import User
 from App.util.comm import param_parser
 from App.util.auth import __encode_jwt__
 from rest_framework.decorators import api_view

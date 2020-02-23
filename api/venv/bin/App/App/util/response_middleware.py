@@ -32,9 +32,9 @@ class ResponseFormattingMiddleware:
         valid_urls = (url.match(path) for url in self.API_URLS)
 
         print(path)
-        if "login" not in path:
-            jwt = request.META.get('HTTP_AUTHORIZATION')
-            __token_auth__(jwt)
+        # if "login" not in path:
+        #     jwt = request.META.get('HTTP_AUTHORIZATION')
+        #     __token_auth__(jwt)
 
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code

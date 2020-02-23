@@ -19,12 +19,20 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 # from Category.views import CategoryApi
 
 # Aamin
-from Admin.views import user_api
-from Admin.views import user_rest_api
-from Admin.views import store_rest_api
-from Admin.views import review_api
+# from Admin.views import user_api
+# from Admin.views import user_rest_api
+# from Admin.views import store_rest_api
+# from Admin.views import review_api
+#
+# from User.views import user_login
 
-from User.views import user_login
+from Apps.views.admin import user_api
+from Apps.views.admin import user_rest_api
+from Apps.views.admin import store_rest_api
+from Apps.views.admin import review_api
+from Apps.views.client import user_login
+
+
 
 urlpatterns = [
 

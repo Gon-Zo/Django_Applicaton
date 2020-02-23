@@ -1,16 +1,31 @@
 from rest_framework.response import Response
 # User
-from User.models import User
-from User.serializers import UserSerializer
+# from User.models import User
+# from User.serializers import UserSerializer
 # Store
-from Store.models import Store
-from Store.serializers import StoreSerializer
+# from Store.models import Store
+# from Store.serializers import StoreSerializer
 # Review
-from Review.models import Review
-from Review.serializers import ReviewSerializer
+# from Review.models import Review
+# from Review.serializers import ReviewSerializer
 # Proudct
-from Product.models import Product
-from Product.serializers import ProductSerializer
+# from Product.models import Product
+# from Product.serializers import ProductSerializer
+
+
+from Apps.models.user import User
+from Apps.serializers.user import UserSerializer
+
+
+from Apps.models.store import Store
+from Apps.serializers.store import StoreSerializer
+
+
+from Apps.models.review import Review
+from Apps.serializers.review import ReviewSerializer
+
+from Apps.models.product import Product
+from Apps.serializers.product import ProductSerializer
 
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
