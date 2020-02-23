@@ -1,6 +1,5 @@
 from django.db import models
-from Product.models import Product
-
+from .product import Product
 
 class Category(models.Model):
     class Meta:

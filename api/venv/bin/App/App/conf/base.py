@@ -12,15 +12,15 @@ CORS_ORIGIN_WHITELIST = (
 
 # Market Application to Setting
 MY_APPLICATION = [
-    'User',
-    'Store',
-    'Product',
-    'Category',
-    'Image',
-    'Basket',
-    'Like',
-    'Review',
-    'Question',
+    # 'User',
+    # 'Store',
+    # 'Product',
+    # 'Category',
+    # 'Image',
+    # 'Basket',
+    # 'Like',
+    # 'Review',
+    # 'Question',
     'Apps',
 ]
 

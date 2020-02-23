@@ -1,7 +1,6 @@
 from django.db import models
-from Product.models import Product
-from User.models import User
-
+from .product import Product
+from .user import User
 
 # Create your models here.
 class Review(models.Model):

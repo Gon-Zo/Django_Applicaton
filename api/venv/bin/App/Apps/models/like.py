@@ -1,6 +1,5 @@
 from django.db import models
-from User.models import User
-
+from .user import User
 
 # Create your models here.
 class Like(models.Model):
