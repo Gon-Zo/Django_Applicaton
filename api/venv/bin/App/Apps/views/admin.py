@@ -1,25 +1,7 @@
 from rest_framework.response import Response
-# User
-# from User.models import User
-# from User.serializers import UserSerializer
-# Store
-# from Store.models import Store
-# from Store.serializers import StoreSerializer
-# Review
-# from Review.models import Review
-# from Review.serializers import ReviewSerializer
-# Proudct
-# from Product.models import Product
-# from Product.serializers import ProductSerializer
-
 
 from Apps.models.user import User
 from Apps.serializers.user import UserSerializer
-
-
-from Apps.models.store import Store
-from Apps.serializers.store import StoreSerializer
-
 
 from Apps.models.review import Review
 from Apps.serializers.review import ReviewSerializer
@@ -48,7 +30,7 @@ def user_api(request):
         page = request.GET.get("page", '1')
         # if Not type  is  'U':
         if not type is 'U':
-            raise APIException("TYPE IS ERROR")
+            raise APIException({"detail", "TYPE IS ERROR"})
         else:
             user = User.objects.filter(type=type).order_by('seq')
             # paging

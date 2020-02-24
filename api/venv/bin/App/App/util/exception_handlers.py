@@ -8,17 +8,9 @@ def get_exception_handler(exc, content):
     temp = None
     status = response.status_code
 
-    if isinstance(exc, APIException):
-        print("test....")
-
-    # if isinstance(exc, Http404):
-    #     response['status_code'] = status
-    #     temp = {"status": response.status_code, "detail": "NotFound"}
-    #     response.data = temp
-    #
-    # if response is not None:
-    #     response['status_code'] = status
-    #     temp = {"status": response.status_code, "detail": response.data['detail']}
-    #     response.data = temp
+    if response is not None:
+        response['status_code'] = status
+        temp = {"status": response.status_code, "detail": response.data['detail']}
+        response.data = temp
 
     return response
