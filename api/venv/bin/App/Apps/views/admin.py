@@ -14,7 +14,8 @@ from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
 from App.util.comm import param_parser
 from App.util.comm import image_as_base64
-from rest_framework.exceptions import APIException
+from App.util.app_exception import AppException
+# from rest_framework.exceptions import APIException
 # 트랜잭션
 from django.db import transaction
 
@@ -30,7 +31,7 @@ def user_api(request):
         page = request.GET.get("page", '1')
         # if Not type  is  'U':
         if not type is 'U':
-            raise APIException({"detail", "TYPE IS ERROR"})
+            raise AppException("Type Is Not User")
         else:
             user = User.objects.filter(type=type).order_by('seq')
             # paging

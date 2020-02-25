@@ -3,11 +3,8 @@ from rest_framework.status import HTTP_500_INTERNAL_SERVER_ERROR
 
 
 class AppException(APIException):
-    # status_code = HTTP_500_INTERNAL_SERVER_ERROR
-    # default_detail = "Test"
 
-    def __call__(self, *args, **kwargs):
-        print("AppException 여기")
-
-    def function(request):
-        raise AppException('msg here')
+    def __init__(self, msg):
+        status = HTTP_500_INTERNAL_SERVER_ERROR
+        fomatError = {"status": status, "detail": msg}
+        super().__init__(fomatError)

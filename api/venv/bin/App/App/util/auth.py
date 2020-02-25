@@ -2,9 +2,6 @@
 import jwt
 from App.conf.setting import __open_key__
 import datetime
-from App.util.app_exception import AppException
-
-# from rest_framework.exceptions import AuthenticationFailed
 
 # 비밀키
 SECRET_KEY = __open_key__()
@@ -31,14 +28,7 @@ def render(user):
         "type": user.type,
         "is_use": user.is_use,
         "create_at": str(user.create_at),
-        # 30 초 유효 기간
+        # 1 시간
         'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
     }
 
-# 인증 관련한 함수
-def __token_auth__(token):
-    if not token is None:
-        token = token.replace("Bearer ", "", 1)
-        a = jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
-    else:
-        raise AppException()
