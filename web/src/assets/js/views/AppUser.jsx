@@ -11,9 +11,9 @@ function UserModal(props) {
 
     let isOpen = props.isOpen
     let setIsOpen = props.setIsOpen
-    let modalClassName = isOpen ? "modal modal-isOpen" : "modal"
 
     if (isOpen) {
+
         let userData = props.userData
 
         let $onClose = () => {
@@ -23,12 +23,28 @@ function UserModal(props) {
         let $onChange = (e) => {
             let name = e.target.name
             let value = e.target.value
+            if(name === 'isUse'){
+                value = Boolean(value)
+            }
             userData[name] = value
             console.log(userData[name])
         }
 
+        let keys = Object.keys(userData)
+        console.log(JSON.stringify(keys))
+
+        let inputType = (key) => {
+            if(key === 'birthDate'){
+               return 'date'
+            }else if(key === 'isUse'){
+                return 'checkbox'
+            }else{
+                return 'text'
+            }
+        }
+
         return (
-            <div className={modalClassName} tabIndex="-1" role="dialog">
+            <div className="modal modal-isOpen" tabIndex="-1" role="dialog">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -39,51 +55,20 @@ function UserModal(props) {
                             </button>
                         </div>
                         <div className="modal-body">
-                            {/*<p>{JSON.stringify(userData)}</p>*/}
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">아이디</span>
-                                </div>
-                                <input type="text" className="form-control" defaultValue={userData.id} name="id"  onChange={$onChange}/>
-                            </div>
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">비밀번호</span>
-                                </div>
-                                <input type="text" className="form-control"/>
-                            </div>
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">이름</span>
-                                </div>
-                                <input type="text" className="form-control"/>
-                            </div>
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">생년월일</span>
-                                </div>
-                                <input className="form-control" type="date"/>
-                            </div>
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">주소</span>
-                                </div>
-                                <input type="text" className="form-control"/>
-                            </div>
-
-                            <div className="input-group">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">사용유무</span>
-                                </div>
-                                <input type="text" className="form-control"/>
-                            </div>
-
+                            {
+                                keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (
+                                    <div className="input-group" key={i}>
+                                        <div className="input-group-prepend">
+                                            <span className="input-group-text modal-input-box" id="">{m}</span>
+                                        </div>
+                                        <input type={inputType(m)} className="form-control" defaultValue={userData[m]}
+                                               name={m}
+                                               onChange={$onChange}/>
+                                    </div>
+                                ))
+                            }
                         </div>
+                        {/*.modal-body end*/}
                         <div className="modal-footer">
                             <button type="button" className="btn btn-primary">Save changes</button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
@@ -91,6 +76,7 @@ function UserModal(props) {
                             </button>
                         </div>
                     </div>
+                    {/*.modal-foot end*/}
                 </div>
             </div>
         )
