@@ -2,6 +2,7 @@ from .user import User
 from .store import Store
 from .review import Review
 from .product import Product
+from .product import Order
 from .image import Image
 from .basket import Basket
 from .like import Like

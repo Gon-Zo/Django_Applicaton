@@ -1,5 +1,7 @@
 from django.db import models
 from .store import Store
+from .user import User
+
 
 # Create your models here.
 class Product(models.Model):
@@ -20,3 +22,13 @@ class Product(models.Model):
     is_sold = models.BooleanField()
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
+
+
+class Order(models.Model):
+    class Meta:
+        db_table = '"mk_order"'
+
+    seq = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
+    cnt = models.IntegerField()
