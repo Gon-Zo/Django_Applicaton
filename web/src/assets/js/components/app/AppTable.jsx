@@ -4,6 +4,8 @@ import {Table,} from "react-bootstrap"
 export default (props) => {
 
     let data = props.data
+    let isOpen = props.isOpen
+    let $setIsOpen = props.setIsOpen;
 
     if (typeof data == 'undefined') {
         return (
@@ -13,10 +15,14 @@ export default (props) => {
         )
     }
 
+    function $onTest() {
+        $setIsOpen(!isOpen)
+    }
+
     return (
         <div className="row">
             <div className="col min-hg">
-                {renderTable(data)}
+                {renderTable(data, $onTest)}
             </div>
         </div>
     )
@@ -27,12 +33,13 @@ export default (props) => {
  * @param data 테이블 데이터
  * @returns {*}
  */
-const renderTable = (data) => {
+const renderTable = (data, setIsOpen) => {
 
     let keys = Object.keys(data[0])
 
     const $onClick = (idx) => {
         console.log(JSON.stringify(data[idx]))
+        setIsOpen()
     }
 
     return (
@@ -70,25 +77,15 @@ const renderTable = (data) => {
 
 }
 
-let test = (data) => {
-    // console.log(data)
-
-    // let $onChange = () => {
-    //     console.log("change to value ")
-    // }
-    // onChange={$onChange}
-
+let renderInput = (data) => {
     return (
         <input type="checkbox" defaultChecked={data} disabled={true}/>
     )
-
 }
 
 let $checkToValue = (val) => {
-    // console.log(typeof val)
     if (typeof val === "boolean") {
-        // console.log("TEST SUCCESS")
-        val = test(val)
+        val = renderInput(val)
     }
     return val
 }

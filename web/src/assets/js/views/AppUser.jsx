@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import AppTable from "../components/app/AppTable";
 import {ListDto, UserDto} from "../dto/AppDto";
@@ -6,6 +6,30 @@ import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
 import {onUser} from "../modules/user";
 import axios from 'axios'
+
+function userModal() {
+    return (
+        <div className="modal" tabIndex="-1" role="dialog">
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title">Modal title</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        <p>Modal body text goes here.</p>
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-primary">Save changes</button>
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 
 function AppUser() {
 
@@ -36,6 +60,11 @@ function AppUser() {
         fetchUser()
     }, [])
 
+    let [isOpen, setIsOpen] = useState(false)
+
+    function $setIsOpen(v) {
+        setIsOpen(v)
+    }
 
     return (
         <Container fluid={true}>
@@ -43,8 +72,9 @@ function AppUser() {
             <div className="content-wrap">
                 <div>
                     <h4 className="page-title">유저 목록</h4>
+                    <span>{JSON.stringify(isOpen)}</span>
                 </div>
-                <AppTable data={user.data.data}/>
+                <AppTable isOpen={isOpen} setIsOpen={$setIsOpen} data={user.data.data}/>
                 <AppPagination fetchUser={fetchUser} count={user.data.count} numPage={user.data.numPage}/>
             </div>
 
