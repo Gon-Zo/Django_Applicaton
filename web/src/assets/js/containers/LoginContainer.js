@@ -2,7 +2,6 @@ import React, {useCallback} from "react";
 import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
 import AppLogin from "../views/AppLogin";
-import {UserDto} from "../dto/AppDto";
 
 export default () => {
 
@@ -15,9 +14,7 @@ export default () => {
 
     const checkLogin = (id, pwd) => {
 
-        // let user = new UserDto(id, pwd)
-        let temp = {id: id, pwd: pwd}
-        axios.post(`http://localhost:3030/api/login`, temp)
+        axios.post(`/login`, {id: id, pwd: pwd})
             .then((res) => {
                 let token = res.data;
                 localStorage.setItem("Token", token);

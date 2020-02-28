@@ -7,6 +7,12 @@ import {useSelector, useDispatch} from "react-redux";
 import {onUser} from "../modules/user";
 import axios from 'axios'
 
+/**
+ * user modal
+ * @param props
+ * @returns {null|*}
+ * @constructor
+ */
 function UserModal(props) {
 
     let isOpen = props.isOpen
@@ -27,11 +33,9 @@ function UserModal(props) {
                 value = Boolean(value)
             }
             userData[name] = value
-            console.log(userData[name])
         }
 
         let keys = Object.keys(userData)
-        console.log(JSON.stringify(keys))
 
         let inputType = (key) => {
             if(key === 'birthDate'){
@@ -83,7 +87,6 @@ function UserModal(props) {
     }
 
     return null;
-
 }
 
 function AppUser() {
@@ -101,7 +104,7 @@ function AppUser() {
     const user = useSelector(state => state.appUser, []);
 
     const fetchUser = () => {
-        axios.get(`http://localhost:3030/api/admin/user?type=U`, {
+        axios.get(`/admin/user`, {
             params: {
                 type: 'U',
                 page: user.clickPage
