@@ -11,11 +11,12 @@ export default (props) => {
 
 
     if (typeof numPage == 'undefined') {
-        return (
-            <div>
-                <span>로딩중..</span>
-            </div>
-        )
+        return null
+        // return (
+        //     <div>
+        //         <span>로딩중..</span>
+        //     </div>
+        // )
     }
 
     let temp = new Array();
