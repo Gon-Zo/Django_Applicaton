@@ -9,6 +9,9 @@ from Apps.serializers.review import ReviewSerializer
 from Apps.models.product import Product
 from Apps.serializers.product import ProductSerializer
 
+from Apps.models.store import Store
+from Apps.serializers.store import StoreSerializer
+
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
@@ -18,6 +21,7 @@ from App.util.app_exception import AppException
 # from rest_framework.exceptions import APIException
 # 트랜잭션
 from django.db import transaction
+import json
 
 
 # Admin User
@@ -64,7 +68,7 @@ def user_rest_api(request, seq):
         user_serializer = UserSerializer(user, many=True)
         return Response(user_serializer.data, status=200)
     elif method == 'PUT':
-        data = param_parser(request.GET)
+        data = json.loads(request.body)
         user.update(**data)
         return Response({"seq": seq}, status=200)
     elif method == 'DELETE':
