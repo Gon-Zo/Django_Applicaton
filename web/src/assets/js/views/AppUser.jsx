@@ -1,3 +1,4 @@
+// todo : fetch to change ...
 import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import AppTable from "../components/app/AppTable";
@@ -29,7 +30,7 @@ function UserModal(props) {
         let $onChange = (e) => {
             let name = e.target.name
             let value = e.target.value
-            if(name === 'isUse'){
+            if (name === 'isUse') {
                 value = Boolean(value)
             }
             userData[name] = value
@@ -38,13 +39,24 @@ function UserModal(props) {
         let keys = Object.keys(userData)
 
         let inputType = (key) => {
-            if(key === 'birthDate'){
-               return 'date'
-            }else if(key === 'isUse'){
+            if (key === 'birthDate') {
+                return 'date'
+            } else if (key === 'isUse') {
                 return 'checkbox'
-            }else{
+            } else {
                 return 'text'
             }
+        }
+
+        let $fetchUpdate = () => {
+            let seq = userData.seq
+            userData['is_use'] = userData.isUse
+            delete userData.seq
+            delete userData.isUse
+            delete userData.createAt
+            axios.put(`/admin/user/${seq}`, userData)
+                .then((res) => $onClose())
+                .catch((err) => console.log(err))
         }
 
         return (
@@ -74,7 +86,9 @@ function UserModal(props) {
                         </div>
                         {/*.modal-body end*/}
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary">Save changes</button>
+                            <button type="button" className="btn btn-primary" onClick={() => $fetchUpdate()}>Save
+                                changes
+                            </button>
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
                                     onClick={() => $onClose()}>Close
                             </button>
@@ -92,16 +106,28 @@ function UserModal(props) {
 function AppUser() {
 
     let dispatch = useDispatch()
+    let user = useSelector(state => state.appUser, []);
+    let [isOpen, setIsOpen] = useState(false)
 
     const $bindData = (playData) => {
         let count = playData.count;
         let numPage = playData.numPages;
-        let data = playData.data.map((m) => new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
+        let data = playData.data.map((m) =>
+            new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
         let obj = new ListDto(count, numPage, data)
         dispatch(onUser(obj))
     }
 
-    const user = useSelector(state => state.appUser, []);
+    useEffect(() => {
+        fetchUser()
+    }, [])
+
+    function $setIsOpen(v) {
+        setIsOpen(v)
+        if (v === false) {
+            fetchUser()
+        }
+    }
 
     const fetchUser = () => {
         axios.get(`/admin/user`, {
@@ -112,16 +138,6 @@ function AppUser() {
         }).then((res) => {
             $bindData(res.data)
         }).catch((err) => console.log(err))
-    }
-
-    useEffect(() => {
-        fetchUser()
-    }, [])
-
-    let [isOpen, setIsOpen] = useState(false)
-
-    function $setIsOpen(v) {
-        setIsOpen(v)
     }
 
     return (
