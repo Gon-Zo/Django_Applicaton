@@ -6,6 +6,8 @@ import {useSelector} from "react-redux";
 import {Switch, Route} from 'react-router-dom';
 import AppUser from "./views/AppUser";
 import AppDashboard from "./views/AppDashboard";
+import AppProduct from "./views/AppProduct";
+
 function Root() {
     let user = useSelector(state => state.appUser, [])
     return (
@@ -15,6 +17,7 @@ function Root() {
                 <Route exact path="/" component={Main}/>
                 <Route path="/user" component={AppUser}/>
                 <Route path="/dashboard" component={AppDashboard}/>
+                <Route path="/product" component={AppProduct}/>
             </Switch>
         </div>
     )

@@ -54,3 +54,15 @@ body {
     background-color: #fff;
     border-radius: 10px;
 }
+
+/*.card-test {*/
+/*    max-width: 25%;*/
+/*}*/
+/*상품 css*/
+.title-wrap{
+    display: flex;
+}
+
+.test-wrap{
+    margin: auto;
+}
