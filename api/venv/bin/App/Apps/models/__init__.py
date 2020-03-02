@@ -3,10 +3,12 @@ from .store import Store
 from .review import Review
 from .product import Product
 from .product import Order
-from .image import Image
 from .basket import Basket
 from .like import Like
 from .question import Question
 from .question import ReQuestion
 from .category import Category
 from .category import ProductCategory
+from .image import ProductImage
+from .image import QuestionImage
+from .image import ReviewImage

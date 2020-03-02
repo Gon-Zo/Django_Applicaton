@@ -1,14 +1,34 @@
 from django.db import models
+from .review import Review
+from .product import Product
+from .question import Question
 
 
-# Create your models here.
-class Image(models.Model):
+class QuestionImage(models.Model):
     class Meta:
-        db_table = '"mk_img"'
+        db_table = '"mk_img_question"'
 
     seq = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=250)
     photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
-    type = models.CharField(max_length=250, null=True)
-    num = models.IntegerField()
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+class ProductImage(models.Model):
+    class Meta:
+        db_table = '"mk_img_product"'
+
+    seq = models.AutoField(primary_key=True)
+    photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+class ReviewImage(models.Model):
+    class Meta:
+        db_table = '"mk_img_review"'
+
+    seq = models.AutoField(primary_key=True)
+    photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
