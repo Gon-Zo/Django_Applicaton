@@ -121,7 +121,7 @@ def review_api(request):
         return Response(status=404)
 
 
-@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+@api_view(['GET', 'POST'])
 def product_api(request):
     method = request.method
 
@@ -139,20 +139,25 @@ def product_api(request):
         }
         return Response(temp, status=200)
     elif method == 'POST':
-        pass
-    elif method == 'PUT':
-        pass
-    elif method == 'DELETE':
-        pass
+        data = json.loads(request.body)
+        Product.objects.create(**data)
+        return Response(status=200)
     else:
         return Response(status=404)
 
-    # class ItemApi(APIView):
-#
-#     # Item - list
-#     def get(self, request):
-#         pass
-# class StoreApi(APIView):
-#     # store view list
-#     def get(self, requset):
-#         pass
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def product_rest_api(request, seq):
+    method = request.method
+    product = Product.objects.filter(seq=seq)
+    if method == 'GET':
+        return Response(product[0], status=200)
+    elif method == 'PUT':
+        data = json.loads(request.body)
+        product.update(**data)
+        return Response(status=200)
+    elif method == 'DELETE':
+        product.delete()
+        return Response(status=200)
+    else:
+        return Response(status=400)

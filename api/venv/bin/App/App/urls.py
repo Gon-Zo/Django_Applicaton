@@ -31,8 +31,8 @@ from Apps.views.admin import user_rest_api
 from Apps.views.admin import store_rest_api
 from Apps.views.admin import review_api
 from Apps.views.client import user_login
-
-
+from Apps.views.admin import product_api
+from Apps.views.admin import product_rest_api
 
 urlpatterns = [
 
@@ -41,11 +41,18 @@ urlpatterns = [
 
     path('api/admin/user/<int:seq>', user_rest_api),
 
+    path('api/admin/product', product_api),
+
+    path('api/admin/product/<int:seq>', product_rest_api),
+
+    path('api/login', user_login),
+
+
+
     path('api/admin/store/<int:seq>', store_rest_api),
 
     path('api/admin/review', review_api),
 
-    path('api/login', user_login),
 
     ####################### URL #######################
 
