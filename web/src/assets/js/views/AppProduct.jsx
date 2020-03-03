@@ -1,7 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {Container, Row, Col, Card, Button} from "react-bootstrap";
+import {getProducts} from '../modules/hooks/ProductApi'
+import {useDispatch} from "react-redux";
 
 export default () => {
+
+    let dispatch = useDispatch();
+
+    useEffect(() => {
+        getProducts(dispatch);
+    }, [])
+
+    let $isModalByProd = () => {
+
+    }
+
     return (
         <Container fluid={true}>
             <Row>
@@ -13,7 +26,7 @@ export default () => {
                 <Col xs={12} md={8} className="box-test test-wrap">
                     <div className="title-wrap">
                         <h4 className="page-title">상품 목록</h4>
-                        <Button variant="dark">상품 등록</Button>
+                        <button className="btn-default btn-success" onClick={() => $isModalByProd()}>상품 등록</button>
                     </div>
                     <Row className="card-group">
                         <RenderCard/>
