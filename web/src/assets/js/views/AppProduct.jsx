@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {Container, Row, Col, Card, Button} from "react-bootstrap";
-import {getProducts} from '../modules/hooks/ProductApi'
+import {getProducts} from '../modules/api/product'
 import {useDispatch} from "react-redux";
 
 export default () => {
