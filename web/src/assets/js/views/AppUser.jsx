@@ -7,6 +7,7 @@ import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
 import {onUser} from "../modules/user";
 import axios from 'axios'
+import {$fetchUsers} from '../modules/api/user'
 
 /**
  * user modal
@@ -106,49 +107,53 @@ function UserModal(props) {
 function AppUser() {
 
     let dispatch = useDispatch()
-    let user = useSelector(state => state.appUser, []);
+    let initUser = useSelector(state => state.userReducer, []);
     let [isOpen, setIsOpen] = useState(false)
 
-    const $bindData = (playData) => {
-        let count = playData.count;
-        let numPage = playData.numPages;
-        let data = playData.data.map((m) =>
+    const $bindData = () => {
+        let payload = initUser.users
+        let count = payload.count;
+        let numPage = payload.numPages;
+        let data =
+            payload.data.map((m) =>
             new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
-        let obj = new ListDto(count, numPage, data)
-        dispatch(onUser(obj))
+        return new ListDto(count, numPage, data)
+        // dispatch(onUser(obj))
     }
 
     useEffect(() => {
-        fetchUser()
+        $fetchUsers(dispatch , user)
+        // fetchUser()
+
     }, [])
 
     function $setIsOpen(v) {
         setIsOpen(v)
         if (v === false) {
-            fetchUser()
+            // fetchUser()
         }
     }
 
-    const fetchUser = () => {
-        axios.get(`/admin/user`, {
-            params: {
-                type: 'U',
-                page: user.clickPage
-            }
-        }).then((res) => {
-            $bindData(res.data)
-        }).catch((err) => console.log(err))
-    }
+    // const fetchUser = () => {
+    //     axios.get(`/admin/user`, {
+    //         params: {
+    //             type: 'U',
+    //             page: user.clickPage
+    //         }
+    //     }).then((res) => {
+    //         $bindData(res.data)
+    //     }).catch((err) => console.log(err))
+    // }
 
     return (
         <Container fluid={true}>
-            <UserModal isOpen={isOpen} setIsOpen={$setIsOpen} userData={user.user}/>
+            <UserModal isOpen={isOpen} setIsOpen={$setIsOpen} userData={initUser.user}/>
             <div className="content-wrap">
                 <div>
                     <h4 className="page-title">유저 목록</h4>
                 </div>
-                <AppTable isOpen={isOpen} setIsOpen={$setIsOpen} data={user.data.data}/>
-                <AppPagination fetchUser={fetchUser} count={user.data.count} numPage={user.data.numPage}/>
+                <AppTable isOpen={isOpen} setIsOpen={$setIsOpen} data={$bindData().data}/>
+                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
             </div>
 
         </Container>

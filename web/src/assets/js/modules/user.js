@@ -7,30 +7,41 @@ export const onLogin = () => ({type: User});
 export const onLogout = () => ({type: LOGOUT});
 export const onUser = (data) => ({type: PAGELIST, data: data});
 export const setUser = (data) => ({type: SETUSER, data: data})
-// const loginFlag = false;
+export const clickPage = (data) => ({type : 'user/clickPage' , data : data})
+export const isOpen  = () =>({type : 'user/isOpen'})
 
-const user = {
+const initUser = {
     isLogin: false,
-    clickPage: 1,
-    data: [],
-    user: {}
+    page: 1,
+    numPage : 10,
+    users: [],
+    user: {},
+    isOpen : false ,
 }
 
-const appUser = (state = user, action) => {
+const userReducer = (state = initUser , action) => {
     switch (action.type) {
+
         case User:
             state.isLogin = true;
             break;
         case LOGOUT:
             state.isLogin = false;
+
         case PAGELIST:
-            state.data = action.data
+            state.users = action.data
             break;
         case SETUSER:
             state.user = action.data
+            break;
+        case "user/clickPage":
+            state.page = action.data
+            break;
+        case "user/isOpen":
+            state.isOpen = !state.isOpen
             break;
     }
     return state;
 };
 
-export default appUser
+export default userReducer

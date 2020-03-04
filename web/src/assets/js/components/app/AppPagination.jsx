@@ -1,22 +1,19 @@
 import React, {useState} from 'react'
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {$fetchUsers , $onPage } from "../../modules/api/user";
+import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 export default (props) => {
 
     const user = useSelector(state => state.appUser, []);
+    let dispatch = useDispatch()
 
     let cnt = props.count;
     let numPage = props.numPage;
-    let fetchUser = props.fetchUser;
-
+    // let fetchUser = props.fetchUser;
 
     if (typeof numPage == 'undefined') {
         return null
-        // return (
-        //     <div>
-        //         <span>로딩중..</span>
-        //     </div>
-        // )
     }
 
     let temp = new Array();
@@ -27,8 +24,10 @@ export default (props) => {
 
     let $onCLick = (e) => {
         let vl = e.target.text
-        user.clickPage = vl
-        fetchUser()
+        $onPage(dispatch , vl)
+        $fetchUsers(dispatch , user)
+        // user.clickPage = vl
+        // fetchUser()
     }
 
     return (

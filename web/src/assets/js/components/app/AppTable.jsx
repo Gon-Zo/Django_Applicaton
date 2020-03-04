@@ -1,13 +1,14 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 import {useDispatch} from 'react-redux'
-import {setUser} from '../../modules/user.js'
+// import {setUser} from '../../modules/user.js'
+import {$setUser , $isOpen} from "../../modules/api/user";
 
 export default (props) => {
 
     let data = props.data
-    let isOpen = props.isOpen
-    let $setIsOpen = props.setIsOpen;
+    // let isOpen = props.isOpen
+    // let $setIsOpen = props.setIsOpen;
     let dispatch = useDispatch()
 
     if (typeof data == 'undefined') {
@@ -18,14 +19,14 @@ export default (props) => {
         )
     }
 
-    function $onTest() {
-        $setIsOpen(!isOpen)
-    }
+    // function $onTest() {
+    //     $setIsOpen(!isOpen)
+    // }
 
     return (
         <div className="row">
             <div className="col min-hg">
-                {renderTable(data, $onTest, dispatch)}
+                {renderTable(data, dispatch)}
             </div>
         </div>
     )
@@ -36,13 +37,16 @@ export default (props) => {
  * @param data 테이블 데이터
  * @returns {*}
  */
-const renderTable = (data, setIsOpen, dispatch) => {
+const renderTable = (data , dispatch) => {
 
     let keys = Object.keys(data[0])
 
     const $onClick = (idx) => {
-        dispatch(setUser(data[idx]))
-        setIsOpen()
+        $setUser(dispatch , data[idx] )
+        $isOpen(dispatch)
+        // dispatch(setUser(data[idx]))
+        // setIsOpen()
+        // dispatch()
     }
 
     return (
