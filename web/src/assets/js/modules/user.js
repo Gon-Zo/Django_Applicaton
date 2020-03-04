@@ -29,6 +29,7 @@ const userReducer = (state = initUser , action) => {
             state.isLogin = false;
 
         case PAGELIST:
+            console.log("redu")
             state.users = action.data
             break;
         case SETUSER:

@@ -114,17 +114,17 @@ function AppUser() {
         let payload = initUser.users
         let count = payload.count;
         let numPage = payload.numPages;
-        let data =
-            payload.data.map((m) =>
-            new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
+        let data = undefined
+        if (typeof payload.data !== 'undefined') {
+            data = payload.data.map((m) =>
+                new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
+        }
         return new ListDto(count, numPage, data)
-        // dispatch(onUser(obj))
     }
 
     useEffect(() => {
-        $fetchUsers(dispatch , user)
+        $fetchUsers(dispatch, initUser)
         // fetchUser()
-
     }, [])
 
     function $setIsOpen(v) {
@@ -152,8 +152,8 @@ function AppUser() {
                 <div>
                     <h4 className="page-title">유저 목록</h4>
                 </div>
-                <AppTable isOpen={isOpen} setIsOpen={$setIsOpen} data={$bindData().data}/>
-                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
+                <AppTable data={$bindData().data}/>
+                {/*<AppPagination count={$bindData().count} numPage={$bindData().numPage}/>*/}
             </div>
 
         </Container>

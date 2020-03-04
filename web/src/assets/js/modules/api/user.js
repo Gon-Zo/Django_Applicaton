@@ -6,13 +6,18 @@ import {onUser, isOpen, clickPage , setUser} from '../user'
 // let user = useSelector(state => state.appUser, []);
 
 export const $fetchUsers = (dispatch, payload) => {
-
+    console.log("test...")
     axios.get(`/admin/user`, {
         params: {
             type: 'U',
             page: payload.page
         }
-    }).then(res => onUser(res.data)).catch((err) => console.log(err))
+    }).then(res =>
+        {
+        dispatch (onUser(res.data))
+            // console.log(JSON.stringify(res.data))
+        }
+    ).catch((err) => console.log(err))
 }
 
 export const $fetchUpdateToUser = (dispatch, payload) => {

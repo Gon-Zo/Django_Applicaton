@@ -1,15 +1,12 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 import {useDispatch} from 'react-redux'
-// import {setUser} from '../../modules/user.js'
 import {$setUser , $isOpen} from "../../modules/api/user";
 
 export default (props) => {
 
-    let data = props.data
-    // let isOpen = props.isOpen
-    // let $setIsOpen = props.setIsOpen;
     let dispatch = useDispatch()
+    let data = props.data
 
     if (typeof data == 'undefined') {
         return (
@@ -18,10 +15,6 @@ export default (props) => {
             </div>
         )
     }
-
-    // function $onTest() {
-    //     $setIsOpen(!isOpen)
-    // }
 
     return (
         <div className="row">
@@ -44,9 +37,6 @@ const renderTable = (data , dispatch) => {
     const $onClick = (idx) => {
         $setUser(dispatch , data[idx] )
         $isOpen(dispatch)
-        // dispatch(setUser(data[idx]))
-        // setIsOpen()
-        // dispatch()
     }
 
     return (
