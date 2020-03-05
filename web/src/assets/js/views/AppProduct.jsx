@@ -1,18 +1,41 @@
 import React, {useEffect} from "react";
-import {Container, Row, Col, Card, Button} from "react-bootstrap";
-import {getProducts} from '../modules/api/product'
-import {useDispatch} from "react-redux";
+import {Container, Row, Col, Card, Button, Modal} from "react-bootstrap";
+import {$httpProduct , $isOpen} from '../modules/api/product'
+import {useDispatch, useSelector} from "react-redux";
+
+
+function ProductModal(props) {
+ let initData = props.initData
+ let dispatch = props.dispatch
+ return(
+     <Modal
+         size="lg"
+         show={initData.isOpen}
+         onHide={() => $isOpen(dispatch)}
+         aria-labelledby="example-modal-sizes-title-lg"
+     >
+         <Modal.Header closeButton>
+             <Modal.Title id="example-modal-sizes-title-lg">
+                 Large Modal
+             </Modal.Title>
+         </Modal.Header>
+         <Modal.Body>...</Modal.Body>
+     </Modal>
+ )
+}
+
 
 export default () => {
 
     let dispatch = useDispatch();
+    let initProd = useSelector(state => state.productReducer, []);
 
     useEffect(() => {
-        getProducts(dispatch);
+        $httpProduct(dispatch);
     }, [])
 
     let $isModalByProd = () => {
-
+        $isOpen(dispatch)
     }
 
     return (
@@ -24,11 +47,13 @@ export default () => {
                     </div>
                 </Col>
                 <Col xs={12} md={8} className="box-test test-wrap">
+                    <ProductModal initData={initProd} dispatch={dispatch}/>
                     <div className="title-wrap">
                         <h4 className="page-title">상품 목록</h4>
                         <button className="btn-default btn-success" onClick={() => $isModalByProd()}>상품 등록</button>
                     </div>
                     <Row className="card-group">
+
                         <RenderCard/>
                         <RenderCard/>
                         <RenderCard/>

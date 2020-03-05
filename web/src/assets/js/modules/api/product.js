@@ -1,13 +1,13 @@
 import React, {createContext, useReducer, useContext} from 'react';
 import axios from 'axios';
-import {setProducts , setProduct} from '../reducer/product'
+import {setProducts, setProduct, onOpen} from '../reducer/product'
 
 /**
- * products to list
+ * 상품 리스트 호출
  * @param dispatch
  * @returns {Promise<void>}
  */
-export async function getProducts(dispatch) {
+export async function $httpProduct(dispatch) {
     axios.get(`/admin/product`)
         .then(res => {
             dispatch(setProducts(res.data))
@@ -16,7 +16,7 @@ export async function getProducts(dispatch) {
 }
 
 /**
- * create to product
+ * 상품등록
  * @param dispatch
  * @param payload
  * @returns {Promise<void>}
@@ -28,7 +28,7 @@ export async function createProduct(dispatch, payload) {
 }
 
 /**
- * Get Product to object
+ * 상품 호출
  * @param dispatch
  * @param seq
  * @returns {Promise<void>}
@@ -40,7 +40,7 @@ export async function getProduct(dispatch, seq) {
 }
 
 /**
- * update to product info
+ * 상품 수정
  * @param dispatch
  * @param payload
  * @returns {Promise<void>}
@@ -51,7 +51,7 @@ export async function updateProduct(dispatch, payload) {
 }
 
 /**
- * delete to product
+ * 상품 삭제
  * @param dispatch
  * @param seq
  * @returns {Promise<void>}
@@ -61,3 +61,13 @@ export async function deleteProduct(dispatch, seq) {
         .then(res => console.log(res.status))
         .catch(err => console.log(err))
 }
+
+/**
+ * 모달 오픈
+ * @param dispatch
+ * @returns {Promise<void>}
+ */
+export async function $isOpen(dispatch) {
+    dispatch(onOpen())
+}
+
