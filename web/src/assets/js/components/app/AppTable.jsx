@@ -76,7 +76,7 @@ const renderTable = (data , dispatch) => {
 
 let renderInput = (data) => {
     return (
-        <input type="checkbox" defaultChecked={data} disabled={true}/>
+        <input type="checkbox" defaultChecked={data === true} defaultValue={data} disabled={true}/>
     )
 }
 

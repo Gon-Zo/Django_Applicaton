@@ -5,7 +5,7 @@ import AppTable from "../components/app/AppTable";
 import {ListDto, UserDto} from "../dto/AppDto";
 import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
-import {onUser} from "../modules/user";
+import {onUser} from "../modules/reducer/user";
 import axios from 'axios'
 import {$fetchUsers , $isOpen , $fetchUpdateToUser} from '../modules/api/user'
 
@@ -24,7 +24,6 @@ function UserModal(props) {
 
         let initData = props.initData
         let userData = initData.user
-        console.log(JSON.stringify(userData))
         let $onClose = () => {
            $isOpen(dispatch)
         }
@@ -33,7 +32,7 @@ function UserModal(props) {
             let name = e.target.name
             let value = e.target.value
             if (name === 'isUse') {
-                value = Boolean(value)
+                value = e.target.checked
             }
             userData[name] = value
         }

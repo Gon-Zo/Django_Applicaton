@@ -1,6 +1,6 @@
 import React from "react";
 import axios from 'axios'
-import {onUser, isOpen, clickPage , setUser} from '../user'
+import {onUser, isOpen, clickPage , setUser} from '../reducer/user'
 
 export const $fetchUsers = (dispatch, payload) => {
     axios.get(`/admin/user`, {
@@ -21,6 +21,7 @@ export const $fetchUpdateToUser = (dispatch, payload) => {
     delete user.seq
     delete user.isUse
     delete user.createAt
+
     axios.put(`/admin/user/${seq}`, user)
         .then((res) => {
             $isOpen(dispatch)
