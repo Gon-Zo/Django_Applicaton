@@ -12,14 +12,21 @@ function ProductModal(props) {
          size="lg"
          show={initData.isOpen}
          onHide={() => $isOpen(dispatch)}
-         aria-labelledby="example-modal-sizes-title-lg"
-     >
+         aria-labelledby="example-modal-sizes-title-lg">
          <Modal.Header closeButton>
              <Modal.Title id="example-modal-sizes-title-lg">
-                 Large Modal
+                상품 등록
              </Modal.Title>
          </Modal.Header>
-         <Modal.Body>...</Modal.Body>
+         <Modal.Body>
+             <div className="input-group" >
+                 <div className="input-group-prepend">
+                     <span className="input-group-text modal-input-box" id="">test</span>
+                 </div>
+                 <input type={"text"} className="form-control"
+                        name={"test"}/>
+             </div>
+         </Modal.Body>
      </Modal>
  )
 }
