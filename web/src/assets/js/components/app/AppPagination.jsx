@@ -1,16 +1,14 @@
 import React, {useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {$fetchUsers , $onPage } from "../../modules/api/user";
-import {forEach} from "react-bootstrap/cjs/ElementChildren";
 
 export default (props) => {
 
-    const user = useSelector(state => state.appUser, []);
+    const initUser = useSelector(state => state.userReducer, []);
     let dispatch = useDispatch()
 
     let cnt = props.count;
     let numPage = props.numPage;
-    // let fetchUser = props.fetchUser;
 
     if (typeof numPage == 'undefined') {
         return null
@@ -25,9 +23,7 @@ export default (props) => {
     let $onCLick = (e) => {
         let vl = e.target.text
         $onPage(dispatch , vl)
-        $fetchUsers(dispatch , user)
-        // user.clickPage = vl
-        // fetchUser()
+        $fetchUsers(dispatch , initUser)
     }
 
     return (
@@ -36,7 +32,6 @@ export default (props) => {
                 <div>
                     <h6 className="pagination-sm-title">All Items <span>{cnt}</span>
                     </h6>
-                    {/*<span>TEST.</span>*/}
                 </div>
             </div>
             <div className="col">

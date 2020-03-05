@@ -153,7 +153,7 @@ function AppUser() {
                     <h4 className="page-title">유저 목록</h4>
                 </div>
                 <AppTable data={$bindData().data}/>
-                {/*<AppPagination count={$bindData().count} numPage={$bindData().numPage}/>*/}
+                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
             </div>
 
         </Container>
