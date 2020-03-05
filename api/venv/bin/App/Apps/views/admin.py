@@ -68,6 +68,7 @@ def user_rest_api(request, seq):
         user_serializer = UserSerializer(user, many=True)
         return Response(user_serializer.data, status=200)
     elif method == 'PUT':
+        print(request.body)
         data = json.loads(request.body)
         user.update(**data)
         return Response({"seq": seq}, status=200)
@@ -127,17 +128,17 @@ def product_api(request):
 
     if method == 'GET':
         product = Product.objects.all().order_by('seq')
-        pageNum = request.GET.get('pageNum')
-        page = request.GET.get('page')
-        page_list = Paginator(product, pageNum)
-        page_data = page_list.page(page)
-        serializer = ProductSerializer(page_data, many=True)
-        temp = {
-            "count": page_list.count,
-            "numPages": page_list.num_pages,
-            "data": serializer.data
-        }
-        return Response(temp, status=200)
+        # pageNum = request.GET.get('pageNum')
+        # page = request.GET.get('page')
+        # page_list = Paginator(product, pageNum)
+        # page_data = page_list.page(page)
+        serializer = ProductSerializer(product, many=True)
+        # temp = {
+        #     "count": page_list.count,
+        #     "numPages": page_list.num_pages,
+        #     "data": serializer.data
+        # }
+        return Response(serializer.data, status=200)
     elif method == 'POST':
         data = json.loads(request.body)
         Product.objects.create(**data)
