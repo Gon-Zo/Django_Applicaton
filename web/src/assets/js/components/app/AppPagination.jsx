@@ -16,8 +16,8 @@ export default (props) => {
 
     let temp = new Array();
 
-    for (var i = 1; i <= numPage; i++) {
-        temp.push(i)
+    for (let i = 0; i < numPage; i++) {
+        temp.push(i + 1)
     }
 
     let $onCLick = (e) => {

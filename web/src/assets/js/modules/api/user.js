@@ -2,27 +2,30 @@ import React from "react";
 import axios from 'axios'
 import {onUser, isOpen, clickPage , setUser} from '../user'
 
-// import {useSelector} from "react-redux";
-// let user = useSelector(state => state.appUser, []);
-
 export const $fetchUsers = (dispatch, payload) => {
-    console.log("test...")
     axios.get(`/admin/user`, {
         params: {
             type: 'U',
             page: payload.page
         }
-    }).then(res =>
-        {
-        dispatch (onUser(res.data))
-            // console.log(JSON.stringify(res.data))
-        }
+    }).then(res => dispatch (onUser(res.data))
     ).catch((err) => console.log(err))
 }
 
 export const $fetchUpdateToUser = (dispatch, payload) => {
-    axios.put(`/admin/user/${payload.seq}`, payload)
-        .then((res) => isOpen())
+    let user = payload.user
+    let seq = user.seq
+
+    user['is_use'] = user.isUse
+
+    delete user.seq
+    delete user.isUse
+    delete user.createAt
+    axios.put(`/admin/user/${seq}`, user)
+        .then((res) => {
+            $isOpen(dispatch)
+            $fetchUsers(dispatch , payload)
+        })
         .catch((err) => console.log(err))
 }
 

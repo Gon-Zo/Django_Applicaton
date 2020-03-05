@@ -7,7 +7,7 @@ import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
 import {onUser} from "../modules/user";
 import axios from 'axios'
-import {$fetchUsers} from '../modules/api/user'
+import {$fetchUsers , $isOpen , $fetchUpdateToUser} from '../modules/api/user'
 
 /**
  * user modal
@@ -18,14 +18,15 @@ import {$fetchUsers} from '../modules/api/user'
 function UserModal(props) {
 
     let isOpen = props.isOpen
-    let setIsOpen = props.setIsOpen
+    let dispatch = props.dispatch
 
     if (isOpen) {
 
-        let userData = props.userData
-
+        let initData = props.initData
+        let userData = initData.user
+        console.log(JSON.stringify(userData))
         let $onClose = () => {
-            setIsOpen(!isOpen)
+           $isOpen(dispatch)
         }
 
         let $onChange = (e) => {
@@ -50,14 +51,7 @@ function UserModal(props) {
         }
 
         let $fetchUpdate = () => {
-            let seq = userData.seq
-            userData['is_use'] = userData.isUse
-            delete userData.seq
-            delete userData.isUse
-            delete userData.createAt
-            axios.put(`/admin/user/${seq}`, userData)
-                .then((res) => $onClose())
-                .catch((err) => console.log(err))
+            $fetchUpdateToUser(dispatch , initData)
         }
 
         return (
@@ -78,7 +72,7 @@ function UserModal(props) {
                                         <div className="input-group-prepend">
                                             <span className="input-group-text modal-input-box" id="">{m}</span>
                                         </div>
-                                        <input type={inputType(m)} className="form-control" defaultValue={userData[m]}
+                                        <input type={inputType(m)} className="form-control" defaultValue={userData[m]} defaultChecked={userData[m]}
                                                name={m}
                                                onChange={$onChange}/>
                                     </div>
@@ -108,7 +102,6 @@ function AppUser() {
 
     let dispatch = useDispatch()
     let initUser = useSelector(state => state.userReducer, []);
-    let [isOpen, setIsOpen] = useState(false)
 
     const $bindData = () => {
         let payload = initUser.users
@@ -124,30 +117,11 @@ function AppUser() {
 
     useEffect(() => {
         $fetchUsers(dispatch, initUser)
-        // fetchUser()
     }, [])
-
-    function $setIsOpen(v) {
-        setIsOpen(v)
-        if (v === false) {
-            // fetchUser()
-        }
-    }
-
-    // const fetchUser = () => {
-    //     axios.get(`/admin/user`, {
-    //         params: {
-    //             type: 'U',
-    //             page: user.clickPage
-    //         }
-    //     }).then((res) => {
-    //         $bindData(res.data)
-    //     }).catch((err) => console.log(err))
-    // }
 
     return (
         <Container fluid={true}>
-            <UserModal isOpen={isOpen} setIsOpen={$setIsOpen} userData={initUser.user}/>
+            <UserModal isOpen={initUser.isOpen} dispatch={dispatch} initData={initUser}/>
             <div className="content-wrap">
                 <div>
                     <h4 className="page-title">유저 목록</h4>
@@ -155,7 +129,6 @@ function AppUser() {
                 <AppTable data={$bindData().data}/>
                 <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
             </div>
-
         </Container>
     )
 }
