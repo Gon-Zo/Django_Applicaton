@@ -102,11 +102,11 @@ def store_rest_api(request, seq):
 def review_api(request):
     method = request.method
     if method == 'GET':
-        # param
+
         store_seq = request.GET.get('storeSeq')
         pageNum = request.GET.get('pageNum')
         page = request.GET.get('page')
-        #
+
         store = Store.objects.filter(seq=store_seq)
         review = Review.objects.filter(store=store)
         pageObj = Paginator(review, pageNum)
@@ -127,18 +127,24 @@ def product_api(request):
     method = request.method
 
     if method == 'GET':
-        product = Product.objects.all().order_by('seq')
-        # pageNum = request.GET.get('pageNum')
-        # page = request.GET.get('page')
-        # page_list = Paginator(product, pageNum)
-        # page_data = page_list.page(page)
-        serializer = ProductSerializer(product, many=True)
-        # temp = {
-        #     "count": page_list.count,
-        #     "numPages": page_list.num_pages,
-        #     "data": serializer.data
-        # }
-        return Response(serializer.data, status=200)
+        store_seq = request.GET.get('storeNo')
+        pageNum = request.GET.get('pageNum')
+        page = request.GET.get('page')
+
+        store = Store.objects.filter(seq=store_seq).get()
+        product = Product.objects.filter(store=store).order_by('seq')
+
+        page_list = Paginator(product, pageNum)
+        page_data = page_list.page(page)
+        serializer = ProductSerializer(page_data, many=True)
+
+        temp = {
+            "count": page_list.count,
+            "numPages": page_list.num_pages,
+            "data": serializer.data
+        }
+
+        return Response(temp, status=200)
     elif method == 'POST':
         data = json.loads(request.body)
         Product.objects.create(**data)
