@@ -9,8 +9,10 @@ import rootReducer from './assets/js/modules';
 import {Provider} from 'react-redux';
 
 import './assets/styles/index.scss'
+import 'draft-js/dist/Draft.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// import 'babel-polyfill';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -40,9 +42,7 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
 serviceWorker.unregister();
 
 

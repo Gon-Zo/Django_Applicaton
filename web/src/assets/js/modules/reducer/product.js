@@ -6,15 +6,19 @@ export const setProduct = (data) => ({type: "product/setProduct", data: data})
 
 export const onOpen = () => ({type : 'product/isOpen'})
 
+export const setType = (data) => ({type : "product/setMethod" , data : data})
+
 const initProduct = {
     isOpen: false,
+    methodType : '',
     products: [],
     product: {},
 }
 
 const productReducer = (state = initProduct, action) => {
     switch (action.type) {
-        case "product/test":
+        case "product/setProducts":
+            console.log(JSON.stringify(action.data))
             state.products = action.data
             break;
         case "product/setProduct":
@@ -22,6 +26,9 @@ const productReducer = (state = initProduct, action) => {
             break;
         case "product/isOpen":
             state.isOpen = !state.isOpen
+            break;
+        case "product/setMethod":
+            state.methodType = action.data
             break;
     }
     return state;

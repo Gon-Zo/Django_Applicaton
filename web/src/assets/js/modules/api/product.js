@@ -1,6 +1,6 @@
 import React, {createContext, useReducer, useContext} from 'react';
 import axios from 'axios';
-import {setProducts, setProduct, onOpen} from '../reducer/product'
+import {setProducts, setProduct, onOpen , setType} from '../reducer/product'
 
 /**
  * 상품 리스트 호출
@@ -8,7 +8,13 @@ import {setProducts, setProduct, onOpen} from '../reducer/product'
  * @returns {Promise<void>}
  */
 export async function $httpProduct(dispatch) {
-    axios.get(`/admin/product`)
+    axios.get(`/admin/product`, {
+        params : {
+            pageNum : 10 ,
+            page : 1 ,
+            storeNo : 1,
+        }
+    })
         .then(res => {
             dispatch(setProducts(res.data))
         })
@@ -71,3 +77,6 @@ export async function $isOpen(dispatch) {
     dispatch(onOpen())
 }
 
+export async function $setMethod(dispatch , payload) {
+    dispatch(setType(payload))
+}

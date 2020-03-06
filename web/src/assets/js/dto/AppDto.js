@@ -38,3 +38,22 @@ export class ListDto {
         this.data = data
     }
 }
+
+/**
+ * Product Dto Class
+ */
+export class Product {
+    constructor(title  = '',
+                count = 0,
+                price = 0 ,
+                info  = '',
+                isSold  = false,
+                ) {
+        this.title = title;
+        this.count = count;
+        this.price = price;
+        this.info = info;
+        this.isSold = isSold;
+    }
+
+}
