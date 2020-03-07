@@ -1,0 +1,10 @@
+{
+  "product" : {
+    "title":"상품명",
+    "count" : "수량",
+    "price" : "가격",
+    "info": "정보",
+    "is_sold" : "상태" ,
+    "create_at" : "등록일"
+  }
+}

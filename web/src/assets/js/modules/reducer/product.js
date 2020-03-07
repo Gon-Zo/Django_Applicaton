@@ -18,7 +18,6 @@ const initProduct = {
 const productReducer = (state = initProduct, action) => {
     switch (action.type) {
         case "product/setProducts":
-            console.log(JSON.stringify(action.data))
             state.products = action.data
             break;
         case "product/setProduct":

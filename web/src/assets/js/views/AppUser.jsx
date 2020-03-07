@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {Container} from "react-bootstrap";
 import AppTable from "../components/app/AppTable";
-import {ListDto, UserDto} from "../dto/AppDto";
+import {ListDto, UserDto} from "../modules/data/AppDto";
 import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
 import {onUser} from "../modules/reducer/user";

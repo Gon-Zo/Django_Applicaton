@@ -62,7 +62,7 @@ export async function updateProduct(dispatch, payload) {
  * @param seq
  * @returns {Promise<void>}
  */
-export async function deleteProduct(dispatch, seq) {
+export async function $httpByProd(dispatch, seq) {
     axios.delete(`/admin/product/${seq}`)
         .then(res => console.log(res.status))
         .catch(err => console.log(err))
@@ -79,4 +79,8 @@ export async function $isOpen(dispatch) {
 
 export async function $setMethod(dispatch , payload) {
     dispatch(setType(payload))
+}
+
+export async function $setProduct(dispatch, payload) {
+    dispatch(setProduct(payload))
 }
