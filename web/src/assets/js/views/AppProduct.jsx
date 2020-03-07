@@ -2,9 +2,10 @@ import React, {useEffect, useState, Fragment} from "react";
 import {Container, Row, Col, Card, Button, Modal, Table} from "react-bootstrap";
 import {$httpProduct, $isOpen, $setMethod , $setProduct} from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
-import {Editor, EditorState} from 'draft-js'
+// import {Editor, EditorState} from 'draft-js'
 import AppProductGroup from "../components/app/AppProductGroup";
 import AppName from '../modules/static/name'
+import {Product} from "../modules/data/AppDto";
 
 export default () => {
 
@@ -15,12 +16,17 @@ export default () => {
         $httpProduct(dispatch);
     }, [])
 
+    let $onClick = () => {
+        $setMethod(dispatch , 'I')
+        $setProduct(dispatch , new Product())
+        $isOpen(dispatch)
+    }
+
     return (
         <Container fluid={true}>
-
-            {/*<div className="title-wrap">*/}
-            {/*    <h4 className="page-title">상품 목록</h4>*/}
-            {/*</div>*/}
+            <div>
+                <button className="btn btn-default btn-dark" onClick={$onClick}>등록</button>
+            </div>
 
             <ProductEditor isOpen={initProd.isOpen}
                            dispatch={dispatch}
@@ -40,9 +46,9 @@ function ProductEditor(props) {
     let data = props.data
     let keys = Object.keys(data).filter(f=>f!='store')
 
-    const [editorState, setEditorState] = React.useState(
-        EditorState.createEmpty(),
-    );
+    // const [editorState, setEditorState] = React.useState(
+    //     EditorState.createEmpty(),
+    // );
 
     let $onClick = () => {
         // console.log(JSON.stringify(editorState))

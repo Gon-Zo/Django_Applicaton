@@ -9,7 +9,9 @@ import AppDashboard from "./views/AppDashboard";
 import AppProduct from "./views/AppProduct";
 
 function Root() {
+
     let user = useSelector(state => state.appUser, [])
+
     return (
         <div className="d-flex content-bg" id="wrapper">
             <AppSideBar/>

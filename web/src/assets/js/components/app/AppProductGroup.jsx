@@ -87,9 +87,9 @@ export default (props) => {
                             <button onClick={() => $onEdit(i)}>
                                 <FontAwesomeIcon icon={icon.faEdit}/>
                             </button>
-                            <button>
-                                <FontAwesomeIcon icon={icon.faSave}/>
-                            </button>
+                            {/*<button>*/}
+                            {/*    <FontAwesomeIcon icon={icon.faSave}/>*/}
+                            {/*</button>*/}
                             <button>
                                 <FontAwesomeIcon icon={icon.faTrashAlt}/>
                             </button>
