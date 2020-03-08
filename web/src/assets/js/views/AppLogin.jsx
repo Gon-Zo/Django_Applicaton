@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+import {$httpLogin} from "../modules/api/user";
 
-export default ({checkLogin}) => {
+export default () => {
 
     let [id, setId] = useState('')
     let [pwd, setPwd] = useState('')
@@ -9,8 +11,10 @@ export default ({checkLogin}) => {
     let idInput
     let pwdInput
 
+    let dispatch = useDispatch()
+
     const loginUser = () => {
-        checkLogin(id, pwd)
+        $httpLogin(dispatch, {id: id, pwd: pwd})
     };
 
     return (

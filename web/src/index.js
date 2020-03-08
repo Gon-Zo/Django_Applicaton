@@ -18,6 +18,13 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'
 
+if (typeof axios.defaults.headers.common['Authorization'] === 'undefined'){
+    let token = localStorage.getItem("Token")
+    if(token !== null){
+        axios.defaults.headers.common['Authorization'] = token
+    }
+}
+
 axios.interceptors.request.use(request => {
     console.log(request);
     // Edit request config

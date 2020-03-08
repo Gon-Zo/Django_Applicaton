@@ -11,7 +11,7 @@ export const clickPage = (data) => ({type : 'user/clickPage' , data : data})
 export const isOpen  = () =>({type : 'user/isOpen'})
 
 const initUser = {
-    isLogin: false,
+    isLogin: localStorage.getItem('Token') ? true : false,
     page: 1,
     numPage : 10,
     users: [],
@@ -21,13 +21,12 @@ const initUser = {
 
 const userReducer = (state = initUser , action) => {
     switch (action.type) {
-
         case User:
             state.isLogin = true;
+
             break;
         case LOGOUT:
             state.isLogin = false;
-
         case PAGELIST:
             state.users = action.data
             break;
