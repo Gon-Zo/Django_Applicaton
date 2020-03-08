@@ -7,20 +7,25 @@ import {Switch, Route} from 'react-router-dom';
 import AppUser from "./views/AppUser";
 import AppDashboard from "./views/AppDashboard";
 import AppProduct from "./views/AppProduct";
+import AppHeader from "./components/app/AppHeader";
+import {Container} from "react-bootstrap";
 
 function Root() {
 
     let user = useSelector(state => state.appUser, [])
 
     return (
-        <div className="d-flex content-bg" id="wrapper">
-            <AppSideBar/>
-            <Switch>
-                <Route exact path="/" component={Main}/>
-                <Route path="/user" component={AppUser}/>
-                <Route path="/dashboard" component={AppDashboard}/>
-                <Route path="/product" component={AppProduct}/>
-            </Switch>
+        <div>
+            <AppHeader/>
+            <div className="d-flex content-bg mt-3" id="wrapper">
+                <AppSideBar/>
+                <Switch>
+                    <Route exact path="/" component={Main}/>
+                    <Route path="/user" component={AppUser}/>
+                    <Route path="/dashboard" component={AppDashboard}/>
+                    <Route path="/product" component={AppProduct}/>
+                </Switch>
+            </div>
         </div>
     )
 }

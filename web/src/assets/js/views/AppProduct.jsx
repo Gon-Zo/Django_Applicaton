@@ -24,7 +24,7 @@ export default () => {
 
     return (
         <Container fluid={true}>
-            <div>
+            <div className="text-right">
                 <button className="btn btn-default btn-dark" onClick={$onClick}>등록</button>
             </div>
 
@@ -87,6 +87,7 @@ function ProductEditor(props) {
             <Modal.Body>
                 {
                     keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (
+
                         <div className="input-group" key={i}>
                             <div className="input-group-prepend">
                                 <span className="input-group-text modal-input-box" >
@@ -101,6 +102,7 @@ function ProductEditor(props) {
                                    onChange={$onChange}/>
                         </div>
                     ))
+
                 }
                 {/*<Editor editorState={editorState} onChange={setEditorState}/>*/}
             </Modal.Body>

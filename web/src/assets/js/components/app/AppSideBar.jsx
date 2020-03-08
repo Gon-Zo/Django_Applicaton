@@ -1,13 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Col, Image, Row} from "react-bootstrap";
-import imageSrc from '../../../image/default.png'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faUser} from '@fortawesome/free-solid-svg-icons'
+import * as i from '@fortawesome/free-solid-svg-icons'
 
 export default () => {
     return (
-        <div className="border-right" id="sidebar-wrapper">
+        <div className="border-right  bg-dark" id="sidebar-wrapper">
             {/*<div className="sidebar-heading sidebar-profile">*/}
             {/*    <Row>*/}
             {/*        <Col>*/}
@@ -26,9 +24,14 @@ export default () => {
             {/*    </Row>*/}
             {/*</div>*/}
             <div className="list-group list-group-flush">
-                <Link to="/" className="list-group-item list-group-item-action bg-light">Home</Link>
+                <Link to="/" className="list-group-item list-group-item-action bg-light">
+                    <FontAwesomeIcon icon={i.faHome}/>
+                    <span>
+                    Home
+                    </span>
+                </Link>
                 <Link to="/user" className="list-group-item list-group-item-action bg-light">
-                    <FontAwesomeIcon icon={faUser}/>
+                    <FontAwesomeIcon icon={i.faUser}/>
                     User
                 </Link>
                 <Link to="/dashboard" className="list-group-item list-group-item-action bg-light">Dashboard</Link>
