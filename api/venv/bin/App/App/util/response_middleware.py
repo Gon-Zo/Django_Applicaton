@@ -53,7 +53,6 @@ class ResponseFormattingMiddleware:
     def process_response(self, request, response):
         path = request.path_info.lstrip('/')
         valid_urls = (url.match(path) for url in self.API_URLS)
-        print(response)
         if request.method in self.METHOD and any(valid_urls):
             status_code = response.status_code
 

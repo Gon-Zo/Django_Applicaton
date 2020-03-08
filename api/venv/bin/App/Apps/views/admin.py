@@ -68,7 +68,6 @@ def user_rest_api(request, seq):
         user_serializer = UserSerializer(user, many=True)
         return Response(user_serializer.data, status=200)
     elif method == 'PUT':
-        print(request.body)
         data = json.loads(request.body)
         user.update(**data)
         return Response({"seq": seq}, status=200)
@@ -78,6 +77,16 @@ def user_rest_api(request, seq):
     else:
         return Response(status=404)
 
+
+@api_view(['GET'])
+def store_api(request):
+    method = request.method
+    if method == 'GET':
+        authJwt = request.META.get('HTTP_AUTHORIZATION')
+        print(authJwt)
+        return Response(status=200)
+    else:
+        return Response(status=404)
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @transaction.atomic
