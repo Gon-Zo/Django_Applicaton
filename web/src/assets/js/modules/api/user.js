@@ -2,6 +2,12 @@ import React from "react";
 import axios from 'axios'
 import {onUser, isOpen, clickPage, setUser, onLogout, onLogin} from '../reducer/user'
 
+export const $httpLogout = (dispatch) =>{
+    axios.defaults.headers.common['Authorization'] = undefined;
+    localStorage.removeItem('Token')
+    window.location.href = 'http://localhost:3000/';
+    dispatch(onLogout())
+}
 
 export const $httpLogin = (dispatch, payload) => {
     axios.post(`/login`, payload)
@@ -13,7 +19,6 @@ export const $httpLogin = (dispatch, payload) => {
         })
         .catch(error => console.log(error))
 }
-
 
 export const $fetchUsers = (dispatch, payload) => {
 

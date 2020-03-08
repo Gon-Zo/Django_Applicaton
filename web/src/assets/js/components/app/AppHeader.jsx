@@ -1,6 +1,14 @@
 import React from "react";
+import {$httpLogout} from "../../modules/api/user";
+import {useDispatch} from "react-redux";
 
 export default () => {
+    let dispatch = useDispatch()
+
+    let $offUser = () =>{
+         $httpLogout(dispatch)
+    }
+
     return (
         <nav className="navbar navbar-dark bg-dark">
 
@@ -9,7 +17,9 @@ export default () => {
                        Application Manager
                     </span>
             </div>
-            <span className="light-ft">TEST</span>
+            <div>
+                <button className="btn btn-default btn-dark" onClick={()=>$offUser()}>로그아웃</button>
+            </div>
 
             {/*<div className="collapse navbar-collapse" id="navbarNavAltMarkup">*/}
             {/*    <div className="navbar-nav">*/}
