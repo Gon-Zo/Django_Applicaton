@@ -36,7 +36,7 @@ export default () => {
                 </Link>
                 <Link to="/dashboard" className="list-group-item list-group-item-action bg-light">Dashboard</Link>
                 <Link to="/product" className="list-group-item list-group-item-action bg-light">Product</Link>
-                <Link to="/" className="list-group-item list-group-item-action bg-light">Setting</Link>
+                <Link to="/setting" className="list-group-item list-group-item-action bg-light">Setting</Link>
             </div>
         </div>
     );

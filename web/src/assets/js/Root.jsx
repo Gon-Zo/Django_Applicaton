@@ -9,6 +9,7 @@ import AppDashboard from "./views/AppDashboard";
 import AppProduct from "./views/AppProduct";
 import AppHeader from "./components/app/AppHeader";
 import {Container} from "react-bootstrap";
+import AppSetting from "./views/AppSetting";
 
 function Root() {
 
@@ -24,6 +25,7 @@ function Root() {
                     <Route path="/user" component={AppUser}/>
                     <Route path="/dashboard" component={AppDashboard}/>
                     <Route path="/product" component={AppProduct}/>
+                    <Route path="/setting" component={AppSetting}/>
                 </Switch>
             </div>
         </div>
