@@ -62,7 +62,7 @@ export async function updateProduct(dispatch, payload) {
  * @param seq
  * @returns {Promise<void>}
  */
-export async function $httpByProd(dispatch, seq) {
+export async function $deleteByProd(dispatch, seq) {
     axios.delete(`/admin/product/${seq}`)
         .then(res => console.log(res.status))
         .catch(err => console.log(err))

@@ -20,7 +20,7 @@ function Root() {
         return (
             <div>
                 <AppHeader/>
-                <div className="d-flex content-bg mt-3" id="wrapper">
+                <div className="d-flex" id="wrapper">
                     <AppSideBar/>
                     <Switch>
                         <Route exact path="/" component={Main}/>

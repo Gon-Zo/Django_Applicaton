@@ -5,8 +5,6 @@ import AppTable from "../components/app/AppTable";
 import {ListDto, UserDto} from "../modules/data/AppDto";
 import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
-import {onUser} from "../modules/reducer/user";
-import axios from 'axios'
 import {$fetchUsers , $isOpen , $fetchUpdateToUser} from '../modules/api/user'
 
 /**
@@ -121,13 +119,11 @@ function AppUser() {
     return (
         <Container fluid={true}>
             <UserModal isOpen={initUser.isOpen} dispatch={dispatch} initData={initUser}/>
-            <div className="content-wrap">
-                <div>
-                    <h4 className="page-title">유저 목록</h4>
-                </div>
-                <AppTable data={$bindData().data}/>
-                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
-            </div>
+            {/*<div>*/}
+            {/*    <h4 className="page-title">유저 목록</h4>*/}
+            {/*</div>*/}
+            <AppTable data={$bindData().data}/>
+            <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
         </Container>
     )
 }

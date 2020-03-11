@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as icon from "@fortawesome/free-solid-svg-icons";
 import {Table} from "react-bootstrap";
-import {$isOpen, $setMethod, $setProduct} from "../../modules/api/product";
+import {$isOpen, $setMethod, $setProduct , $deleteByProd} from "../../modules/api/product";
 import {useDispatch} from "react-redux";
 import AppName from '../../modules/static/name'
 
@@ -25,6 +25,11 @@ export default (props) => {
         $setMethod(dispatch, 'U')
         $setProduct(dispatch, data[idx])
         $isOpen(dispatch)
+    }
+
+    let $onDelete = (idx) => {
+        let deleteNo = data[idx].seq
+        $deleteByProd(dispatch , deleteNo)
     }
 
     let changeTd = (data, name) => {
@@ -90,7 +95,7 @@ export default (props) => {
                             {/*<button>*/}
                             {/*    <FontAwesomeIcon icon={icon.faSave}/>*/}
                             {/*</button>*/}
-                            <button>
+                            <button onClick={()=>$onDelete(i)}>
                                 <FontAwesomeIcon icon={icon.faTrashAlt}/>
                             </button>
                         </td>
