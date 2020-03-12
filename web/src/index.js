@@ -9,10 +9,7 @@ import rootReducer from './assets/js/modules';
 import {Provider} from 'react-redux';
 
 import './assets/styles/index.scss'
-import 'draft-js/dist/Draft.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-// import 'babel-polyfill';
 
 const store = createStore(rootReducer, composeWithDevTools());
 

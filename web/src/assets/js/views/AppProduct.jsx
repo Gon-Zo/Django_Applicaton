@@ -1,11 +1,13 @@
 import React, {useEffect, useState, Fragment} from "react";
 import {Container, Row, Col, Card, Button, Modal, Table} from "react-bootstrap";
-import {$httpProduct, $isOpen, $setMethod , $setProduct} from '../modules/api/product'
+import {$httpProduct, $isOpen, $setMethod, $setProduct} from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
-// import {Editor, EditorState} from 'draft-js'
 import AppProductGroup from "../components/app/AppProductGroup";
 import AppName from '../modules/static/name'
 import {Product} from "../modules/data/AppDto";
+
+import EditorJs from 'react-editor-js';
+import {EDITOR_JS_TOOLS} from '../modules/static/tools'
 
 export default () => {
 
@@ -17,13 +19,14 @@ export default () => {
     }, [])
 
     let $onClick = () => {
-        $setMethod(dispatch , 'I')
-        $setProduct(dispatch , new Product())
+        $setMethod(dispatch, 'I')
+        $setProduct(dispatch, new Product())
         $isOpen(dispatch)
     }
 
     return (
         <Container fluid={true}>
+
             <div className="text-right">
                 <button className="btn btn-default btn-dark" onClick={$onClick}>등록</button>
             </div>
@@ -38,20 +41,16 @@ export default () => {
     )
 }
 
-
 function ProductEditor(props) {
 
     let dispatch = props.dispatch
     let isOpen = props.isOpen
     let data = props.data
-    let keys = Object.keys(data).filter(f=>f!='store')
-
-    // const [editorState, setEditorState] = React.useState(
-    //     EditorState.createEmpty(),
-    // );
+    let keys = Object.keys(data).filter(f => f != 'store')
 
     let $onClick = () => {
         // console.log(JSON.stringify(editorState))
+        console.log("Data test" , info)
     }
 
     let inputType = (key) => {
@@ -73,6 +72,8 @@ function ProductEditor(props) {
         data[name] = value
     }
 
+    let [info, setInfo] = useState('')
+
     return (
         <Modal
             size="lg"
@@ -85,25 +86,27 @@ function ProductEditor(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {
-                    keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (
 
-                        <div className="input-group" key={i}>
-                            <div className="input-group-prepend">
-                                <span className="input-group-text modal-input-box" >
-                                    {AppName.changeNameByProd(m)}
-                                </span>
-                            </div>
-                            <input type={inputType(m)}
-                                   className="form-control"
-                                   defaultValue={data[m]}
-                                   defaultChecked={data[m]}
-                                   name={m}
-                                   onChange={$onChange}/>
-                        </div>
-                    ))
+                <EditorJs data={info} tools={EDITOR_JS_TOOLS} />
 
-                }
+                {/*{*/}
+                {/*    keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (*/}
+
+                {/*        <div className="input-group" key={i}>*/}
+                {/*            <div className="input-group-prepend">*/}
+                {/*                <span className="input-group-text modal-input-box" >*/}
+                {/*                    {AppName.changeNameByProd(m)}*/}
+                {/*                </span>*/}
+                {/*            </div>*/}
+                {/*            <input type={inputType(m)}*/}
+                {/*                   className="form-control"*/}
+                {/*                   defaultValue={data[m]}*/}
+                {/*                   defaultChecked={data[m]}*/}
+                {/*                   name={m}*/}
+                {/*                   onChange={$onChange}/>*/}
+                {/*        </div>*/}
+                {/*    ))*/}
+                {/*}*/}
                 {/*<Editor editorState={editorState} onChange={setEditorState}/>*/}
             </Modal.Body>
             <Modal.Footer>
