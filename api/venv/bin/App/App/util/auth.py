@@ -29,6 +29,7 @@ def render(user):
         "is_use": user.is_use,
         "create_at": str(user.create_at),
         # 1 시간
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        # 'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=30)
     }
 

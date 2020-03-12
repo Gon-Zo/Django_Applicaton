@@ -14,14 +14,14 @@ class QuestionImage(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
 
 
-class ProductImage(models.Model):
-    class Meta:
-        db_table = '"mk_img_product"'
-
-    seq = models.AutoField(primary_key=True)
-    photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    create_at = models.DateTimeField(auto_now_add=True)
+# class ProductImage(models.Model):
+#     class Meta:
+#         db_table = '"mk_img_product"'
+#
+#     seq = models.AutoField(primary_key=True)
+#     photo = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     create_at = models.DateTimeField(auto_now_add=True)
 
 
 class ReviewImage(models.Model):

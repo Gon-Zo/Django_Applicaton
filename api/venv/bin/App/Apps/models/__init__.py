@@ -9,6 +9,6 @@ from .question import Question
 from .question import ReQuestion
 from .category import Category
 from .category import ProductCategory
-from .image import ProductImage
+# from .image import ProductImage
 from .image import QuestionImage
 from .image import ReviewImage
