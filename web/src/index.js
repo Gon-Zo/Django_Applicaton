@@ -16,16 +16,12 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'
 
-if (typeof axios.defaults.headers.common['Authorization'] === 'undefined') {
-    let token = localStorage.getItem("Token")
-    if (token !== null) {
-        axios.defaults.headers.common['Authorization'] = token
-    }
-}
-
 axios.interceptors.request.use(request => {
     console.log(request);
-    // Edit request config
+    let authToken = request.headers.common.Authorization
+    if(typeof authToken === 'undefined'){
+        request.headers.common.Authorization = localStorage.getItem("Token")
+    }
     return request;
 }, error => {
     console.log(error);
@@ -34,13 +30,13 @@ axios.interceptors.request.use(request => {
 
 axios.interceptors.response.use(response => {
     console.log(response);
-    // Edit response config
     return response;
 }, error => {
     let err = error.response.data
-    let dispatch = useDispatch()
     if (err.code === 'E001' || err.code === 'E002' || err.code === 'E003') {
-        $httpLogout(dispatch)
+        alert("세션 만료")
+        localStorage.removeItem("Token")
+        window.location.reload(true);
     }
     return Promise.reject(error);
 });
