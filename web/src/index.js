@@ -6,18 +6,19 @@ import App from "./App";
 import {createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import rootReducer from './assets/js/modules';
-import {Provider} from 'react-redux';
+import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {$httpLogout} from "./assets/js/modules/api/user";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'
 
-if (typeof axios.defaults.headers.common['Authorization'] === 'undefined'){
+if (typeof axios.defaults.headers.common['Authorization'] === 'undefined') {
     let token = localStorage.getItem("Token")
-    if(token !== null){
+    if (token !== null) {
         axios.defaults.headers.common['Authorization'] = token
     }
 }
@@ -36,7 +37,11 @@ axios.interceptors.response.use(response => {
     // Edit response config
     return response;
 }, error => {
-    console.log(error);
+    let err = error.response.data
+    let dispatch = useDispatch()
+    if (err.code === 'E001' || err.code === 'E002' || err.code === 'E003') {
+        $httpLogout(dispatch)
+    }
     return Promise.reject(error);
 });
 

@@ -86,28 +86,29 @@ function ProductEditor(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-
-                <EditorJs data={info} tools={EDITOR_JS_TOOLS} />
-
-                {/*{*/}
-                {/*    keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (*/}
-
-                {/*        <div className="input-group" key={i}>*/}
-                {/*            <div className="input-group-prepend">*/}
-                {/*                <span className="input-group-text modal-input-box" >*/}
-                {/*                    {AppName.changeNameByProd(m)}*/}
-                {/*                </span>*/}
-                {/*            </div>*/}
-                {/*            <input type={inputType(m)}*/}
-                {/*                   className="form-control"*/}
-                {/*                   defaultValue={data[m]}*/}
-                {/*                   defaultChecked={data[m]}*/}
-                {/*                   name={m}*/}
-                {/*                   onChange={$onChange}/>*/}
-                {/*        </div>*/}
-                {/*    ))*/}
-                {/*}*/}
-                {/*<Editor editorState={editorState} onChange={setEditorState}/>*/}
+                {
+                   keys.filter((f)=> f !== 'seq' && f !== 'createAt').map((k ,i)=>{
+                       return k === 'info' ? (
+                           <div key={i}>
+                               <EditorJs data={info} tools={EDITOR_JS_TOOLS}/>
+                           </div>
+                       ) : (
+                           <div className="input-group" key={i}>
+                               <div className="input-group-prepend">
+                                       <span className="input-group-text modal-input-box">
+                                          {AppName.changeNameByProd(k)}
+                                         </span>
+                               </div>
+                               <input type={inputType(k)}
+                                      className="form-control"
+                                      defaultValue={data[k]}
+                                      defaultChecked={data[k]}
+                                      name={k}
+                                      onChange={$onChange}/>
+                           </div>
+                       )
+                   })
+                }
             </Modal.Body>
             <Modal.Footer>
                 <button onClick={() => $onClick()} className="btn btn-default btn-dark">Save</button>

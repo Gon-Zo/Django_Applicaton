@@ -13,7 +13,7 @@ export default () => {
     let $readyToHead = () => {
         let urlArray = window.location.pathname.split("/")
         let url = urlArray[1].toUpperCase();
-        console.log('url' , url)
+        // console.log('url' , url)
         setTitle(url)
     }
 
