@@ -40,15 +40,15 @@ class ResponseFormattingMiddleware:
             # 인증 관련
             if auth is None:
                 detail = "JWT NONE"
-                return JsonResponse({"status": status, "detail": detail}, status=status)
+                return JsonResponse({"status": status, "code": "E001", "detail": detail}, status=status)
             else:
                 token = auth.replace("Bearer ", "", 1)
                 try:
                     jwt.decode(token, SECRET_KEY, leeway=datetime.timedelta(hours=1), algorithms=['HS256'])
                 except jwt.ExpiredSignatureError as e:
-                    return JsonResponse({"status": status, "detail": str(e)}, status=status)
+                    return JsonResponse({"status": status, "code": "E002", "detail": str(e)}, status=status)
                 except jwt.InvalidTokenError as e:
-                    return JsonResponse({"status": status, "detail": str(e)}, status=status)
+                    return JsonResponse({"status": status, "code": "E003", "detail": str(e)}, status=status)
 
     def process_response(self, request, response):
         path = request.path_info.lstrip('/')
