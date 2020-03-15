@@ -1,16 +1,11 @@
-# docker-setting
-#version: '1'
-#
-#volumes:
-#  python-market-app: {}
-#
-#services:
-#  db:
-#    image: postgres
-#    volumes:
-#
-#
-#django :
-#  build:
-#    context : .
-#    dockerfile:
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 manage.py runserver
+    volumes:
+    - .:/code
+    ports:
+    - "3030:3030"
