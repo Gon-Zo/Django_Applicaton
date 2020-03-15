@@ -4,7 +4,7 @@ export const setStore = (data) => ({type: SETTINGDATA, data: data})
 
 let initSetting = {
     store: {}
-}
+};
 
 const settingReducer = (state = initSetting, action) => {
     switch (action.type) {

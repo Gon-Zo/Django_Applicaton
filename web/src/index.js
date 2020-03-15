@@ -5,7 +5,7 @@ import axios from 'axios'
 import App from "./App";
 import {createStore} from 'redux';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import rootReducer from './assets/js/modules';
+import rootReducer from './assets/js/modules/reducer';
 import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
@@ -17,9 +17,10 @@ axios.defaults.baseURL = 'http://localhost:3030/api'
 
 axios.interceptors.request.use(request => {
     console.log(request);
-    let authToken = request.headers.common.Authorization
+    let authToken = request.headers.common.Authorization;
     if(typeof authToken === 'undefined'){
         request.headers.common.Authorization = localStorage.getItem("Token")
+        axios.defaults.headers.common['Authorization'] = localStorage.getItem("Token")
     }
     return request;
 }, error => {

@@ -33,7 +33,7 @@ function UserModal(props) {
                 value = e.target.checked
             }
             userData[name] = value
-        }
+        };
 
         let keys = Object.keys(userData)
 
