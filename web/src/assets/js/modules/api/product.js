@@ -64,7 +64,7 @@ export async function updateProduct(dispatch, payload) {
  */
 export async function $deleteByProd(dispatch, seq) {
     axios.delete(`/admin/product/${seq}`)
-        .then(res => console.log(res.status))
+        .then(res => $httpProduct(dispatch))
         .catch(err => console.log(err))
 }
 
