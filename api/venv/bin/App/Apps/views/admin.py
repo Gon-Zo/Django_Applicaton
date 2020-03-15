@@ -18,7 +18,7 @@ from rest_framework.decorators import throttle_classes
 from App.util.comm import param_parser
 from App.util.comm import image_as_base64
 from App.util.app_exception import AppException
-# from rest_framework.exceptions import APIException
+
 # 트랜잭션
 from django.db import transaction
 import json
@@ -82,8 +82,6 @@ def user_rest_api(request, seq):
 def store_api(request):
     method = request.method
     if method == 'GET':
-        authJwt = request.META.get('HTTP_AUTHORIZATION')
-        print(authJwt)
         return Response(status=200)
     else:
         return Response(status=404)
@@ -94,8 +92,11 @@ def store_rest_api(request, seq):
     method = request.method
     store = Store.objects.filter(seq=seq)
     if method == 'GET':
-        store_serializer = StoreSerializer(store, many=True)
-        return Response(store_serializer.data, status=200)
+        temp_se = StoreSerializer(store.get())
+        temp = temp_se.data
+        src = "App"+temp['img']
+        temp['img'] = image_as_base64(src)
+        return Response(temp, status=200)
     elif method == 'PUT':
         data = param_parser(request.GET)
         store.update(**data)
