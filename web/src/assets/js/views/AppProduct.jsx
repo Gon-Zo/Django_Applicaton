@@ -1,13 +1,11 @@
-import React, {useEffect, useState, Fragment} from "react";
-import {Container, Row, Col, Card, Button, Modal, Table} from "react-bootstrap";
+import React, {useEffect, useState} from "react";
+import {Container, Modal} from "react-bootstrap";
 import {$httpProduct, $isOpen, $setMethod, $setProduct} from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
 import AppName from '../modules/static/name'
 import {Product} from "../modules/data/AppDto";
-import EditorJs from 'react-editor-js';
-import {EDITOR_JS_TOOLS} from '../modules/static/tools'
-import EditorJS from '@editorjs/editorjs'
+
 export default () => {
 
     let dispatch = useDispatch();
@@ -15,11 +13,11 @@ export default () => {
 
     useEffect(() => {
         $httpProduct(dispatch);
-    }, [])
+    }, []);
 
     let $onClick = () => {
-        $setMethod(dispatch, 'I')
-        $setProduct(dispatch, new Product())
+        $setMethod(dispatch, 'I');
+        $setProduct(dispatch, new Product());
         $isOpen(dispatch)
     }
 
@@ -42,19 +40,13 @@ export default () => {
 
 function ProductEditor(props) {
 
-    let dispatch = props.dispatch
-    let isOpen = props.isOpen
-    let data = props.data
-    // let keys = Object.keys(data).filter(f => f != 'store')
-    let keys = AppName.sortProduct().filter(f => f != 'create_at')
+    let dispatch = props.dispatch;
+    let isOpen = props.isOpen;
+    let data = props.data;
+    let keys = AppName.sortProduct().filter(f => f !== 'create_at');
 
     let $onClick = () => {
-        editor.save().then((outputData) => {
-            console.log('Article data: ', outputData)
-        }).catch((error) => {
-            console.log('Saving failed: ', error)
-        });
-    }
+    };
 
     let inputType = (key) => {
         if (key === 'birthDate') {
@@ -64,18 +56,16 @@ function ProductEditor(props) {
         } else {
             return 'text'
         }
-    }
+    };
 
     let $onChange = (e) => {
-        let name = e.target.name
-        let value = e.target.value
+        let name = e.target.name;
+        let value = e.target.value;
         if (name === 'isUse') {
             value = e.target.checked
         }
         data[name] = value
-    }
-
-    const editor = new EditorJS();
+    };
 
     return (
         <Modal
@@ -91,13 +81,13 @@ function ProductEditor(props) {
             <Modal.Body>
                 {
                     keys.filter((f) => f !== 'seq' && f !== 'createAt').map((k, i) => {
-                        let name = AppName.changeNameByProd(k)
+                        let name = AppName.changeNameByProd(k);
                         return k === 'info' ? (
                             <div key={i}>
                                 <span>{name}</span>
-                                <EditorJs
-                                    tools={EDITOR_JS_TOOLS}
-                                />
+                                <div>
+                                    <span>Info Editor</span>
+                                </div>
                             </div>
                         ) : (
                             <div className="input-group" key={i}>
@@ -118,7 +108,7 @@ function ProductEditor(props) {
                 }
             </Modal.Body>
             <Modal.Footer>
-                <button onClick={() => $onClick()} className="btn btn-default btn-dark">Save</button>
+                <button onClick={$onClick} className="btn btn-default btn-dark">Save</button>
             </Modal.Footer>
         </Modal>
     )
