@@ -13,7 +13,7 @@ export const clickPage = (data) => ({type: 'user/clickPage', data: data})
 export const isOpen = () => ({type: 'user/isOpen'})
 
 const initUser = {
-    isLogin: typeof axios.defaults.headers.common['Authorization'] !== 'undefined' ? true : false,
+    isLogin: localStorage.getItem("Token") ? true : false,
     page: 1,
     numPage: 10,
     users: [],

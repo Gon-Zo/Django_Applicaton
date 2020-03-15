@@ -5,10 +5,9 @@ import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
 import AppName from '../modules/static/name'
 import {Product} from "../modules/data/AppDto";
-
 import EditorJs from 'react-editor-js';
 import {EDITOR_JS_TOOLS} from '../modules/static/tools'
-
+import EditorJS from '@editorjs/editorjs'
 export default () => {
 
     let dispatch = useDispatch();
@@ -46,11 +45,15 @@ function ProductEditor(props) {
     let dispatch = props.dispatch
     let isOpen = props.isOpen
     let data = props.data
-    let keys = Object.keys(data).filter(f => f != 'store')
+    // let keys = Object.keys(data).filter(f => f != 'store')
+    let keys = AppName.sortProduct().filter(f => f != 'create_at')
 
     let $onClick = () => {
-        // console.log(JSON.stringify(editorState))
-        console.log("Data test" , info)
+        editor.save().then((outputData) => {
+            console.log('Article data: ', outputData)
+        }).catch((error) => {
+            console.log('Saving failed: ', error)
+        });
     }
 
     let inputType = (key) => {
@@ -72,7 +75,7 @@ function ProductEditor(props) {
         data[name] = value
     }
 
-    let [info, setInfo] = useState('')
+    const editor = new EditorJS();
 
     return (
         <Modal
@@ -87,27 +90,31 @@ function ProductEditor(props) {
             </Modal.Header>
             <Modal.Body>
                 {
-                   keys.filter((f)=> f !== 'seq' && f !== 'createAt').map((k ,i)=>{
-                       return k === 'info' ? (
-                           <div key={i}>
-                               <EditorJs data={info} tools={EDITOR_JS_TOOLS}/>
-                           </div>
-                       ) : (
-                           <div className="input-group" key={i}>
-                               <div className="input-group-prepend">
+                    keys.filter((f) => f !== 'seq' && f !== 'createAt').map((k, i) => {
+                        let name = AppName.changeNameByProd(k)
+                        return k === 'info' ? (
+                            <div key={i}>
+                                <span>{name}</span>
+                                <EditorJs
+                                    tools={EDITOR_JS_TOOLS}
+                                />
+                            </div>
+                        ) : (
+                            <div className="input-group" key={i}>
+                                <div className="input-group-prepend">
                                        <span className="input-group-text modal-input-box">
-                                          {AppName.changeNameByProd(k)}
+                                          {name}
                                          </span>
-                               </div>
-                               <input type={inputType(k)}
-                                      className="form-control"
-                                      defaultValue={data[k]}
-                                      defaultChecked={data[k]}
-                                      name={k}
-                                      onChange={$onChange}/>
-                           </div>
-                       )
-                   })
+                                </div>
+                                <input type={inputType(k)}
+                                       className="form-control"
+                                       defaultValue={data[k]}
+                                       defaultChecked={data[k]}
+                                       name={k}
+                                       onChange={$onChange}/>
+                            </div>
+                        )
+                    })
                 }
             </Modal.Body>
             <Modal.Footer>

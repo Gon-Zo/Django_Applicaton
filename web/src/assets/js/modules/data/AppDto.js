@@ -5,7 +5,7 @@
  */
 export class UserDto {
 
-    constructor(seq, id, pwd, name, birthDate, address, type, isUse, createAt) {
+    constructor(seq, id, pwd, name, birthDate, address, type, is_use, create_at) {
         this.seq = seq
         this.id = id
         this.pwd = pwd
@@ -13,8 +13,8 @@ export class UserDto {
         this.birthDate = birthDate
         this.address = address
         this.type = type
-        this.isUse = isUse
-        this.createAt = createAt
+        this.is_use = is_use
+        this.create_at = create_at
     }
 
     /**
@@ -47,13 +47,13 @@ export class Product {
                 count = 0,
                 price = 0 ,
                 info  = '',
-                isSold  = false,
+                is_sold  = false,
                 ) {
         this.title = title;
         this.count = count;
         this.price = price;
         this.info = info;
-        this.isSold = isSold;
+        this.is_sold = is_sold;
     }
 
 }

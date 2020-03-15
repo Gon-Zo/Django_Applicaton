@@ -10,7 +10,6 @@ import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {$httpLogout} from "./assets/js/modules/api/user";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
