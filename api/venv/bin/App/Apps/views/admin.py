@@ -86,6 +86,7 @@ def store_api(request):
     else:
         return Response(status=404)
 
+
 @api_view(['GET', 'PUT', 'DELETE'])
 @transaction.atomic
 def store_rest_api(request, seq):
@@ -94,7 +95,11 @@ def store_rest_api(request, seq):
     if method == 'GET':
         temp_se = StoreSerializer(store.get())
         temp = temp_se.data
-        src = "App"+temp['img']
+
+        src = "App" + temp['user']['img']
+        temp['user']['img'] = image_as_base64(src)
+
+        src = "App" + temp['img']
         temp['img'] = image_as_base64(src)
         return Response(temp, status=200)
     elif method == 'PUT':
