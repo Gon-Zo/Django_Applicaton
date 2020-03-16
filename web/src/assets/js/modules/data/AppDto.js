@@ -6,15 +6,15 @@
 export class UserDto {
 
     constructor(seq, id, pwd, name, birthDate, address, type, is_use, create_at) {
-        this.seq = seq
-        this.id = id
-        this.pwd = pwd
-        this.name = name
-        this.birthDate = birthDate
-        this.address = address
-        this.type = type
-        this.is_use = is_use
-        this.create_at = create_at
+        this.seq = seq;
+        this.id = id;
+        this.pwd = pwd;
+        this.name = name;
+        this.birthDate = birthDate;
+        this.address = address;
+        this.type = type;
+        this.is_use = is_use;
+        this.create_at = create_at;
     }
 
     /**
@@ -23,7 +23,7 @@ export class UserDto {
      * @returns {string}
      */
     changeIsUser(isUse) {
-        return isUse == true ? 'T' : 'F'
+        return isUse === true ? 'T' : 'F'
     }
 
 }
@@ -33,8 +33,8 @@ export class UserDto {
  */
 export class ListDto {
     constructor(count, numPage, data) {
-        this.count = count
-        this.numPage = numPage
+        this.count = count;
+        this.numPage = numPage;
         this.data = data
     }
 }
