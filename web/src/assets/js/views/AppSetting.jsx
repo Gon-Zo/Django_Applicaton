@@ -25,12 +25,10 @@ export default () => {
 
     return (
         <Container fluid={true}>
-
-
-            {/*<ProductTitle title={"My Info"}/>*/}
-            {/*<MyInfoForm data={store.user}/>*/}
-            {/*<ProductTitle title={"My Store Info"}/>*/}
-            {/*<MyStoreInfo data={store}/>*/}
+            <ProductTitle title={"My Info"}/>
+            <MyInfoForm data={store.user}/>
+            <ProductTitle title={"My Store Info"}/>
+            <MyStoreInfo data={store}/>
         </Container>
     )
 }
