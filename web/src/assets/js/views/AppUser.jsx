@@ -20,11 +20,11 @@ function UserModal(props) {
 
     if (isOpen) {
 
-        let initData = props.initData
-        let userData = initData.user
+        let initData = props.initData;
+        let userData = initData.user;
         let $onClose = () => {
            $isOpen(dispatch)
-        }
+        };
 
         let $onChange = (e) => {
             let name = e.target.name
@@ -35,7 +35,7 @@ function UserModal(props) {
             userData[name] = value
         };
 
-        let keys = Object.keys(userData)
+        let keys = Object.keys(userData);
 
         let inputType = (key) => {
             if (key === 'birthDate') {
@@ -45,11 +45,11 @@ function UserModal(props) {
             } else {
                 return 'text'
             }
-        }
+        };
 
         let $fetchUpdate = () => {
             $fetchUpdateToUser(dispatch , initData)
-        }
+        };
 
         return (
             <div className="modal modal-isOpen" tabIndex="-1" role="dialog">
@@ -101,7 +101,7 @@ function AppUser() {
     let initUser = useSelector(state => state.userReducer, []);
 
     const $bindData = () => {
-        let payload = initUser.users
+        let payload = initUser.users;
         let count = payload.count;
         let numPage = payload.numPages;
         let data = undefined
@@ -114,7 +114,7 @@ function AppUser() {
 
     useEffect(() => {
         $fetchUsers(dispatch, initUser)
-    }, [])
+    }, []);
 
     return (
         <Container fluid={true}>

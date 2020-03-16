@@ -3,14 +3,11 @@ import {Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {$httpStore} from "../modules/api/setting";
 import Row from "react-bootstrap/Row";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import * as i from '@fortawesome/free-solid-svg-icons'
 
 export default () => {
 
     let dispatch = useDispatch();
-    // let loginUser = Jwt.decodeJwt();
-    let initSetting = useSelector(state => state.userReducer, []);
+    let initSetting = useSelector(state => state.settingReducer, []);
 
     useEffect(() => {
         $httpStore(dispatch)
@@ -18,10 +15,10 @@ export default () => {
 
     let store = initSetting.store;
 
-    if (typeof store == 'undefined') {
+    if (typeof store === 'undefined') {
         return (
             <div>
-                <span>loding</span>
+                <span>로딩중...</span>
             </div>
         )
     }
@@ -29,36 +26,38 @@ export default () => {
     return (
         <Container fluid={true}>
 
-            <Row>
-                <Col>
-                    <h4>My Info</h4>
-                </Col>
-            </Row>
 
-            <MyInfoForm data={store.user}/>
-
-            <div>
-                <div></div>
-                <button>
-                    <FontAwesomeIcon icon={i.faArrowCircleDown}/>
-                </button>
-            </div>
-
-            <Row>
-                <Col>
-                    <h4>My Store Info</h4>
-                </Col>
-            </Row>
-
+            {/*<ProductTitle title={"My Info"}/>*/}
+            {/*<MyInfoForm data={store.user}/>*/}
+            {/*<ProductTitle title={"My Store Info"}/>*/}
+            {/*<MyStoreInfo data={store}/>*/}
         </Container>
     )
 }
 
+function ProductTitle(props) {
+    let title = props.title;
+    return(
+        <Row>
+            <Col>
+                <h4>{title}</h4>
+            </Col>
+        </Row>
+    )
+}
+/**
+ * @return {null}
+ */
 function MyInfoForm(props) {
 
     let loginUser = props.data;
+
+    if (typeof loginUser === 'undefined'){
+        return null
+    }
+
     let keys = Object.keys(loginUser)
-        .filter(f => f !== 'seq' && f !== 'create_at' && f !== 'exp' && f !== 'is_use' && f !== 'type');
+        .filter(f => f !== 'seq' && f !== 'create_at'  && f !== 'is_use' && f !== 'type' && f !== 'img');
 
     let checkType = (key) => {
         if (key === 'birthDate') {
@@ -89,6 +88,13 @@ function MyInfoForm(props) {
                             </div>
                         ))
                     }
+                    {/*Input Form end*/}
+                    <div>
+                        <span>Image</span>
+                        <input type="file"/>
+                        <img src={"data:image/png;base64, " + loginUser['img']} width="170px" height="170px"  alt={"유저 이미지"}/>
+                    </div>
+                    {/* Image Form*/}
                 </Col>
             </Row>
         </Container>
@@ -96,9 +102,17 @@ function MyInfoForm(props) {
 }
 
 
+/**
+ * @return {null}
+ */
 function MyStoreInfo(props) {
     let data = props.data;
-    let keys = Object.keys(data).filter(f => f !== 'user' && f !== 'img');
+
+    if (typeof data === 'undefined'){
+        return  null
+    }
+
+    let keys = Object.keys(data).filter(f => f !== 'user' && f !== 'img' && f !== 'create_at');
 
     let checkType = (key) => {
         if (key === 'birthDate') {

@@ -8,10 +8,10 @@ export default () => {
     let [id, setId] = useState('')
     let [pwd, setPwd] = useState('')
 
-    let idInput
-    let pwdInput
+    let idInput;
+    let pwdInput;
 
-    let dispatch = useDispatch()
+    let dispatch = useDispatch();
 
     const loginUser = () => {
         $httpLogin(dispatch, {id: id, pwd: pwd})
