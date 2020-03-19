@@ -12,6 +12,10 @@ from Apps.serializers.product import ProductSerializer
 from Apps.models.store import Store
 from Apps.serializers.store import StoreSerializer
 
+from Apps.models.category import Category
+from Apps.serializers.category import CategorySerializer
+
+
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
@@ -183,3 +187,15 @@ def product_rest_api(request, seq):
         return Response(status=200)
     else:
         return Response(status=400)
+
+
+
+@api_view(['GET'])
+def category_api(request):
+    method = request.method
+    if method == 'GET':
+        obj = Category.objects.all();
+        serialr = CategorySerializer(obj, many=True)
+        return Response(serialr.data , status=200)
+    else:
+        return Response(status=404)

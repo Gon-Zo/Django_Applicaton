@@ -33,6 +33,7 @@ from Apps.views.admin import review_api
 from Apps.views.client import user_login
 from Apps.views.admin import product_api
 from Apps.views.admin import product_rest_api
+from Apps.views.admin import category_api
 
 urlpatterns = [
 
@@ -53,6 +54,7 @@ urlpatterns = [
 
     path('api/admin/review', review_api),
 
+    path('api/admin/category', category_api),
 
     ####################### URL #######################
 

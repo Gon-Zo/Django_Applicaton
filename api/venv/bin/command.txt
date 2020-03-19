@@ -1,15 +1,3 @@
 python manage.py makemigrations
 python manage.py migrate
 
-npm install draft-js draft-js-plugin-editor draft-js-buttons draft-js-inline-toolbar-plugin draft-js-anchor-plugin draft-js-markdown-plugin
-
-$ npm install --save draft-js
-$ npm install --save draft-js-plugin-editor
-$ npm install --save draft-js-buttons
-$ npm install --save draft-js-inline-toolbar-plugin
-$ npm install --save draft-js-anchor-plugin
-$ npm install --save draft-js-markdown-plugin
-
-
-
-npm install @editorjs/embed @editorjs/table @editorjs/paragraph @editorjs/list @editorjs/warning @editorjs/code @editorjs/link @editorjs/image @editorjs/raw @editorjs/header @editorjs/quote @editorjs/marker @editorjs/delimiter @editorjs/inline-code  @editorjs/simple-image

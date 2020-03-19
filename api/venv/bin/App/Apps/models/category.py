@@ -7,7 +7,7 @@ class Category(models.Model):
 
     seq = models.AutoField(primary_key=True)
     title = models.CharField(max_length=250)
-    order = models.IntegerField(null=True)
+    num = models.IntegerField(null=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
 
