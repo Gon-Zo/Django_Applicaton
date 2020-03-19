@@ -162,7 +162,8 @@ function ProductEditor(props) {
     let dispatch = props.dispatch;
     let isOpen = props.isOpen;
     let data = props.data;
-    let keys = AppName.sortProduct().filter(f => f !== 'create_at');
+    let keys =  Object.keys(data);
+        // AppName.sortProduct().filter(f => f !== 'create_at');
 
     let $onClick = () => {
     };
@@ -200,7 +201,8 @@ function ProductEditor(props) {
             <Modal.Body>
                 {
                     keys.filter((f) => f !== 'seq' && f !== 'createAt').map((k, i) => {
-                        let name = AppName.changeNameByProd(k);
+                        // let name = AppName.changeNameByProd(k);
+                        let name = k;
                         return k === 'info' ? (
                             <div key={i}>
                                 <span>{name}</span>

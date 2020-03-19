@@ -44,7 +44,7 @@ export default (props) => {
             )
         }
 
-        let typeAlias = ""
+        let typeAlias = "";
 
         if (name === "create_at") {
             typeAlias = "date"
@@ -62,7 +62,7 @@ export default (props) => {
             </Fragment>
         )
 
-    }
+    };
 
     return (
         <Table striped bordered hover>
@@ -71,7 +71,7 @@ export default (props) => {
                 <th>#</th>
                 {
                     keys.map((m, i) => (
-                        <th key={i}>{AppName.changeNameByProd(m)}</th>
+                        <th key={i}>{m}</th>
                     ))
                 }
                 <th>Action</th>
