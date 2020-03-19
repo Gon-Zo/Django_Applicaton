@@ -43,6 +43,7 @@ function ProductTitle(props) {
         </Row>
     )
 }
+
 /**
  * @return {null}
  */

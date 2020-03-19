@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif !important;
-    background-color: #c9c9c9 !important;
+    background-color: #fff !important;
 }
 
 .content-bg {
@@ -21,14 +21,9 @@ body {
     min-height: 557px;
 }
 
-
 .page-title {
     font-weight: bold;
     /*font-size: 30px;*/
-}
-
-.page-box {
-
 }
 
 .page-wrap {
@@ -71,4 +66,9 @@ body {
 
 .light-ft{
     color: #fff;
+}
+
+
+.app-bg{
+    background: linear-gradient(-135deg, #E4A972, #9941D8) fixed;
 }

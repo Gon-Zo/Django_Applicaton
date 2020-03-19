@@ -4,22 +4,22 @@ import {useDispatch} from "react-redux";
 
 export default () => {
     let dispatch = useDispatch()
-    let [title , setTitle] = useState('')
+    let [title , setTitle] = useState('');
 
     let $offUser = () => {
         $httpLogout(dispatch)
-    }
+    };
 
     let $readyToHead = () => {
-        let urlArray = window.location.pathname.split("/")
+        let urlArray = window.location.pathname.split("/");
         let url = urlArray[1].toUpperCase();
         // console.log('url' , url)
         setTitle(url)
-    }
+    };
 
     useEffect(()=>{
         $readyToHead()
-    })
+    });
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">

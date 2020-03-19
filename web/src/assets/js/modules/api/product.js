@@ -1,6 +1,6 @@
 import React, {createContext, useReducer, useContext} from 'react';
 import axios from 'axios';
-import {setProducts, setProduct, onOpen , setType} from '../reducer/product'
+import {setProducts, setProduct, onOpen , setType , setIsOpenToCategory , setCategory } from '../reducer/product'
 
 /**
  * 상품 리스트 호출
@@ -83,4 +83,14 @@ export async function $setMethod(dispatch , payload) {
 
 export async function $setProduct(dispatch, payload) {
     dispatch(setProduct(payload))
+}
+
+export async function $isOpenToCategory(dispatch) {
+   dispatch(setIsOpenToCategory())
+}
+
+export async function $httpCategory(dispatch) {
+    axios.get(`/admin/category`)
+        .then((res)=>dispatch(setCategory(res.data)))
+        .catch(err=>console.log(err))
 }
