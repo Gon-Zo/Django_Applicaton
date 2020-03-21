@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Col, Container} from "react-bootstrap";
+import {Button, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {$httpStore} from "../modules/api/setting";
 import Row from "react-bootstrap/Row";
@@ -23,12 +23,19 @@ export default () => {
         )
     }
 
+    let $onClick = () => {
+        console.log("Success")
+    };
+
     return (
         <Container fluid={true}>
             <ProductTitle title={"My Info"}/>
             <MyInfoForm data={store.user}/>
             <ProductTitle title={"My Store Info"}/>
             <MyStoreInfo data={store}/>
+            <div>
+                <Button onClick={$onClick} variant="warning" >Success</Button>
+            </div>
         </Container>
     )
 
