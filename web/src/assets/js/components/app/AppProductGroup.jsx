@@ -22,13 +22,13 @@ export default (props) => {
     let keys = Object.keys(data[0]).filter(f => f !== 'store' && f !== 'seq' && f !== 'info')
 
     let $onEdit = (idx) => {
-        $setMethod(dispatch, 'U')
-        $setProduct(dispatch, data[idx])
+        $setMethod(dispatch, 'U');
+        $setProduct(dispatch, data[idx]);
         $isOpen(dispatch)
     };
 
     let $onDelete = (idx) => {
-        let deleteNo = data[idx].seq
+        let deleteNo = data[idx].seq;
         $deleteByProd(dispatch , deleteNo)
     };
 
@@ -38,7 +38,7 @@ export default (props) => {
             return (
                 <label className="switch">
                     <input type="checkbox"/>
-                    <span className="slider round"></span>
+                    <span className="slider round"/>
                 </label>
 
             )
@@ -47,7 +47,7 @@ export default (props) => {
         let typeAlias = "";
 
         if (name === "create_at") {
-            typeAlias = "date"
+            typeAlias = "date";
             data = data.split('T')[0]
         } else if (typeof data === 'number') {
             typeAlias = "number"
