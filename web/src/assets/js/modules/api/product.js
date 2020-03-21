@@ -7,7 +7,7 @@ import {setProducts, setProduct, onOpen , setType , setIsOpenToCategory , setCat
  * @param dispatch
  * @returns {Promise<void>}
  */
-export async function $httpProduct(dispatch) {
+export function $httpProduct(dispatch) {
     axios.get(`/admin/product`, {
         params : {
             pageNum : 10 ,
@@ -27,7 +27,7 @@ export async function $httpProduct(dispatch) {
  * @param payload
  * @returns {Promise<void>}
  */
-export async function createProduct(dispatch, payload) {
+export function createProduct(dispatch, payload) {
     axios.post(`/admin/product`)
         .then(res => console.log('create product', res.status))
         .catch(error => console.log(error))
@@ -39,7 +39,7 @@ export async function createProduct(dispatch, payload) {
  * @param seq
  * @returns {Promise<void>}
  */
-export async function getProduct(dispatch, seq) {
+export function getProduct(dispatch, seq) {
     axios.get(`/admin/product/${seq}`)
         .then(res => dispatch(setProduct(res.data)))
         .catch(error => console.log(error))
@@ -51,7 +51,7 @@ export async function getProduct(dispatch, seq) {
  * @param payload
  * @returns {Promise<void>}
  */
-export async function updateProduct(dispatch, payload) {
+export function updateProduct(dispatch, payload) {
     axios.put(`/admin/product/${payload.seq}`, payload)
         .then(res => console.log('put', res.status))
 }
@@ -62,7 +62,7 @@ export async function updateProduct(dispatch, payload) {
  * @param seq
  * @returns {Promise<void>}
  */
-export async function $deleteByProd(dispatch, seq) {
+export function $deleteByProd(dispatch, seq) {
     axios.delete(`/admin/product/${seq}`)
         .then(res => $httpProduct(dispatch))
         .catch(err => console.log(err))
@@ -73,23 +73,23 @@ export async function $deleteByProd(dispatch, seq) {
  * @param dispatch
  * @returns {Promise<void>}
  */
-export async function $isOpen(dispatch) {
+export function $isOpen(dispatch) {
     dispatch(onOpen())
 }
 
-export async function $setMethod(dispatch , payload) {
+export function $setMethod(dispatch , payload) {
     dispatch(setType(payload))
 }
 
-export async function $setProduct(dispatch, payload) {
+export function $setProduct(dispatch, payload) {
     dispatch(setProduct(payload))
 }
 
-export async function $isOpenToCategory(dispatch) {
+export function $isOpenToCategory(dispatch) {
    dispatch(setIsOpenToCategory())
 }
 
-export async function $httpCategory(dispatch) {
+export function $httpCategory(dispatch) {
     axios.get(`/admin/category`)
         .then((res)=>dispatch(setCategory(res.data)))
         .catch(err=>console.log(err))

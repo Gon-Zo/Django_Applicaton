@@ -4,11 +4,11 @@ import * as icon from "@fortawesome/free-solid-svg-icons";
 import {Table} from "react-bootstrap";
 import {$isOpen, $setMethod, $setProduct , $deleteByProd} from "../../modules/api/product";
 import {useDispatch} from "react-redux";
-import AppName from '../../modules/static/name'
+// import AppName from '../../modules/static/name'
 
 export default (props) => {
 
-    let data = props.data
+    let data = props.data;
     let dispatch = useDispatch();
 
     if (typeof data == 'undefined') {
@@ -19,18 +19,18 @@ export default (props) => {
         )
     }
 
-    let keys = Object.keys(data[0]).filter(f => f != 'store' && f != 'seq' && f != 'info')
+    let keys = Object.keys(data[0]).filter(f => f !== 'store' && f !== 'seq' && f !== 'info')
 
     let $onEdit = (idx) => {
         $setMethod(dispatch, 'U')
         $setProduct(dispatch, data[idx])
         $isOpen(dispatch)
-    }
+    };
 
     let $onDelete = (idx) => {
         let deleteNo = data[idx].seq
         $deleteByProd(dispatch , deleteNo)
-    }
+    };
 
     let changeTd = (data, name) => {
 
