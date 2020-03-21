@@ -31,8 +31,15 @@ export default () => {
             <MyStoreInfo data={store}/>
         </Container>
     )
+
 }
 
+/**
+ * product title componet
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 function ProductTitle(props) {
     let title = props.title;
     return(
@@ -70,6 +77,20 @@ function MyInfoForm(props) {
         loginUser[name] = e.target.value
     };
 
+    let _onChangeImage = (e) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            let result = reader.result;
+            let img = document.getElementById("myProfile");
+            img.src = result;
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    };
+
     return (
         <Container>
             <Row>
@@ -82,16 +103,18 @@ function MyInfoForm(props) {
                                 </div>
                                 <input type={checkType(k)} className="form-control" defaultValue={loginUser[k]}
                                        name={k}
-                                       onChange={$onChange}
-                                />
+                                       onChange={$onChange}/>
                             </div>
                         ))
                     }
                     {/*Input Form end*/}
                     <div>
                         <span>Image</span>
-                        <input type="file"/>
-                        <img src={"data:image/png;base64, " + loginUser['img']} width="170px" height="170px"  alt={"유저 이미지"}/>
+                        <label htmlFor="profileInput">
+                            <img id="myProfile" src={"data:image/png;base64, " + loginUser['img']}
+                                 width="170px" height="170px" alt={"유저 이미지"}/>
+                        </label>
+                        <input id="profileInput" className="input-none"  type="file" onChange={_onChangeImage}/>
                     </div>
                     {/* Image Form*/}
                 </Col>
@@ -99,7 +122,6 @@ function MyInfoForm(props) {
         </Container>
     )
 }
-
 
 /**
  * @return {null}
