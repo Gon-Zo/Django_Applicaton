@@ -20,7 +20,7 @@ from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
 from App.util.comm import param_parser
-from App.util.comm import image_as_base64
+# from App.util.comm import image_as_base64
 from App.util.app_exception import AppException
 
 # 트랜잭션
@@ -48,9 +48,9 @@ def user_api(request):
             serializer = UserSerializer(page_data, many=True)
             temp_array = serializer.data
 
-            for t in temp_array:
-                src = "App" + t['img']
-                t['img'] = image_as_base64(src)
+            # for t in temp_array:
+            #     src = "App" + t['img']
+            #     t['img'] = image_as_base64(src)
 
             temp = {
                 "count": page_list.count,
@@ -99,12 +99,11 @@ def store_rest_api(request, seq):
     if method == 'GET':
         temp_se = StoreSerializer(store.get())
         temp = temp_se.data
-
-        src = "App" + temp['user']['img']
-        temp['user']['img'] = image_as_base64(src)
-
-        src = "App" + temp['img']
-        temp['img'] = image_as_base64(src)
+        # src = "App" + temp['user']['img']
+        # temp['user']['img'] = image_as_base64(src)
+        #
+        # src = "App" + temp['img']
+        # temp['img'] = image_as_base64(src)
         return Response(temp, status=200)
     elif method == 'PUT':
         data = param_parser(request.GET)

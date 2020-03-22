@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
 import {useDispatch} from 'react-redux'
-import {$setUser , $isOpen} from "../../modules/api/user";
+import {$setUser , $isUserModalOpen} from "../../modules/api/user";
 
 export default (props) => {
 
@@ -30,14 +30,14 @@ export default (props) => {
  * @param data 테이블 데이터
  * @returns {*}
  */
-const renderTable = (data , dispatch) => {
+const renderTable = (data, dispatch) => {
 
-    let keys = Object.keys(data[0])
+    let keys = Object.keys(data[0]);
 
     const $onClick = (idx) => {
-        $setUser(dispatch , data[idx] )
-        $isOpen(dispatch)
-    }
+        $setUser(dispatch, data[idx]);
+        $isUserModalOpen(dispatch)
+    };
 
     return (
         <Table striped bordered hover>

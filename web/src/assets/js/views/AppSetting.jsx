@@ -2,7 +2,9 @@ import React, {useEffect} from "react";
 import {Button, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {$httpStore} from "../modules/api/setting";
+import {$fetchUpdateToUser} from "../modules/api/user";
 import Row from "react-bootstrap/Row";
+
 
 export default () => {
 
@@ -24,7 +26,7 @@ export default () => {
     }
 
     let $onClick = () => {
-        console.log("Success")
+        $fetchUpdateToUser(dispatch, initSetting.store)
     };
 
     return (
@@ -91,6 +93,8 @@ function MyInfoForm(props) {
         reader.onload = function () {
             let result = reader.result;
             let img = document.getElementById("myProfile");
+            loginUser['img'] = result.split(",")[1];
+            console.log(loginUser['img']);
             img.src = result;
         };
         reader.onerror = function (error) {

@@ -21,8 +21,8 @@ function Root() {
                 <div className="d-flex" id="wrapper">
                     <AppSideBar/>
                     <Switch>
-                        <Route exact path="/" component={Main}/>
-                        <Route path="/user" component={AppUser}/>
+                        <Route exact path="/#/" component={Main}/>
+                        <Route path="/#/user" component={AppUser}/>
                         <Route path="/dashboard" component={AppDashboard}/>
                         <Route path="/product" component={AppProduct}/>
                         <Route path="/setting" component={AppSetting}/>

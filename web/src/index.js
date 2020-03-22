@@ -11,6 +11,7 @@ import {Provider, useDispatch} from 'react-redux';
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'

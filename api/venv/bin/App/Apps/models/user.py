@@ -21,7 +21,8 @@ class User(models.Model):
     # type >> M & U
     type = models.CharField(max_length=2)
     # Image
-    img = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    # img = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    img = models.TextField()
     # state
     is_use = models.BooleanField()
     create_at = models.DateTimeField(auto_now_add=True)
