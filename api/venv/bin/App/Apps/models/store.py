@@ -14,7 +14,7 @@ class Store(models.Model):
     # store address
     address = models.TextField()
     # store image
-    img = models.ImageField(blank=True, upload_to="blog/profile_pic", null=True)
+    img = models.TextField()
     # user
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)

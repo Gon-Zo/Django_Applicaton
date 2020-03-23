@@ -106,7 +106,8 @@ def store_rest_api(request, seq):
         # temp['img'] = image_as_base64(src)
         return Response(temp, status=200)
     elif method == 'PUT':
-        data = param_parser(request.GET)
+        # data = param_parser(request.GET)
+        data = json.loads(request.body)
         store.update(**data)
         return Response({"seq": seq}, status=200)
     elif method == 'DELETE':
