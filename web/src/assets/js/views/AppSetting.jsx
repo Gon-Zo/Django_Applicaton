@@ -1,8 +1,8 @@
-import React, {useEffect} from "react";
+import React, {useEffect , Fragment} from "react";
 import {Button, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
-import {$httpStore} from "../modules/api/setting";
-import {$fetchUpdateToUser} from "../modules/api/user";
+import {$getStore , $updateStore} from "../modules/api/setting";
+import {$updateUser} from "../modules/api/user";
 import Row from "react-bootstrap/Row";
 
 
@@ -12,29 +12,23 @@ export default () => {
     let initSetting = useSelector(state => state.settingReducer, []);
 
     useEffect(() => {
-        $httpStore(dispatch)
+        $getStore(dispatch)
     }, []);
 
     let store = initSetting.store;
 
-    if (typeof store === 'undefined') {
-        return (
-            <div>
-                <span>로딩중...</span>
-            </div>
-        )
-    }
-
     let $onClick = () => {
-        $fetchUpdateToUser(dispatch, initSetting.store)
+        $updateUser(dispatch, initSetting.store)
+        $updateStore(dispatch , initSetting.store)
     };
 
     return (
         <Container fluid={true}>
-            <ProductTitle title={"My Info"}/>
+
             <MyInfoForm data={store.user}/>
-            <ProductTitle title={"My Store Info"}/>
+
             <MyStoreInfo data={store}/>
+
             <div>
                 <Button onClick={$onClick} variant="warning" >Success</Button>
             </div>
@@ -68,7 +62,11 @@ function MyInfoForm(props) {
     let loginUser = props.data;
 
     if (typeof loginUser === 'undefined'){
-        return null
+        return (
+            <div>
+                <span>로듵중</span>
+            </div>
+        )
     }
 
     let keys = Object.keys(loginUser)
@@ -94,7 +92,6 @@ function MyInfoForm(props) {
             let result = reader.result;
             let img = document.getElementById("myProfile");
             loginUser['img'] = result.split(",")[1];
-            console.log(loginUser['img']);
             img.src = result;
         };
         reader.onerror = function (error) {
@@ -103,34 +100,37 @@ function MyInfoForm(props) {
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    {
-                        keys.map((k, i) => (
-                            <div className="input-group" key={i}>
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">{k}</span>
+        <Fragment>
+            <ProductTitle title={"My Info"}/>
+            <Container>
+                <Row>
+                    <Col>
+                        {
+                            keys.map((k, i) => (
+                                <div className="input-group" key={i}>
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text modal-input-box" id="">{k}</span>
+                                    </div>
+                                    <input type={checkType(k)} className="form-control" defaultValue={loginUser[k]}
+                                           name={k}
+                                           onChange={$onChange}/>
                                 </div>
-                                <input type={checkType(k)} className="form-control" defaultValue={loginUser[k]}
-                                       name={k}
-                                       onChange={$onChange}/>
-                            </div>
-                        ))
-                    }
-                    {/*Input Form end*/}
-                    <div>
-                        <span>Image</span>
-                        <label htmlFor="profileInput">
-                            <img id="myProfile" src={"data:image/png;base64, " + loginUser['img']}
-                                 width="170px" height="170px" alt={"유저 이미지"}/>
-                        </label>
-                        <input id="profileInput" className="input-none"  type="file" onChange={_onChangeImage}/>
-                    </div>
-                    {/* Image Form*/}
-                </Col>
-            </Row>
-        </Container>
+                            ))
+                        }
+                        {/*Input Form end*/}
+                        <div>
+                            <span>Image</span>
+                            <label htmlFor="profileInput">
+                                <img id="myProfile" src={"data:image/png;base64, " + loginUser['img']}
+                                     width="170px" height="170px" alt={"유저 이미지"}/>
+                            </label>
+                            <input id="profileInput" className="input-none" type="file" onChange={_onChangeImage}/>
+                        </div>
+                        {/* Image Form*/}
+                    </Col>
+                </Row>
+            </Container>
+        </Fragment>
     )
 }
 
@@ -141,7 +141,11 @@ function MyStoreInfo(props) {
     let data = props.data;
 
     if (typeof data === 'undefined'){
-        return  null
+        return (
+            <div>
+                <span>Login..</span>
+            </div>
+        )
     }
 
     let keys = Object.keys(data).filter(f => f !== 'user' && f !== 'img' && f !== 'create_at');
@@ -158,25 +162,53 @@ function MyStoreInfo(props) {
         data[name] = e.target.value
     };
 
+    let _onChangeImage = (e) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            let result = reader.result;
+            let img = document.getElementById("myStore");
+            data['img'] = result.split(",")[1];
+            img.src = result;
+        };
+        reader.onerror = function (error) {
+            console.log('Error: ', error);
+        };
+    };
+
     return (
-        <Container>
-            <Row>
-                <Col>
-                    {
-                        keys.map((k, i) => (
-                            <div className="input-group" key={i}>
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text modal-input-box" id="">{k}</span>
+        <Fragment>
+            <ProductTitle title={"My Store Info"}/>
+
+            <Container>
+                <Row>
+                    <Col>
+                        {
+                            keys.map((k, i) => (
+                                <div className="input-group" key={i}>
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text modal-input-box" id="">{k}</span>
+                                    </div>
+                                    <input type={checkType(k)} className="form-control" defaultValue={data[k]}
+                                           name={k}
+                                           onChange={$onChange}
+                                    />
                                 </div>
-                                <input type={checkType(k)} className="form-control" defaultValue={data[k]}
-                                       name={k}
-                                       onChange={$onChange}
-                                />
-                            </div>
-                        ))
-                    }
-                </Col>
-            </Row>
-        </Container>
+                            ))
+                        }
+                        <div>
+                            <span>Image</span>
+                            <label htmlFor="storeInput">
+                                <img id="myStore" src={"data:image/png;base64, " + data['img']}
+                                     width="170px" height="170px" alt={"유저 이미지"}/>
+                            </label>
+                            <input id="storeInput" className="input-none" type="file" onChange={_onChangeImage}/>
+                        </div>
+                        {/* Image Form*/}
+                    </Col>
+                </Row>
+            </Container>
+        </Fragment>
     )
 }

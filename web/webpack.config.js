@@ -5,17 +5,19 @@ module.exports = {
 
     entry: "./src/index.js",
 
-    // output: {
-    //     filename: "bundle.js",
-    //     path: path.resolve(__dirname + "/build")
-    // },
+    output: {
+        filename: "bundle.js",
+        publicPath : "/",
+        // path: path.resolve(__dirname + "/build")
+    },
 
     resolve: {
         extensions: [".jsx", ".js", '.css', '.scss' , '.json']
     },
 
     devServer: {
-        port: 7000
+        port: 7000,
+        open : true,
     },
 
     module: {

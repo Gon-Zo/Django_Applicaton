@@ -5,7 +5,7 @@ import AppTable from "../components/app/AppTable";
 import {ListDto, UserDto} from "../modules/data/AppDto";
 import AppPagination from "../components/app/AppPagination";
 import {useSelector, useDispatch} from "react-redux";
-import {$fetchUsers  , $fetchUpdateToUser} from '../modules/api/user'
+import {$fetchUsers  , $updateUser} from '../modules/api/user'
 import {UserInfoModal} from "../components/app/AppModal";
 
 function AppUser() {

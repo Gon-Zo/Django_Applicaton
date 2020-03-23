@@ -4,7 +4,7 @@ import {$isUserModalOpen} from "../../modules/api/user";
 import {Button, Col, Form, Modal, Table} from "react-bootstrap";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import {$fetchUpdateToUser, $fetchUsers} from "../../modules/api/user";
+import {$updateUser, $fetchUsers} from "../../modules/api/user";
 
 export {CategoryModal , ProductEditor  , UserInfoModal}
 
@@ -250,7 +250,7 @@ function UserInfoModal(props) {
     };
 
     let $handleUpdate = () => {
-        $fetchUpdateToUser(dispatch, initData);
+        $updateUser(dispatch, initData);
         $fetchUsers(dispatch, initData);
         $handleClose();
     };

@@ -1,13 +1,13 @@
 import React from "react";
 import axios from 'axios'
 import {onUser, isOpen, clickPage, setUser, onLogout, onLogin} from '../reducer/user'
+// import { useHistory } from "react-router-dom";
 
 export const $httpLogout = (dispatch) =>{
     axios.defaults.headers.common['Authorization'] = undefined;
     localStorage.removeItem('Token');
     // window.location.href = 'http://localhost:3000/';
-    // const history = useHistory();
-    // history.push("/");
+
     // todo : logout dev
     dispatch(onLogout())
 };
@@ -18,6 +18,7 @@ export const $httpLogin = (dispatch, payload) => {
             let token = res.data;
             localStorage.setItem("Token", token);
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            // context.router.history.push("/home")
             dispatch(onLogin())
         })
         .catch(error => console.log(error))
@@ -34,7 +35,7 @@ export const $fetchUsers = (dispatch, payload) => {
     ).catch((err) => console.log(err))
 };
 
-export const $fetchUpdateToUser = (dispatch, payload) => {
+export const $updateUser = (dispatch, payload) => {
     let user = payload.user;
     console.log(JSON.stringify(user));
     let seq = user.seq;
