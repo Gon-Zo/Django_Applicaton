@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {$getStore , $updateStore} from "../modules/api/setting";
 import {$updateUser} from "../modules/api/user";
 import Row from "react-bootstrap/Row";
+import {catchLogin} from "../components/app/AppLogin";
 
 
 export default () => {
@@ -22,16 +23,24 @@ export default () => {
         $updateStore(dispatch , initSetting.store)
     };
 
+    if (initSetting.store == null) {
+        return  (
+            <div>
+                <span>TEST..</span>
+            </div>
+
+        )
+    }
+
     return (
         <Container fluid={true}>
-
             <MyInfoForm data={store.user}/>
-
             <MyStoreInfo data={store}/>
 
             <div>
-                <Button onClick={$onClick} variant="warning" >Success</Button>
+                <Button onClick={$onClick} variant="warning">Success</Button>
             </div>
+            {/*Button group end*/}
         </Container>
     )
 
@@ -60,14 +69,6 @@ function ProductTitle(props) {
 function MyInfoForm(props) {
 
     let loginUser = props.data;
-
-    if (typeof loginUser === 'undefined'){
-        return (
-            <div>
-                <span>로듵중</span>
-            </div>
-        )
-    }
 
     let keys = Object.keys(loginUser)
         .filter(f => f !== 'seq' && f !== 'create_at'  && f !== 'is_use' && f !== 'type' && f !== 'img');
@@ -138,15 +139,8 @@ function MyInfoForm(props) {
  * @return {null}
  */
 function MyStoreInfo(props) {
-    let data = props.data;
 
-    if (typeof data === 'undefined'){
-        return (
-            <div>
-                <span>Login..</span>
-            </div>
-        )
-    }
+    let data = props.data;
 
     let keys = Object.keys(data).filter(f => f !== 'user' && f !== 'img' && f !== 'create_at');
 

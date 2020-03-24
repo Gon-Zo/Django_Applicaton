@@ -3,7 +3,7 @@ let SETSTORE = "setting/setStore";
 export const setStore = (data) => ({type: SETSTORE, data: data});
 
 let initSetting = {
-    store: {}
+    store: null
 };
 
 const settingReducer = (state = initSetting, action) => {
