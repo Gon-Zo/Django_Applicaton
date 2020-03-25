@@ -17,7 +17,7 @@ export default () => {
 
     return (
         <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="#home">Application Manager</Navbar.Brand>
+            <Navbar.Brand href="#/home">Application Manager</Navbar.Brand>
             <Navbar.Collapse className="justify-content-end">
                 <SplitButton
                     key={"down"}
