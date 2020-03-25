@@ -1,10 +1,10 @@
-import React, {useEffect , Fragment} from "react";
+import React, {useEffect, Fragment, useState} from "react";
 import {Button, Col, Container} from "react-bootstrap";
 import {useDispatch, useSelector} from "react-redux";
 import {$getStore , $updateStore} from "../modules/api/setting";
 import {$updateUser} from "../modules/api/user";
 import Row from "react-bootstrap/Row";
-import {catchLogin} from "../components/app/AppLoding";
+import {AlertDismissible} from "../components/app/AppAlert";
 
 
 export default () => {
@@ -36,8 +36,8 @@ export default () => {
         <Container fluid={true}>
             <MyInfoForm data={store.user}/>
             <MyStoreInfo data={store}/>
-
             <div>
+                {/*<AlertDismissible isShow={show}/>*/}
                 <Button onClick={$onClick} variant="warning">Success</Button>
             </div>
             {/*Button group end*/}

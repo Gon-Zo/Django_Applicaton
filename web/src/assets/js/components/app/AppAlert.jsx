@@ -2,39 +2,32 @@ import React, {useState} from "react";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
-export default  {
-    AlertDismissible
-}
 
+export function AlertDismissible(props) {
 
-function AlertDismissible(props) {
+    let isShow = props.isShow
 
-    // const [show, setShow] = useState(true);
+    const [show, setShow] = useState(isShow);
 
-    let show = props.isShow;
+    let title = props.title;
 
-    let setShow = ()=>{
-       show = !show;
-    }
+    let content = props.content
 
     return (
         <>
             <Alert show={show} variant="success">
-                <Alert.Heading>How's it going?!</Alert.Heading>
+                <Alert.Heading>{title}</Alert.Heading>
                 <p>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-                    lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
-                    fermentum.
+                    {content}
                 </p>
-                <hr />
+                <hr/>
                 <div className="d-flex justify-content-end">
                     <Button onClick={() => setShow(false)} variant="outline-success">
-                        Close me ya'll!
+                        Close
                     </Button>
                 </div>
             </Alert>
-
-            {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
+            {/*{!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}*/}
         </>
     );
 }

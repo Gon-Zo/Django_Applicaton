@@ -37,7 +37,6 @@ export const $fetchUsers = (dispatch, payload) => {
 
 export const $updateUser = (dispatch, payload) => {
     let user = payload.user;
-    console.log(JSON.stringify(user));
     let seq = user.seq;
 
     delete user.seq;

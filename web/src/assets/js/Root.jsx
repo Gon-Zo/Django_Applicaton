@@ -8,6 +8,7 @@ import AppProduct from "./views/AppProduct";
 import AppHeader from "./components/app/AppHeader";
 import AppMyInfo from "./views/AppMyInfo";
 import AppLogin from "./views/AppLogin";
+import AppSetting from "./views/AppSetting";
 import {useSelector} from "react-redux";
 
 function Root() {
@@ -26,7 +27,8 @@ function Root() {
                         <Route path="/user" component={AppUser}/>
                         <Route path="/dashboard" component={AppDashboard}/>
                         <Route path="/product" component={AppProduct}/>
-                        <Route path="/MyInfo" component={AppMyInfo}/>
+                        <Route path="/myinfo" component={AppMyInfo}/>
+                        <Route path="/setting" component={AppSetting}/>
                     </Switch>
                 </div>
 

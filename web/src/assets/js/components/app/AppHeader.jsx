@@ -26,12 +26,8 @@ export default () => {
                     variant="dark"
                     title={<FontAwesomeIcon icon={i.faCogs}></FontAwesomeIcon>}>
 
-                    <Dropdown.Item eventKey="1" href="/#/setting">
-                            MyInfo
-                    </Dropdown.Item>
-
-                    <Dropdown.Item  eventKey="1" onClick={()=>$offUser()}>Logout</Dropdown.Item>
-
+                    <Dropdown.Item eventKey="1" href="/#/myinfo">내정보</Dropdown.Item>
+                    <Dropdown.Item  eventKey="1" onClick={()=>$offUser()}>로그아웃</Dropdown.Item>
                 </SplitButton>
             </Navbar.Collapse>
 
