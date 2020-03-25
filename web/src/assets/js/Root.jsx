@@ -6,7 +6,7 @@ import AppUser from "./views/AppUser";
 import AppDashboard from "./views/AppDashboard";
 import AppProduct from "./views/AppProduct";
 import AppHeader from "./components/app/AppHeader";
-import AppSetting from "./views/AppSetting";
+import AppMyInfo from "./views/AppMyInfo";
 import AppLogin from "./views/AppLogin";
 import {useSelector} from "react-redux";
 
@@ -26,7 +26,7 @@ function Root() {
                         <Route path="/user" component={AppUser}/>
                         <Route path="/dashboard" component={AppDashboard}/>
                         <Route path="/product" component={AppProduct}/>
-                        <Route path="/setting" component={AppSetting}/>
+                        <Route path="/MyInfo" component={AppMyInfo}/>
                     </Switch>
                 </div>
 

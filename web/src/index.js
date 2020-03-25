@@ -10,6 +10,7 @@ import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import AppAlert from "./assets/js/components/app/AppAlert";
 
 
 const store = createStore(rootReducer, composeWithDevTools());
@@ -35,7 +36,8 @@ axios.interceptors.response.use(response => {
 }, error => {
     let err = error.response.data
     if (err.code === 'E001' || err.code === 'E002' || err.code === 'E003') {
-        alert("세션 만료")
+        // alert("세션 만료")
+        AppAlert.AlertDismissible({isShow: true})
         localStorage.removeItem("Token")
         window.location.reload(true);
     }

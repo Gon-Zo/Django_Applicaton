@@ -1,30 +1,21 @@
-import React ,{ useState} from "react";
+import React, {useState} from "react";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 
-function LoginView(props) {
-    return (
-        <div>
-           <span>로딩중</span>
-        </div>
-    )
+export default  {
+    AlertDismissible
 }
 
 
-let catchLogin = (data) =>{
-    console.log("data" , data)
-    if(data == null){
-       return(
-           <LoginView/>
-       )
+function AlertDismissible(props) {
+
+    // const [show, setShow] = useState(true);
+
+    let show = props.isShow;
+
+    let setShow = ()=>{
+       show = !show;
     }
-}
-
-export {catchLogin}
-
-
-function AlertDismissible() {
-    const [show, setShow] = useState(true);
 
     return (
         <>

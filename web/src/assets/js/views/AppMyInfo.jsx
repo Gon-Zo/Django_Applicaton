@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {$getStore , $updateStore} from "../modules/api/setting";
 import {$updateUser} from "../modules/api/user";
 import Row from "react-bootstrap/Row";
-import {catchLogin} from "../components/app/AppLogin";
+import {catchLogin} from "../components/app/AppLoding";
 
 
 export default () => {
