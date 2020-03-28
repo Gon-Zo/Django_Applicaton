@@ -1,0 +1,15 @@
+
+/* table css */
+.min-hg {
+    min-height: 557px;
+}
+
+.pagination-wrap {
+    float: right;
+}
+
+.pagination-sm-title {
+    font-size: 0.8rem !important;
+    color: #424242;
+}
+

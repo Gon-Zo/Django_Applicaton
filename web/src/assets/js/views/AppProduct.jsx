@@ -3,7 +3,6 @@ import {Button, Container, Modal, Table, Form, InputGroup, Col} from "react-boot
 import {$httpProduct, $isOpen, $setMethod, $setProduct , $isOpenToCategory , $httpCategory } from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
-// import AppName from '../modules/static/name'
 import {Product} from "../modules/data/AppDto";
 import {CategoryModal, ProductEditor} from "../components/app/AppModal";
 

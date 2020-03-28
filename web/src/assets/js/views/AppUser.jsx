@@ -32,11 +32,12 @@ function AppUser() {
     return (
         <Container fluid={true}>
             <UserInfoModal initData={initUser} dispatch={dispatch}/>
-            {/*<div>*/}
-            {/*    <h4 className="page-title">유저 목록</h4>*/}
-            {/*</div>*/}
-            <AppTable data={$bindData().data}/>
-            <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
+
+            <div className="mt-4">
+                <AppTable data={$bindData().data}/>
+                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
+            </div>
+            {/* table wrap end*/}
         </Container>
     )
 }

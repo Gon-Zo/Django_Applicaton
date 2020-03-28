@@ -18,7 +18,6 @@ function Root() {
     if (initUser.isLogin) {
         return (
             <div>
-
                 <AppHeader/>
                 <div className="d-flex" id="wrapper">
                     <AppSideBar/>
@@ -31,7 +30,6 @@ function Root() {
                         <Route path="/setting" component={AppSetting}/>
                     </Switch>
                 </div>
-
             </div>
         )
     }

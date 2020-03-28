@@ -2,64 +2,14 @@
 
 body {
     font-family: 'Noto Sans KR', sans-serif !important;
-    background-color: #fff !important;
+    /*background-color: #fff !important;*/
 }
 
-.content-bg {
-    background-color: #e8e8e8;
-}
-
-#appTitle {
-    font-weight: bold;
-}
-
-.test1 {
-    width: 17rem;
-    text-align: center;
-}
-.min-hg {
-    min-height: 557px;
-}
-
-.page-title {
-    font-weight: bold;
-    /*font-size: 30px;*/
-}
-
-.page-wrap {
-    padding: 20px 0 20px 0;
-    /*background-color: #f00;*/
-}
-
-.pagination-wrap {
-    float: right;
-}
-
-.pagination-sm-title {
-    font-size: 0.8rem !important;
-    color: #d4d4d4;
-}
-
-.content-wrap {
-    padding: 15px;
-    /*border: 3px #f00;*/
-    /*background-color: #f00;*/
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-/*.card-test {*/
-/*    max-width: 25%;*/
+/*.content-bg {*/
+/*    background-color: #e8e8e8;*/
 /*}*/
+
 /*상품 css*/
-.title-wrap{
-    display: flex;
-}
-
-.test-wrap{
-    margin: auto;
-}
-
 .dp-none{
     display: none;
 }
@@ -69,6 +19,15 @@ body {
 }
 
 
-.app-bg{
-    background: linear-gradient(-135deg, #E4A972, #9941D8) fixed;
+div.dropdown-menu {
+    left: -5em !important;
+}
+
+/* dark mode */
+.dark-md-bg {
+    background-color: #454d55
+}
+
+.dark-color {
+    background-color: #121212;
 }
