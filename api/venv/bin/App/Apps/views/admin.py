@@ -194,20 +194,20 @@ def category_api(request):
     method = request.method
     if method == 'GET':
         obj = Category.objects.all();
-        serialr = CategorySerializer(obj, many=True)
-        return Response(serialr.data, status=200)
+        temp = CategorySerializer(obj, many=True)
+        return Response(temp.data, status=200)
     else:
         return Response(status=404)
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
-def image_api(request , seq):
+def image_rest_api(request , seq):
     method = request.method
     if method == 'GET':
         type = request.GET.get('type')
         images = Image.objects.filter(seq_fk=seq, type=type)
-        img = ImageSerializer(images)
-        return Response(data=img.data, status=200)
+        img = ImageSerializer(images, many=False)
+        return Response(status=200)
     elif method == 'POST':
         data = json.loads(request.body)
         Image.create(**data)
