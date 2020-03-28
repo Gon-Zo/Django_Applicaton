@@ -48,8 +48,6 @@ urlpatterns = [
 
     path('api/login', user_login),
 
-
-
     path('api/admin/store/<int:seq>', store_rest_api),
 
     path('api/admin/review', review_api),

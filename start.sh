@@ -1,4 +1,4 @@
-source api/venv/bin/activate
+source /Users/bagjeong-gyu/workspace/python-market-app/api/venv/bin/activate
 #cd /Users/bagjeong-gyu/workspace/python-market-app/api/venv/bin
 #pip freeze > requirements.txt
 #pip install -r requirements.txt
