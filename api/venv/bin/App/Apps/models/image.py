@@ -8,5 +8,6 @@ class Image(models.Model):
     seq = models.AutoField(primary_key=True)
     photo = models.TextField()
     seq_fk = models.IntegerField()
+    # R >> Review , Q >> Question , B >> Banner
     type = models.TextField()
     create_at = models.DateTimeField(auto_now_add=True)

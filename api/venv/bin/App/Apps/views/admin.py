@@ -15,12 +15,12 @@ from Apps.serializers.store import StoreSerializer
 from Apps.models.category import Category
 from Apps.serializers.category import CategorySerializer
 
+from Apps.models.image import Image
+from Apps.serializers.image import ImageSerializer
 
 from django.core.paginator import Paginator
 from rest_framework.decorators import api_view
 from rest_framework.decorators import throttle_classes
-from App.util.comm import param_parser
-# from App.util.comm import image_as_base64
 from App.util.app_exception import AppException
 
 # 트랜잭션
@@ -189,13 +189,38 @@ def product_rest_api(request, seq):
         return Response(status=400)
 
 
-
 @api_view(['GET'])
 def category_api(request):
     method = request.method
     if method == 'GET':
         obj = Category.objects.all();
         serialr = CategorySerializer(obj, many=True)
-        return Response(serialr.data , status=200)
+        return Response(serialr.data, status=200)
+    else:
+        return Response(status=404)
+
+
+@api_view(['GET', 'POST', 'PUT', 'DELETE'])
+def image_api(request , seq):
+    method = request.method
+    if method == 'GET':
+        type = request.GET.get('type')
+        images = Image.objects.filter(seq_fk=seq, type=type)
+        img = ImageSerializer(images)
+        return Response(data=img.data, status=200)
+    elif method == 'POST':
+        data = json.loads(request.body)
+        Image.create(**data)
+        return Response(status=200)
+    elif method == 'PUT':
+        data = json.loads(request.body)
+        type = data['type']
+        temp = Image.objects.filter(seq_fk=seq, type=type)
+        temp.update(**data)
+        return Response(status=200)
+    elif method == 'DELETE':
+        temp = Image.objects.filter(seq_fk=seq, type=type)
+        temp.delete()
+        return Response(status=200)
     else:
         return Response(status=404)
