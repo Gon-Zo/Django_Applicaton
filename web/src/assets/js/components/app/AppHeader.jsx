@@ -1,18 +1,39 @@
 import React, {useState , useEffect} from "react";
 import {$httpLogout} from "../../modules/api/user";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Nav, Navbar, Dropdown, Form, Button} from "react-bootstrap";
 import SplitButton from "react-bootstrap/SplitButton";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as i from '@fortawesome/free-solid-svg-icons'
 import {changeTheme} from "../../modules/reducer/user";
 
+
+
+    // let _actionTheme = ()=> {
+    //     return initUser.isTheme ?
+    //         (<span>Light</span>) : (<FontAwesomeIcon icon={i.faAdjust}/>)
+    // }
+
+function ThemeIcon(props) {
+    let isTheme = props.isTheme
+    let themeStr = isTheme ? "다크 모드" : "라이트 모드"
+    return (
+        <>
+            <FontAwesomeIcon className="theme-icon" icon={i.faAdjust}/>
+            <span>{themeStr}</span>
+        </>
+    )
+}
+
 export default () => {
+
     let dispatch = useDispatch()
+    let initUser = useSelector(state => state.userReducer, []);
 
     let $offUser = () => {
         $httpLogout(dispatch)
     };
+
 
     return (
         // <Navbar bg="dark" variant="dark">
@@ -23,14 +44,15 @@ export default () => {
                 </span>
             </Navbar.Brand>
             {/*app title*/}
-            <Nav>
-                <span className="main-ft">
-                    Dark TEST
-                </span>
-                <span>
-                    <input type="checkbox" onChange={()=>dispatch(changeTheme())}/>
-                </span>
-            </Nav>
+
+            {/*<Nav>*/}
+            {/*    <span className="main-ft">*/}
+            {/*        Dark TEST*/}
+            {/*    </span>*/}
+            {/*    <span>*/}
+            {/*        <input type="checkbox" onChange={()=>dispatch(changeTheme())}/>*/}
+            {/*    </span>*/}
+            {/*</Nav>*/}
 
             <Navbar.Collapse className="justify-content-end">
 
@@ -40,8 +62,11 @@ export default () => {
                     drop={"down"}
                     variant="dark"
                     title={<FontAwesomeIcon icon={i.faCog}></FontAwesomeIcon>}>
-                    <Dropdown.Item eventKey="1">
-                        다크모드
+
+                    <Dropdown.Item eventKey="1"  onClick={()=>dispatch(changeTheme())}>
+                        <ThemeIcon isTheme={initUser.isTheme}/>
+                        {/*{_actionTheme}*/}
+                        {/*다크모드*/}
                     </Dropdown.Item>
                     <Dropdown.Item eventKey="2" href="/#/myinfo">
                         내정보
