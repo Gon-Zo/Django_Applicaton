@@ -5,29 +5,19 @@ body {
     /*background-color: #fff !important;*/
 }
 
-/*.content-bg {*/
-/*    background-color: #e8e8e8;*/
-/*}*/
-
 /*상품 css*/
 .dp-none{
     display: none;
 }
 
 .light-ft{
-    color: #fff;
+    color: #fff !important;
 }
 
+.light-ft:hover {
+   color: #BB86FC !important;
+}
 
 div.dropdown-menu {
     left: -5em !important;
-}
-
-/* dark mode */
-.dark-md-bg {
-    background-color: #454d55
-}
-
-.dark-color {
-    background-color: #121212;
 }

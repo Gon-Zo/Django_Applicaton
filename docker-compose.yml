@@ -1,11 +1,12 @@
 version: '3'
 services:
   web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    images : jkpark1191517/mkapp:latest
+    #build:
+    #context: .
+    #dockerfile: Dockerfile
     command: python3 manage.py runserver
-    volumes:
-    - .:/code
+    #volumes:
+    #- .:/code
     ports:
     - "3030:3030"

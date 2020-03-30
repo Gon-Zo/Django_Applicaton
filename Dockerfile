@@ -11,4 +11,4 @@ ENV SETTING=App.conf.dev
 WORKDIR App
 #RUN python manage.py makemigrations
 #RUN python manage.py migrate
-#RUN /bin/bash -c  "python3 manage.py runserver"
+#RUN python3 manage.py runserver
