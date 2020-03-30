@@ -16,10 +16,14 @@ function Root() {
     let initUser = useSelector(state => state.userReducer, []);
 
     if (initUser.isLogin) {
+
+        let isTheme = initUser.isTheme;
+
         return (
-            <div>
+            // them-dark
+            <div className={`theme-${isTheme ? "light" : "dark"}`}>
                 <AppHeader/>
-                <div className="d-flex" id="wrapper">
+                <div className="d-flex  main-bg" id="wrapper">
                     <AppSideBar/>
                     <Switch>
                         <Route exact path="/home" component={Main}/>

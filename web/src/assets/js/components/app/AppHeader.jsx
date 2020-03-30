@@ -5,6 +5,7 @@ import {Nav, Navbar, Dropdown, Form, Button} from "react-bootstrap";
 import SplitButton from "react-bootstrap/SplitButton";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as i from '@fortawesome/free-solid-svg-icons'
+import {changeTheme} from "../../modules/reducer/user";
 
 export default () => {
     let dispatch = useDispatch()
@@ -17,11 +18,20 @@ export default () => {
         // <Navbar bg="dark" variant="dark">
         <Navbar className="surface-bg">
             <Navbar.Brand href="#/home">
-                <span className="light-ft">
+                <span className="main-ft">
                 Application Manager
                 </span>
             </Navbar.Brand>
             {/*app title*/}
+            <Nav>
+                <span className="main-ft">
+                    Dark TEST
+                </span>
+                <span>
+                    <input type="checkbox" onChange={()=>dispatch(changeTheme())}/>
+                </span>
+            </Nav>
+
             <Navbar.Collapse className="justify-content-end">
 
                 <SplitButton
@@ -30,16 +40,8 @@ export default () => {
                     drop={"down"}
                     variant="dark"
                     title={<FontAwesomeIcon icon={i.faCog}></FontAwesomeIcon>}>
-
-                {/*<SplitButton*/}
-                {/*    className="surface-bg"*/}
-                {/*    key={"down"}*/}
-                {/*    id={`dropdown-button-drop-down`}*/}
-                {/*    drop={"down"}*/}
-                {/*    title={<FontAwesomeIcon icon={i.faCogs}></FontAwesomeIcon>}>*/}
-
                     <Dropdown.Item eventKey="1">
-                        다크모드 /
+                        다크모드
                     </Dropdown.Item>
                     <Dropdown.Item eventKey="2" href="/#/myinfo">
                         내정보
