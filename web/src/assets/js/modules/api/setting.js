@@ -1,7 +1,5 @@
 import {setStore} from "../reducer/setting";
 import axios from 'axios'
-import React from "react";
-
 
 /**
  * store list

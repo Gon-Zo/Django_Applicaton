@@ -1,9 +1,15 @@
 import React from "react";
+import {Col, Container} from "react-bootstrap";
 
 export default () => {
     return (
-        <div>
-            <span>TEST</span>
-        </div>
+        <Container fluid={true}>
+            <Col>
+                
+            </Col>
+            <Col>
+
+            </Col>
+        </Container>
     )
 }
