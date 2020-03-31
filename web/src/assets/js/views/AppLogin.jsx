@@ -2,11 +2,15 @@ import React, {useState, useEffect} from "react";
 import {Container, Form, Button, Row, Col} from "react-bootstrap";
 import {useDispatch} from "react-redux";
 import {$httpLogin} from "../modules/api/user";
+import { useHistory } from 'react-router-dom';
+
 
 export default () => {
 
     let [id, setId] = useState('')
     let [pwd, setPwd] = useState('')
+
+    const history = useHistory();
 
     let idInput;
     let pwdInput;
@@ -14,8 +18,14 @@ export default () => {
     let dispatch = useDispatch();
 
     const loginUser = () => {
-        $httpLogin(dispatch, {id: id, pwd: pwd})
+        $httpLogin(dispatch, {id: id, pwd: pwd} , history)
     };
+
+    const _keyDown = (event) => {
+        if(event.key === 'Enter'){
+           loginUser()
+        }
+    }
 
     return (
         <div id="loginWrap">
@@ -38,7 +48,9 @@ export default () => {
                                                   onChange={() => {
                                                       let val = idInput.value
                                                       setId(val)
-                                                  }}/>
+                                                  }}
+                                                  onKeyPress={_keyDown}
+                                    />
                                 </Form.Group>
                                 {/*input end*/}
                                 <Form.Group controlId="formBasicPassword">
@@ -48,11 +60,14 @@ export default () => {
                                                   onChange={() => {
                                                       let val = pwdInput.value
                                                       setPwd(val)
-                                                  }}/>
+                                                  }}
+                                                  onKeyPress={_keyDown}
+                                    />
                                 </Form.Group>
                                 {/*password input end*/}
 
-                                <Button variant="dark" size="lg" block onClick={loginUser}>
+                                <Button variant="dark" size="lg" block
+                                        onClick={loginUser}>
                                     Login
                                 </Button>
 

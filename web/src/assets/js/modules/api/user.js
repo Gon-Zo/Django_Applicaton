@@ -12,7 +12,7 @@ export const $httpLogout = (dispatch) =>{
     dispatch(onLogout())
 };
 
-export const $httpLogin = (dispatch, payload) => {
+export const $httpLogin = (dispatch, payload , history) => {
     axios.post(`/login`, payload)
         .then((res) => {
             let token = res.data;
@@ -20,6 +20,7 @@ export const $httpLogin = (dispatch, payload) => {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             // context.router.history.push("/home")
             dispatch(onLogin())
+            history.push('/home')
         })
         .catch(error => console.log(error))
 };
