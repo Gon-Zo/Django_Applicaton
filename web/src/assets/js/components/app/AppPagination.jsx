@@ -32,7 +32,7 @@ export default (props) => {
 
             <div className="col">
                 <div>
-                    <h6 className="pagination-sm-title">All Items <span>{cnt}</span>
+                    <h6 className="pagination-sm-title main-ft">All Items <span>{cnt}</span>
                     </h6>
                 </div>
             </div>

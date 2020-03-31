@@ -1,12 +1,13 @@
 import React, {useState, useEffect, Fragment} from "react";
 import {Table,} from "react-bootstrap"
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {$setUser , $isUserModalOpen} from "../../modules/api/user";
 
 export default (props) => {
 
     let dispatch = useDispatch()
     let data = props.data
+    let initUser = useSelector(state => state.userReducer, []);
 
     if (typeof data == 'undefined') {
         return (
@@ -19,7 +20,7 @@ export default (props) => {
     return (
         <div className="row">
             <div className="col min-hg">
-                {renderTable(data, dispatch)}
+                {renderTable(data, dispatch , initUser.isTheme)}
             </div>
         </div>
     )
@@ -30,7 +31,7 @@ export default (props) => {
  * @param data 테이블 데이터
  * @returns {*}
  */
-const renderTable = (data, dispatch) => {
+const renderTable = (data, dispatch , isTheme) => {
 
     let keys = Object.keys(data[0]);
 
@@ -39,8 +40,9 @@ const renderTable = (data, dispatch) => {
         $isUserModalOpen(dispatch)
     };
 
+
     return (
-        <Table striped bordered hover variant="dark">
+        <Table striped bordered hover variant={isTheme ? "light" : "dark"}>
             <thead>
             <tr>
                 {

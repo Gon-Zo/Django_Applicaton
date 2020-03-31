@@ -2,11 +2,13 @@ import React, {Fragment} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as icon from "@fortawesome/free-solid-svg-icons";
 import {Table} from "react-bootstrap";
-import {$isOpen, $setMethod, $setProduct , $deleteByProd} from "../../modules/api/product";
-import {useDispatch} from "react-redux";
+import {$isOpen, $setMethod, $setProduct, $deleteByProd} from "../../modules/api/product";
+import {useDispatch, useSelector} from "react-redux";
 // import AppName from '../../modules/static/name'
 
 export default (props) => {
+
+    let initUser = useSelector(state => state.userReducer, []);
 
     let data = props.data;
     let dispatch = useDispatch();
@@ -29,7 +31,7 @@ export default (props) => {
 
     let $onDelete = (idx) => {
         let deleteNo = data[idx].seq;
-        $deleteByProd(dispatch , deleteNo)
+        $deleteByProd(dispatch, deleteNo)
     };
 
     let changeTd = (data, name) => {
@@ -65,7 +67,7 @@ export default (props) => {
     };
 
     return (
-        <Table striped bordered hover>
+        <Table striped bordered hover variant={initUser.isTheme ? "light" : "dark"}>
             <thead>
             <tr>
                 <th>#</th>
@@ -95,7 +97,7 @@ export default (props) => {
                             {/*<button>*/}
                             {/*    <FontAwesomeIcon icon={icon.faSave}/>*/}
                             {/*</button>*/}
-                            <button onClick={()=>$onDelete(i)}>
+                            <button onClick={() => $onDelete(i)}>
                                 <FontAwesomeIcon icon={icon.faTrashAlt}/>
                             </button>
                         </td>

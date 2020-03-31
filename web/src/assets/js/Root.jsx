@@ -9,6 +9,7 @@ import AppHeader from "./components/app/AppHeader";
 import AppMyInfo from "./views/AppMyInfo";
 import AppLogin from "./views/AppLogin";
 import AppSetting from "./views/AppSetting";
+import AppCategory from "./views/AppCategory";
 import {useSelector} from "react-redux";
 
 function Root() {
@@ -31,6 +32,7 @@ function Root() {
                         <Route path="/dashboard" component={AppDashboard}/>
                         <Route path="/product" component={AppProduct}/>
                         <Route path="/myinfo" component={AppMyInfo}/>
+                        <Route path="/category" component={AppCategory}/>
                         <Route path="/setting" component={AppSetting}/>
                     </Switch>
                 </div>

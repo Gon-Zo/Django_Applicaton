@@ -257,10 +257,14 @@ function UserInfoModal(props) {
 
     return (
         <Modal
-            show={isOpen} onHide={$handleClose} animation={false}>
-            <Modal.Header closeButton>
+            show={isOpen}
+            onHide={$handleClose}
+            animation={false}>
+
+            <Modal.Header closeButton className="surface-bg">
                 <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
+
             <Modal.Body>
                 {
                     keys.filter((f) => f !== 'seq' && f !== 'createAt').map((m, i) => (

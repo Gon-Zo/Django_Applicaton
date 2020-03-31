@@ -7,20 +7,13 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as i from '@fortawesome/free-solid-svg-icons'
 import {changeTheme} from "../../modules/reducer/user";
 
-
-
-    // let _actionTheme = ()=> {
-    //     return initUser.isTheme ?
-    //         (<span>Light</span>) : (<FontAwesomeIcon icon={i.faAdjust}/>)
-    // }
-
 function ThemeIcon(props) {
     let isTheme = props.isTheme
     let themeStr = isTheme ? "다크 모드" : "라이트 모드"
     return (
         <>
-            <FontAwesomeIcon className="theme-icon" icon={i.faAdjust}/>
-            <span>{themeStr}</span>
+            <FontAwesomeIcon className="theme-icon " icon={i.faAdjust}/>
+            <span className="ml-2">{themeStr}</span>
         </>
     )
 }
@@ -45,34 +38,32 @@ export default () => {
             </Navbar.Brand>
             {/*app title*/}
 
-            {/*<Nav>*/}
-            {/*    <span className="main-ft">*/}
-            {/*        Dark TEST*/}
-            {/*    </span>*/}
-            {/*    <span>*/}
-            {/*        <input type="checkbox" onChange={()=>dispatch(changeTheme())}/>*/}
-            {/*    </span>*/}
-            {/*</Nav>*/}
-
             <Navbar.Collapse className="justify-content-end">
-
+                <i className="fab fa-cloudscale"></i>
                 <SplitButton
                     key={"down"}
                     id={`dropdown-button-drop-down`}
                     drop={"down"}
-                    variant="dark"
-                    title={<FontAwesomeIcon icon={i.faCog}></FontAwesomeIcon>}>
+                    variant={initUser.isTheme ? "light" : "dark"}
+                    title={<FontAwesomeIcon icon={i.faCloudRain}></FontAwesomeIcon>} >
 
-                    <Dropdown.Item eventKey="1"  onClick={()=>dispatch(changeTheme())}>
+                    <Dropdown.Item eventKey="1"  onClick={()=>dispatch(changeTheme())}  >
                         <ThemeIcon isTheme={initUser.isTheme}/>
                         {/*{_actionTheme}*/}
                         {/*다크모드*/}
                     </Dropdown.Item>
+                    {/*<i className="far fa-address-card"></i>*/}
                     <Dropdown.Item eventKey="2" href="/#/myinfo">
+                        <FontAwesomeIcon icon={i.faAddressCard}/>
+                        <span className="ml-2">
                         내정보
+                        </span>
                     </Dropdown.Item>
                     <Dropdown.Item eventKey="3" onClick={() => $offUser()}>
+                        <FontAwesomeIcon icon={i.faSignOutAlt}/>
+                        <span className="ml-2">
                         로그아웃
+                       </span> 
                     </Dropdown.Item>
 
                 </SplitButton>
