@@ -45,12 +45,10 @@ export default () => {
                     id={`dropdown-button-drop-down`}
                     drop={"down"}
                     variant={initUser.isTheme ? "light" : "dark"}
-                    title={<FontAwesomeIcon icon={i.faCloudRain}></FontAwesomeIcon>} >
+                    title={<FontAwesomeIcon icon={i.faCogs}></FontAwesomeIcon>} >
 
                     <Dropdown.Item eventKey="1"  onClick={()=>dispatch(changeTheme())}  >
                         <ThemeIcon isTheme={initUser.isTheme}/>
-                        {/*{_actionTheme}*/}
-                        {/*다크모드*/}
                     </Dropdown.Item>
                     {/*<i className="far fa-address-card"></i>*/}
                     <Dropdown.Item eventKey="2" href="/#/myinfo">
