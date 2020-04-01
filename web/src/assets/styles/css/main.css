@@ -21,3 +21,11 @@ body {
 div.dropdown-menu {
     left: -5em !important;
 }
+
+
+.lf-btn {
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
