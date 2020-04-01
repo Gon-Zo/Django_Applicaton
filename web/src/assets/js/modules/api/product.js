@@ -85,12 +85,16 @@ export function $setProduct(dispatch, payload) {
     dispatch(setProduct(payload))
 }
 
-export function $isOpenToCategory(dispatch) {
-   dispatch(setIsOpenToCategory())
-}
 
-export function $httpCategory(dispatch) {
-    axios.get(`/admin/category`)
-        .then((res)=>dispatch(setCategory(res.data)))
-        .catch(err=>console.log(err))
-}
+
+// export function $isOpenToCategory(dispatch) {
+//    dispatch(setIsOpenToCategory())
+// }
+
+// export function $httpCategory(dispatch) {
+//     axios.get(`/admin/category`)
+//         .then((res)=>dispatch(setCategory(res.data)))
+//         .catch(err=>console.log(err))
+// }
+
+

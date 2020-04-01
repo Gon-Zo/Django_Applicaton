@@ -22,19 +22,20 @@ export default () => {
         $isOpen(dispatch)
     };
 
-    let $openCategoryModal = () => {
-        $isOpenToCategory(dispatch)
-    };
+    // let $openCategoryModal = () => {
+    //     $isOpenToCategory(dispatch)
+    // };
 
     return (
         <Container fluid={true}>
 
             <div className="text-right p-3">
-                <button className="btn btn-default btn-dark" onClick={$openCategoryModal}>카테고리</button>
+                {/*<button className="btn btn-default btn-dark" onClick={$openCategoryModal}>카테고리</button>*/}
                 <button className="btn btn-default btn-dark ml-2" onClick={$onClick}>등록</button>
             </div>
 
-            <CategoryModal data={initProd} dispatch={dispatch}/>
+            {/*<CategoryModal data={initProd} dispatch={dispatch}/>*/}
+
             <ProductEditor isOpen={initProd.isOpen}
                            dispatch={dispatch}
                            data={initProd.product}/>

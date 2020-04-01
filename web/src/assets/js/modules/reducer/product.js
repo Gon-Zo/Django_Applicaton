@@ -7,9 +7,9 @@ export const onOpen = () => ({type : 'product/isOpen'});
 
 export const setType = (data) => ({type : "product/setMethod" , data : data});
 
-export const setIsOpenToCategory = () => ({type : "category/isOpen" });
+// export const setIsOpenToCategory = () => ({type : "category/isOpen" });
 
-export const setCategory = (data) =>({type : "category/setData" , data : data});
+// export const setCategory = (data) =>({type : "category/setData" , data : data});
 
 const initProduct = {
     isOpen: false,
@@ -34,12 +34,12 @@ const productReducer = (state = initProduct, action) => {
         case "product/setMethod":
             state.methodType = action.data;
             break;
-        case "category/isOpen":
-            state.isCategory = !state.isCategory;
-            break;
-        case "category/setData":
-            state.category = action.data;
-            break;
+        // case "category/isOpen":
+        //     state.isCategory = !state.isCategory;
+        //     break;
+        // case "category/setData":
+        //     state.category = action.data;
+        //     break;
     }
     return state;
 };
