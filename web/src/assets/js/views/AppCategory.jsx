@@ -70,16 +70,6 @@ export default () => {
                 </Col>
                 {/*Table end*/}
                 <CategoryForm keys={keys} isOpen={initData.isOpen}/>
-                {/*<Col className={initData.isOpen ? "" : "dp-none"} >*/}
-                {/*    {*/}
-                {/*        keys.filter(f=>f!=='seq').map((m , i ) => (*/}
-                {/*            <Form.Group as={Col} controlId="formGridEmail" key={i}>*/}
-                {/*                <Form.Label className="main-ft">{m}</Form.Label>*/}
-                {/*                <Form.Control type="text" placeholder={m} />*/}
-                {/*            </Form.Group>*/}
-                {/*        ))*/}
-                {/*    }*/}
-                {/*</Col>*/}
             </Row>
         </Container>
     )
@@ -103,7 +93,7 @@ function CategoryForm(props) {
                     ))
                 }
                 <ButtonGroup size="sm">
-                    <Button className="justify-content-end">Right</Button>
+                    <Button>Right</Button>
                 </ButtonGroup>
             </Col>
         )

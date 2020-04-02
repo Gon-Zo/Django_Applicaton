@@ -3,12 +3,12 @@ import axios from 'axios'
 import {onUser, isOpen, clickPage, setUser, onLogout, onLogin} from '../reducer/user'
 // import { useHistory } from "react-router-dom";
 
-export const $httpLogout = (dispatch) =>{
+export const $httpLogout = (dispatch , history) =>{
     axios.defaults.headers.common['Authorization'] = undefined;
     localStorage.removeItem('Token');
     // window.location.href = 'http://localhost:3000/';
-
     // todo : logout dev
+    history.push("/")
     dispatch(onLogout())
 };
 

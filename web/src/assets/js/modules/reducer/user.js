@@ -16,7 +16,7 @@ export const changeTheme = ()=>({type:'user/changeTheme'})
 
 const initUser = {
     isLogin: localStorage.getItem("Token") ? true : false,
-    isTheme: false,
+    isTheme: true,
     page: 1,
     numPage: 10,
     users: [],

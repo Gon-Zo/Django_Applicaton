@@ -13,12 +13,12 @@ export default () => {
 
     let dispatch = useDispatch()
     let initUser = useSelector(state => state.userReducer, []);
+    let history = useHistory();
 
     let $offUser = () => {
-        $httpLogout(dispatch)
+        $httpLogout(dispatch , history)
     };
 
-    let history = useHistory();
 
     let _goToHref = ()=>{
         history.push('/myinfo')
