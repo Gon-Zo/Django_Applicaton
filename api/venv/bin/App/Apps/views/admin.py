@@ -166,6 +166,9 @@ def product_api(request):
         return Response(temp, status=200)
     elif method == 'POST':
         data = json.loads(request.body)
+        user = User.objects.filter(seq=data.pop('user_no'))[0].seq
+        store = Store.objects.filter(user=user)[0]
+        data.setdefault('store', store)
         Product.objects.create(**data)
         return Response(status=200)
     else:
