@@ -1,6 +1,7 @@
 import React, {createContext, useReducer, useContext} from 'react';
 import axios from 'axios';
-import {setProducts, setProduct, onOpen , setType , setIsOpenToCategory , setCategory } from '../reducer/product'
+import {setProducts, setProduct, onOpen , setType } from '../reducer/product'
+import {decodeJwt} from "../static/auth";
 
 /**
  * 상품 리스트 호출
@@ -28,7 +29,8 @@ export function $httpProduct(dispatch) {
  * @returns {Promise<void>}
  */
 export function createProduct(dispatch, payload) {
-    axios.post(`/admin/product`)
+    payload['user_no'] = decodeJwt().seq
+    axios.post(`/admin/product`, payload)
         .then(res => console.log('create product', res.status))
         .catch(error => console.log(error))
 }

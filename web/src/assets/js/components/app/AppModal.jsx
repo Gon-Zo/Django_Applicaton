@@ -1,123 +1,12 @@
 import React, {Fragment, useEffect, useState} from "react";
-import {$httpCategory, $isOpen, $isOpenToCategory} from "../../modules/api/product";
+import {$httpCategory, $isOpen, $isOpenToCategory, createProduct} from "../../modules/api/product";
 import {$isUserModalOpen} from "../../modules/api/user";
 import {Button, Col, Form, Modal, Table} from "react-bootstrap";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {$updateUser, $fetchUsers} from "../../modules/api/user";
 
-export {CategoryModal , ProductEditor  , UserInfoModal}
-
-/**
- * @return {null}
- */
-function CategoryModal(props) {
-
-    let initData = props.data;
-    let dispatch = props.dispatch;
-    let isShow = initData.isCategory;
-    let category = initData.category;
-    let [ isInsert , setInsert ] = useState(false);
-
-    useEffect(() => {
-        $httpCategory(dispatch)
-    }, []);
-
-    if (isShow) {
-
-        let keys = Object.keys(category[0]).filter(f=>f!=='create_at');
-
-        let renderContent = (flag) => {
-            if (flag) {
-                return (
-                    <Fragment>
-                        {
-                            keys.filter(f=>f!=='seq').map((m , i ) => (
-                                <Form.Group as={Col} controlId="formGridEmail" key={i}>
-                                    <Form.Label>{m}</Form.Label>
-                                    <Form.Control type="text" placeholder={m} />
-                                </Form.Group>
-                            ))
-                        }
-                    </Fragment>
-                )
-            } else {
-                return (
-                    <Table striped bordered hover variant="dark" size="sm">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            {
-                                keys.map((m, i) => (
-                                    <th key={i}>
-                                        {m}
-                                    </th>
-                                ))
-                            }
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            category.map((c, i) => (
-                                <tr key={i}>
-                                    <td>{i + 1}</td>
-                                    {
-                                        keys.map((k, j) => (
-                                            <td key={j}>{c[k]}</td>
-                                        ))
-                                    }
-                                </tr>
-                            ))
-                        }
-                        </tbody>
-                    </Table>
-                )
-            }
-        };
-
-        let renderBtnGroup = (flag) => {
-            if (flag) {
-                return (
-                    <Fragment>
-                        <Button variant="outline-success">Save</Button>
-                        <Button variant="outline-warning" onClick={() => setInsert(false)}>abate</Button>
-                    </Fragment>
-                )
-            } else {
-                return (
-                    <Button variant="outline-light" onClick={() => setInsert(true)}>Insert</Button>
-                )
-            }
-        };
-
-        return (
-            <Modal
-                size="lg"
-                show={isShow}
-                onHide={() => $isOpenToCategory(dispatch)}
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-            >
-                <Modal.Header closeButton className="bg-dark">
-                    <Modal.Title id="contained-modal-title-vcenter" className="light-ft">
-                        Category Info
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    {renderContent(isInsert)}
-                </Modal.Body>
-                <Modal.Footer className="bg-dark">
-                    {
-                        renderBtnGroup(isInsert)
-                    }
-                    <Button variant="outline-danger" onClick={() => $isOpenToCategory(dispatch)}>Close</Button>
-                </Modal.Footer>
-            </Modal>
-        )
-    }
-
-    return null
-}
+export { ProductEditor  , UserInfoModal}
 
 /**
  * Product Modal
@@ -130,10 +19,19 @@ function ProductEditor(props) {
 
     let dispatch = props.dispatch;
     let isOpen = props.isOpen;
-    let data = props.data;
+    let init = props.data;
+    let method = init.methodType;
+    let data = init.product
+
     let keys =  Object.keys(data);
 
     let $onClick = () => {
+        console.log('type' , method)
+        if (method === 'I'){
+            createProduct(dispatch , data)
+        }else{
+            updateProduct(dispatch , data)
+        }
     };
 
     let inputType = (key) => {

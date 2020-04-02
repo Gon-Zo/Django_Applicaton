@@ -4,8 +4,7 @@ import {$httpProduct, $isOpen, $setMethod, $setProduct , $isOpenToCategory , $ht
 import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
 import {Product} from "../modules/data/AppDto";
-import {CategoryModal, ProductEditor} from "../components/app/AppModal";
-
+import { ProductEditor} from "../components/app/AppModal";
 
 export default () => {
 
@@ -31,14 +30,14 @@ export default () => {
 
             <div className="text-right p-3">
                 {/*<button className="btn btn-default btn-dark" onClick={$openCategoryModal}>카테고리</button>*/}
-                <button className="btn btn-default btn-dark ml-2" onClick={$onClick}>등록</button>
+                <Button variant="dark" className="ml-2" onClick={$onClick}>등록</Button>
             </div>
 
             {/*<CategoryModal data={initProd} dispatch={dispatch}/>*/}
 
             <ProductEditor isOpen={initProd.isOpen}
                            dispatch={dispatch}
-                           data={initProd.product}/>
+                           data={initProd}/>
 
             <AppProductGroup data={initProd.products.data}/>
 

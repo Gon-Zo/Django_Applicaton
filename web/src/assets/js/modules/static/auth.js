@@ -1,13 +1,7 @@
 import axios from "axios";
 
-export default {
-    decodeJwt() {
-        return setDecodeJwt();
-    }
-}
 
-
-let setDecodeJwt = () => {
+export const decodeJwt = () => {
     let jwt = axios.defaults.headers.common['Authorization'];
     if (typeof jwt === 'undefined') {
         jwt = localStorage.getItem("Token")
