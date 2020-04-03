@@ -5,6 +5,7 @@ import {Table} from "react-bootstrap";
 import {$isOpen, $setMethod, $setIsSold, $deleteByProd, $setProduct} from "../../modules/api/product";
 import {useDispatch, useSelector} from "react-redux";
 import Switch from "react-switch";
+import Spinner from "react-bootstrap/Spinner";
 
 export default (props) => {
 
@@ -15,9 +16,9 @@ export default (props) => {
 
     if (typeof data == 'undefined') {
         return (
-            <div>
-                <span>Loging</span>
-            </div>
+            <Spinner animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+            </Spinner>
         )
     }
 

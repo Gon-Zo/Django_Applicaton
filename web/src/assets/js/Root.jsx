@@ -24,6 +24,7 @@ function Root() {
             // them-dark
             <div className={`theme-${isTheme ? "light" : "dark"}`}>
                 <AppHeader/>
+                {/*<ProgressBar variant="danger" animated now={45} />*/}
                 <div className="d-flex  main-bg" id="wrapper">
                     <AppSideBar/>
                     <Switch>

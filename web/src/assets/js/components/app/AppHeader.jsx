@@ -1,13 +1,13 @@
-import React, {useState , useEffect} from "react";
+import React from "react";
 import {$httpLogout} from "../../modules/api/user";
 import {useDispatch, useSelector} from "react-redux";
-import {Nav, Navbar, Dropdown, Form, Button, ButtonGroup} from "react-bootstrap";
+import { Navbar , Button, ButtonGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as i from '@fortawesome/free-solid-svg-icons'
 import {changeTheme} from "../../modules/reducer/user";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 export default () => {
 
@@ -16,11 +16,11 @@ export default () => {
     let history = useHistory();
 
     let $offUser = () => {
-        $httpLogout(dispatch , history)
+        $httpLogout(dispatch, history)
     };
 
 
-    let _goToHref = ()=>{
+    let _goToHref = () => {
         history.push('/myinfo')
     }
 
@@ -38,6 +38,7 @@ export default () => {
 
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
+
                     <ThemeIcon dispatch={dispatch} theme={theme}/>
 
                     <HeadButton
@@ -58,6 +59,7 @@ export default () => {
     )
 }
 
+
 function HeadButton(props) {
     let icon = props.icon
     let theme = props.theme
@@ -65,7 +67,7 @@ function HeadButton(props) {
     let tooltip = props.tooltip
     let className = props.className
 
-    return(
+    return (
         <OverlayTrigger
             key={'bottom'}
             placement={'bottom'}
@@ -81,13 +83,14 @@ function HeadButton(props) {
     )
 }
 
+
 function ThemeIcon(props) {
     let dispatch = props.dispatch
     let theme = props.theme
-    let _changeTheme = ()=>{
+    let _changeTheme = () => {
         dispatch(changeTheme())
     }
-    let themeStr = theme =='dark' ? "라이트모드" : "다크모드"
+    let themeStr = theme == 'dark' ? "라이트모드" : "다크모드"
     return (
         <HeadButton
             icon={i.faAdjust}
