@@ -71,7 +71,7 @@ export default (props) => {
                     </Button>
                     {
                        temp.map((m,i)=>(
-                            <Button variant={theme} type="button" key={i} onClick={()=>_onClick(m)}>{m}</Button>
+                            <Button variant={ m == page ? "danger" : theme} type="button" key={i} onClick={()=>_onClick(m)}>{m}</Button>
                        ))
                     }
                     <Button variant={theme} type="button" onClick={()=>_angleEvent('R')}>
@@ -83,41 +83,6 @@ export default (props) => {
                 </ButtonGroup>
             </div>
         </div>
-
-
-        // <div className="row">
-        //     <div className="col">
-        //         <div>
-        //             <h6 className="pagination-sm-title main-ft">All Items <span>{cnt}</span>
-        //             </h6>
-        //         </div>
-        //     </div>
-        //
-        //     <div className="col">
-        //         <ul className="pagination pagination-wrap">
-        //             <li className="page-item">
-        //                 <a className="page-link" href="/#/user" aria-label="Previous">
-        //                     <span aria-hidden="true">&laquo;</span>
-        //                     <span className="sr-only">Previous</span>
-        //                 </a>
-        //             </li>
-        //             {
-        //                 temp.map((m, i) => (
-        //                     <li className="page-item" key={i} onClick={$onCLick} data-value={m}>
-        //                         <a className="page-link" href="/#/user">{m}</a>
-        //                     </li>
-        //                 ))
-        //             }
-        //             <li className="page-item">
-        //                 <a className="page-link" href="/#/user" aria-label="Next">
-        //                     <span aria-hidden="true">&raquo;</span>
-        //                     <span className="sr-only">Next</span>
-        //                 </a>
-        //             </li>
-        //         </ul>
-        //     </div>
-        // </div>
-
     )
 
 }
