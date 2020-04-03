@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
 import {Product} from "../modules/data/AppDto";
 import { ProductEditor} from "../components/app/AppModal";
+import AppPagination from "../components/app/AppPagination";
 
 export default () => {
 
@@ -34,6 +35,7 @@ export default () => {
 
             <AppProductGroup data={initProd.products.data}/>
 
+            {/*<AppPagination count={initProd.products.count} numPage={initProd.products.numPage} page={initProd.page}/>*/}
         </Container>
     )
 }

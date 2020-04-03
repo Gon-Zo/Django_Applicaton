@@ -1,6 +1,6 @@
 import React  from 'react';
 import axios from 'axios';
-import {setProducts, setProduct, isOpenProd , setType } from '../reducer/product'
+import {setProducts, setProduct, isOpenProd, setType, setIsSold} from '../reducer/product'
 import {decodeJwt} from "../static/auth";
 
 /**
@@ -90,3 +90,6 @@ export function $setProduct(dispatch, payload) {
     dispatch(setProduct(payload))
 }
 
+export function $setIsSold(dispatch , idx , flag) {
+    dispatch(setIsSold(idx, flag))
+}

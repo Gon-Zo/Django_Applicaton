@@ -2,13 +2,14 @@ import React, {Fragment} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as icon from "@fortawesome/free-solid-svg-icons";
 import {Table} from "react-bootstrap";
-import {$isOpen, $setMethod, $setProduct, $deleteByProd} from "../../modules/api/product";
+import {$isOpen, $setMethod, $setIsSold, $deleteByProd, $setProduct} from "../../modules/api/product";
 import {useDispatch, useSelector} from "react-redux";
+import Switch from "react-switch";
 
 export default (props) => {
 
     let initUser = useSelector(state => state.userReducer, []);
-
+    let theme = initUser.isTheme
     let data = props.data;
     let dispatch = useDispatch();
 
@@ -20,9 +21,9 @@ export default (props) => {
         )
     }
 
-    // if (data.length > 0) {
-
-    let keys = Object.keys(data[0]).filter(f => f !== 'store' && f !== 'seq' && f !== 'info')
+    let keys = Object
+        .keys(data[0])
+        .filter(f => f !== 'store' && f !== 'seq' && f !== 'info')
 
     let $onEdit = (idx) => {
         $setMethod(dispatch, 'U');
@@ -35,37 +36,27 @@ export default (props) => {
         $deleteByProd(dispatch, deleteNo)
     };
 
-    let changeTd = (data, name) => {
-
-        if (typeof data === 'boolean') {
+    let test = (val , idx)=>{
+        if (typeof val == 'boolean') {
             return (
-                <label className="switch">
-                    <input type="checkbox"/>
-                    <span className="slider round"/>
-                </label>
-
+                <Switch height={24}
+                        onChange={()=>{
+                            $setIsSold(dispatch, idx, !val)
+                        }}
+                        onColor={ theme ? "#1976d2" : "#BB86FC" }
+                        // onHandleColor="#f00"
+                        checkedIcon={false}
+                        uncheckedIcon={false}
+                        checked={val}/>
+            )
+        }else{
+            return (
+                <>
+                    {val}
+                </>
             )
         }
-
-        let typeAlias = "";
-
-        if (name === "create_at") {
-            typeAlias = "date";
-            data = data.split('T')[0]
-        } else if (typeof data === 'number') {
-            typeAlias = "number"
-        } else {
-            typeAlias = "text"
-        }
-
-        return (
-            <Fragment>
-                <span>{data}</span>
-                <input className="dp-none" type={typeAlias} defaultValue={data}/>
-            </Fragment>
-        )
-
-    };
+    }
 
     return (
         <Table striped bordered hover variant={initUser.isTheme ? "light" : "dark"}>
@@ -88,16 +79,15 @@ export default (props) => {
                         <td>{i + 1}</td>
                         {
                             keys.map((k, n) => (
-                                <td key={n}>{changeTd(d[k], k)}</td>
+                                <td key={n}>{
+                                   test(d[k] , i)
+                                }</td>
                             ))
                         }
                         <td>
                             <button onClick={() => $onEdit(i)}>
                                 <FontAwesomeIcon icon={icon.faEdit}/>
                             </button>
-                            {/*<button>*/}
-                            {/*    <FontAwesomeIcon icon={icon.faSave}/>*/}
-                            {/*</button>*/}
                             <button onClick={() => $onDelete(i)}>
                                 <FontAwesomeIcon icon={icon.faTrashAlt}/>
                             </button>
@@ -108,12 +98,4 @@ export default (props) => {
             </tbody>
         </Table>
     )
-    // }
-    // else {
-    //     return (
-    //         <div>
-    //             <span className="main-ft">데이터 없음</span>
-    //         </div>
-    //     )
-    // }
 }

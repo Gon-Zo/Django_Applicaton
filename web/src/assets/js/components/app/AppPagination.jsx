@@ -9,8 +9,7 @@ export default (props) => {
 
     let initUser = useSelector(state => state.userReducer, []);
     let dispatch = useDispatch()
-
-    let page = initUser.page
+    let page = props.page
     let cnt = props.count;
     let numPage = props.numPage;
 

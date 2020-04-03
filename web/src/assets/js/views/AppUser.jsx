@@ -39,7 +39,7 @@ function AppUser() {
             </div>
             <div className="mt-4">
                 <AppTable data={$bindData().data}/>
-                <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
+                <AppPagination count={$bindData().count} numPage={$bindData().numPage} page={initUser.page}/>
             </div>
             {/* table wrap end*/}
         </Container>
