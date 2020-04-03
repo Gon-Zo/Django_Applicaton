@@ -1,12 +1,12 @@
-import React, {Fragment, useEffect, useState} from "react";
-import {$httpCategory, $isOpen, $isOpenToCategory, createProduct} from "../../modules/api/product";
+import React from "react";
+import {$isOpen, createProduct} from "../../modules/api/product";
 import {$isUserModalOpen} from "../../modules/api/user";
 import {Button, Col, Form, Modal, Table} from "react-bootstrap";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {$updateUser, $fetchUsers} from "../../modules/api/user";
 
-export { ProductEditor  , UserInfoModal}
+export {ProductEditor, UserInfoModal}
 
 /**
  * Product Modal
@@ -23,24 +23,28 @@ function ProductEditor(props) {
     let method = init.methodType;
     let data = init.product
 
-    let keys =  Object.keys(data);
+    let keys = Object.keys(data);
 
     let $onClick = () => {
-        console.log('type' , method)
-        if (method === 'I'){
-            createProduct(dispatch , data)
-        }else{
-            updateProduct(dispatch , data)
+        if (method === 'I') {
+            createProduct(dispatch, data)
+        } else {
+            updateProduct(dispatch, data)
         }
     };
 
     let inputType = (key) => {
-        if (key === 'birthDate') {
-            return 'date'
-        } else if (key === 'isUse') {
-            return 'checkbox'
-        } else {
-            return 'text'
+        switch (key) {
+            case "birthDate":
+                return "date"
+            case "is_use":
+            case "is_sold":
+                return "checkbox"
+            case "count":
+            case "price":
+                return "number"
+            default:
+                return "text"
         }
     };
 
@@ -170,7 +174,8 @@ function UserInfoModal(props) {
                             <div className="input-group-prepend">
                                 <span className="input-group-text modal-input-box" id="">{m}</span>
                             </div>
-                            <input type={inputType(m)} className="form-control" defaultValue={userData[m]} defaultChecked={userData[m]}
+                            <input type={inputType(m)} className="form-control" defaultValue={userData[m]}
+                                   defaultChecked={userData[m]}
                                    name={m}
                                    onChange={$onChange}/>
                         </div>
@@ -182,7 +187,7 @@ function UserInfoModal(props) {
                     Close
                 </Button>
                 <Button variant="primary" onClick={$handleUpdate}>
-                    Save Changes
+                  Save Changes
                 </Button>
             </Modal.Footer>
         </Modal>

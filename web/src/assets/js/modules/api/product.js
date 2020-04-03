@@ -1,6 +1,6 @@
-import React, {createContext, useReducer, useContext} from 'react';
+import React  from 'react';
 import axios from 'axios';
-import {setProducts, setProduct, onOpen , setType } from '../reducer/product'
+import {setProducts, setProduct, isOpenProd , setType } from '../reducer/product'
 import {decodeJwt} from "../static/auth";
 
 /**
@@ -31,7 +31,10 @@ export function $httpProduct(dispatch) {
 export function createProduct(dispatch, payload) {
     payload['user_no'] = decodeJwt().seq
     axios.post(`/admin/product`, payload)
-        .then(res => console.log('create product', res.status))
+        .then(res =>{
+            $httpProduct(dispatch)
+            dispatch(isOpenProd())
+        })
         .catch(error => console.log(error))
 }
 
@@ -76,7 +79,7 @@ export function $deleteByProd(dispatch, seq) {
  * @returns {Promise<void>}
  */
 export function $isOpen(dispatch) {
-    dispatch(onOpen())
+    dispatch(isOpenProd())
 }
 
 export function $setMethod(dispatch , payload) {

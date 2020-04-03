@@ -32,7 +32,11 @@ function AppUser() {
     return (
         <Container fluid={true}>
             <UserInfoModal initData={initUser} dispatch={dispatch}/>
-
+            <div className="card-group">
+                <div className="card card-user card-1 card-bg"></div>
+                <div className="card card-user card-1 card-bg"></div>
+                <div className="card card-user card-1 card-bg"></div>
+            </div>
             <div className="mt-4">
                 <AppTable data={$bindData().data}/>
                 <AppPagination count={$bindData().count} numPage={$bindData().numPage}/>
