@@ -1,4 +1,4 @@
-import React, {useState, useEffect, Fragment} from "react";
+import React, { Fragment} from "react";
 import {Table,} from "react-bootstrap"
 import {useDispatch, useSelector} from 'react-redux'
 import {$setUser , $isUserModalOpen} from "../../modules/api/user";
@@ -39,7 +39,6 @@ const renderTable = (data, dispatch , isTheme) => {
         $setUser(dispatch, data[idx]);
         $isUserModalOpen(dispatch)
     };
-
 
     return (
         <Table striped bordered hover variant={isTheme ? "light" : "dark"}>
