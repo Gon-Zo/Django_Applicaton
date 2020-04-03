@@ -54,7 +54,6 @@ export default (props) => {
         _onClick(val)
     }
 
-
     return (
         <div className="row">
             <div className="col">
