@@ -1,10 +1,9 @@
 import React from "react";
-import {Container, Row, Col} from 'react-bootstrap'
 import AppCardGroup from "../components/app/AppCardGroup";
 
 export default () => {
     return (
-        <Container fluid={true}>
+           <>
             <AppCardGroup/>
             {/*<Container fluid={true}>*/}
             {/*    <Row>*/}
@@ -20,6 +19,6 @@ export default () => {
 
 
             {/* AppTable end*/}
-        </Container>
+            </>
     )
 }

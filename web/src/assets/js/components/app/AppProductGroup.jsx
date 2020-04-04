@@ -51,9 +51,7 @@ export default (props) => {
             )
         }else{
             return (
-                <>
                     {val}
-                </>
             )
         }
     }

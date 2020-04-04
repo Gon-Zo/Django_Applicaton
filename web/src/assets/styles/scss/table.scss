@@ -1,0 +1,26 @@
+
+/* table css */
+.min-hg {
+  min-height: 440px;
+
+  th {
+    text-align: center;
+  }
+
+  td {
+    padding: 6em;
+    //line-height: 1em;
+    &:first-child {
+      text-align: center;
+    }
+  }
+}
+
+.pagination-wrap {
+  float: right;
+}
+
+.pagination-sm-title {
+  font-size: 0.8rem !important;
+  color: #424242;
+}

@@ -12,6 +12,7 @@ import AppSetting from "./views/AppSetting";
 import AppCategory from "./views/AppCategory";
 import {useSelector} from "react-redux";
 import {AppTheme} from "./modules/static/support";
+import {Container} from "react-bootstrap";
 
 function Root() {
 
@@ -22,10 +23,12 @@ function Root() {
         return (
             // them-dark
             <div className={`theme-${AppTheme()}`}>
-                <AppHeader/>
+                {/*<AppHeader/>*/}
                 {/*<ProgressBar variant="danger" animated now={45} />*/}
                 <div className="d-flex  main-bg" id="wrapper">
                     <AppSideBar/>
+                    <Container fluid={true}>
+                        <AppHeader/>
                     <Switch>
                         <Route exact path="/home" component={Main}/>
                         <Route path="/user" component={AppUser}/>
@@ -35,6 +38,7 @@ function Root() {
                         <Route path="/category" component={AppCategory}/>
                         <Route path="/setting" component={AppSetting}/>
                     </Switch>
+                    </Container>
                 </div>
             </div>
         )

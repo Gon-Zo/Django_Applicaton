@@ -12,6 +12,15 @@ export const AppTheme = () =>{
     let str = theme ? "primary" :"dark"
     return str
 }
+export const AppButtonTheme = () =>{
+    let theme = useSelector(state => state.userReducer, []).isTheme
+    let str = theme ? "light" : "secondary";
+    return str
+}
+
+export const AppPageTheme = (l , r) =>{
+   return l == r ? AppButtonTheme()  : AppTheme()
+}
 
 export const AppReversTheme = () => {
     let theme = useSelector(state => state.userReducer, []).isTheme

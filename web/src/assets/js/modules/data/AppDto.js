@@ -32,9 +32,9 @@ export class UserDto {
  * List Dto
  */
 export class ListDto {
-    constructor(count, numPage, data) {
+    constructor(count, numPages, data) {
         this.count = count;
-        this.numPage = numPage;
+        this.numPages = numPages;
         this.data = data
     }
 }

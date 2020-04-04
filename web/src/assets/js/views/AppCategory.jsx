@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, { useEffect} from "react";
 import {ButtonGroup, Col, Container, Form, Row} from "react-bootstrap";
 import {$setUpCategory, openToCategory} from "../modules/api/category";
 import {useDispatch, useSelector} from "react-redux";
@@ -33,7 +33,7 @@ export default () => {
     let keys = Object.keys(data[0]).filter(f => f !== 'create_at')
 
     return (
-        <Container fluid={true}>
+        <div className="container-main">
             <Row className="mt-3">
                 <Col>
                     <Button className="lf-btn" onClick={()=>{
@@ -71,7 +71,7 @@ export default () => {
                 {/*Table end*/}
                 <CategoryForm keys={keys} isOpen={initData.isOpen}/>
             </Row>
-        </Container>
+        </div>
     )
 
 }

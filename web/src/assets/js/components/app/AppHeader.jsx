@@ -25,11 +25,11 @@ export default () => {
 
     return (
         <Navbar className="surface-bg">
-            <Navbar.Brand href="#/home">
-                <span className="title-ft">
-                Application Manager
-                </span>
-            </Navbar.Brand>
+            {/*<Navbar.Brand href="#/home">*/}
+            {/*    <span className="title-ft">*/}
+            {/*    Application Manager*/}
+            {/*    </span>*/}
+            {/*</Navbar.Brand>*/}
             {/*app title*/}
 
             <Navbar.Collapse className="justify-content-end">

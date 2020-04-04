@@ -6,7 +6,7 @@ import {AppTheme} from "../modules/static/support";
 export default ()=>{
 
     return (
-        <div className="mt-2 ml-2">
+        <div className="container-main">
             <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
 
                 <ListGroup bg={AppTheme()} horizontal>
@@ -30,5 +30,5 @@ export default ()=>{
                 </Tab.Content>
             </Tab.Container>
         </div>
-    )
+    );
 }

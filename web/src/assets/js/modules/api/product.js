@@ -8,11 +8,11 @@ import {decodeJwt} from "../static/auth";
  * @param dispatch
  * @returns {Promise<void>}
  */
-export function $httpProduct(dispatch) {
+export function $httpProduct(dispatch , payload ) {
     axios.get(`/admin/product`, {
         params : {
             pageNum : 10 ,
-            page : 1 ,
+            page : payload.page ,
             storeNo : 1,
         }
     })

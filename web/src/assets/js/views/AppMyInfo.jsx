@@ -33,7 +33,7 @@ export default () => {
     }
 
     return (
-        <Container fluid={true}>
+        <div className="container-main">
             <MyInfoForm data={store.user}/>
             <MyStoreInfo data={store}/>
             <div>
@@ -41,7 +41,7 @@ export default () => {
                 <Button onClick={$onClick} variant="warning">Success</Button>
             </div>
             {/*Button group end*/}
-        </Container>
+        </div>
     )
 
 }

@@ -1,89 +1,97 @@
-import React, {useState, useEffect, Fragment} from "react";
+import React  from "react";
 import {Table,} from "react-bootstrap"
-import {useDispatch, useSelector} from 'react-redux'
-import {$setUser , $isUserModalOpen} from "../../modules/api/user";
+import { useSelector} from 'react-redux'
+import Switch from "react-switch";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import * as icon from "@fortawesome/free-solid-svg-icons";
+import Spinner from "react-bootstrap/Spinner";
+import {AppReversTheme} from "../../modules/static/support";
 
 export default (props) => {
 
-    let dispatch = useDispatch()
-    let data = props.data
+    let payload = props.data
+    let keys = props.keys
+
     let initUser = useSelector(state => state.userReducer, []);
 
-    if (typeof data == 'undefined') {
+    let _clickCol = props.click
+    let _isChange = props.switch
+
+    if (typeof payload == 'undefined' || payload.length == 0) {
         return (
-            <div>
-                <span>로딩중</span>
-            </div>
+            <Spinner animation="border" role="status" variant={AppReversTheme}>
+                <span className="sr-only">Loading...</span>
+            </Spinner>
+        )
+    }
+
+    let theme = initUser.isTheme
+
+    let _checkToValue = (val, idx) => {
+        if (typeof val === "boolean") {
+            return (
+                <Switch height={24}
+                        onChange={() => {
+                            _isChange(idx, !val)
+                        }}
+                        onColor={theme ? "#1976d2" : "#BB86FC"}
+                        checkedIcon={false}
+                        uncheckedIcon={false}
+                        checked={val}/>
+            )
+        }
+        return (
+            <>
+                {val}
+            </>
         )
     }
 
     return (
         <div className="row">
             <div className="col min-hg">
-                {renderTable(data, dispatch , initUser.isTheme)}
+                <Table striped bordered hover size="sm" variant={theme ? "light" : "dark"}>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        {
+                            keys.map((k, i) =>
+                                <th key={i}>{k}</th>
+                            )
+                        }
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    {/*thead end*/}
+                    <tbody>
+                        {
+                            payload.map((d, i) => (
+                                // <tr key={i} onClick={() => _clickCol(i)}>
+                                <tr key={i}>
+                                    <td>{i + 1}</td>
+                                    {
+                                        keys.map((k, j) => (
+                                            <td key={j}>
+                                                {_checkToValue(d[`${k}`], i)}
+                                                {/*<b>{d[`${k}`]}</b>*/}
+                                            </td>
+                                        ))
+                                    }
+                                    <td>
+                                        <button>
+                                            <FontAwesomeIcon icon={icon.faEdit}/>
+                                        </button>
+                                        <button>
+                                            <FontAwesomeIcon icon={icon.faTrashAlt}/>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                    {/*tbody end*/}
+                </Table>
             </div>
         </div>
     )
-}
-
-/**
- * Table 랜더링
- * @param data 테이블 데이터
- * @returns {*}
- */
-const renderTable = (data, dispatch , isTheme) => {
-
-    let keys = Object.keys(data[0]);
-
-    const $onClick = (idx) => {
-        $setUser(dispatch, data[idx]);
-        $isUserModalOpen(dispatch)
-    };
-
-    return (
-        <Table striped bordered hover variant={isTheme ? "light" : "dark"}>
-            <thead>
-            <tr>
-                {
-                    keys.map((k, i) => (
-                        <th key={i}>{k}</th>
-                    ))
-                }
-            </tr>
-            </thead>
-            {/*thead end*/}
-            <tbody>
-            <Fragment>
-                {
-                    data.map((d, i) => (
-                        <tr key={i} onClick={() => $onClick(i)}>
-                            {
-                                keys.map((k, i) => (
-                                    <td key={i}>
-                                        <b>{$checkToValue(d[`${k}`])}</b>
-                                    </td>
-                                ))
-                            }
-                        </tr>
-                    ))
-                }
-            </Fragment>
-            </tbody>
-            {/*tbody end*/}
-        </Table>
-    )
-
-}
-
-let renderInput = (data) => {
-    return (
-        <input type="checkbox" defaultChecked={data === true} defaultValue={data} disabled={true}/>
-    )
-}
-
-let $checkToValue = (val) => {
-    if (typeof val === "boolean") {
-        val = renderInput(val)
-    }
-    return val
 }
