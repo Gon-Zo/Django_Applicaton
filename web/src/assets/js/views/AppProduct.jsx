@@ -1,10 +1,8 @@
 import React, {useEffect} from "react";
-import {Button} from "react-bootstrap";
 import {$httpProduct, $isOpen, $setIsSold, $setMethod, $setProduct} from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
 import { Product} from "../modules/data/AppDto";
 import { ProductEditor} from "../components/app/AppModal";
-import {AppTheme} from "../modules/static/support";
 import Pagination from "../components/app/Pagination";
 import AppTable from "../components/app/AppTable";
 
@@ -64,24 +62,34 @@ export default () => {
 
     return (
         <div className="container-main">
-            <div className="text-right p-3">
-                <Button variant={AppTheme()} className="ml-2" onClick={$onClick}>등록</Button>
-            </div>
+
+            {/*<div className="text-right p-3">*/}
+            {/*    <Button variant={AppTheme()} className="ml-2" onClick={$onClick}>등록</Button>*/}
+            {/*</div>*/}
 
             <ProductEditor isOpen={initProd.isOpen}
                            dispatch={dispatch}
                            data={initProd}/>
 
-            <AppTable data={_bindData().data}
-                      keys={_bindData().keys}
-                      switch={_isSold}/>
+            <div className="card-group">
+                <div className="card card-user card-test card-bg"></div>
+                <div className="card card-user card-test card-bg"></div>
+                <div className="card card-user card-test card-bg"></div>
+            </div>
 
-            {/*<AppProductGroup data={initProd.products.data}/>*/}
+            <div className="mt-4">
+                <AppTable data={_bindData().data}
+                          keys={_bindData().keys}
+                          switch={_isSold}/>
 
-            <Pagination count={initProd.products.count}
-                        numPages={initProd.products.numPages}
-                        refresh={_onReFresh}
-                        page={initProd.page}/>
+                {/*<AppProductGroup data={initProd.products.data}/>*/}
+
+                <Pagination count={initProd.products.count}
+                            numPages={initProd.products.numPages}
+                            refresh={_onReFresh}
+                            page={initProd.page}/>
+            </div>
+
         </div>
     )
 }

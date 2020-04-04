@@ -19,9 +19,11 @@ export default (props) => {
 
     if (typeof payload == 'undefined' || payload.length == 0) {
         return (
-            <Spinner animation="border" role="status" variant={AppReversTheme}>
-                <span className="sr-only">Loading...</span>
-            </Spinner>
+            <div className="loading-wrap">
+                <Spinner animation="border" role="status" variant={AppReversTheme}>
+                    <span className="sr-only">Loading...</span>
+                </Spinner>
+            </div>
         )
     }
 
