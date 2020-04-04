@@ -10,14 +10,13 @@ import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppAlert from "./assets/js/components/app/AppAlert";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'
 
 axios.interceptors.request.use(request => {
-    console.log(request);
+    console.log('request', request);
     let authToken = request.headers.common.Authorization;
     if(typeof authToken === 'undefined'){
         request.headers.common.Authorization = localStorage.getItem("Token")
@@ -30,7 +29,7 @@ axios.interceptors.request.use(request => {
 });
 
 axios.interceptors.response.use(response => {
-    console.log(response);
+    console.log('response', response);
     return response;
 }, error => {
     let err = error.response.data
