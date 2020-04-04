@@ -6,8 +6,14 @@ import * as i from '@fortawesome/free-solid-svg-icons'
 export default () => {
     return (
         <div className="sidebar-bg" id="sidebar-wrapper">
-            <div className="list-group list-group-flush">
+            <div className="app-wrap surface-bg">
+                <h1 className="title-ft">
+                    Application Manager
+                </h1>
+            </div>
 
+            {/*app title*/}
+            <div className="list-group list-group-flush">
                 <Link to="/home"
                       className="list-group-item list-group-item-action main-ft sidebar-bg">
                     <FontAwesomeIcon icon={i.faHome}/>
@@ -15,18 +21,18 @@ export default () => {
                     Home
                     </span>
                 </Link>
-                <Link to="/user"
-                      className="list-group-item list-group-item-action main-ft sidebar-bg">
-                    <FontAwesomeIcon icon={i.faUser}/>
-                    <span className="ml-2">
-                    User
-                    </span>
-                </Link>
                 <Link to="/dashboard"
                       className="list-group-item list-group-item-action  main-ft sidebar-bg">
                     <FontAwesomeIcon icon={i.faChartBar}/>
                     <span className="ml-2">
                     Dashboard
+                    </span>
+                </Link>
+                <Link to="/user"
+                      className="list-group-item list-group-item-action main-ft sidebar-bg">
+                    <FontAwesomeIcon icon={i.faUser}/>
+                    <span className="ml-2">
+                    User
                     </span>
                 </Link>
                 <Link to="/product"
