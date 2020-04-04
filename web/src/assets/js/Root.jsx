@@ -11,18 +11,17 @@ import AppLogin from "./views/AppLogin";
 import AppSetting from "./views/AppSetting";
 import AppCategory from "./views/AppCategory";
 import {useSelector} from "react-redux";
+import {AppTheme} from "./modules/static/support";
 
 function Root() {
 
-    let initUser = useSelector(state => state.userReducer, []);
+    let isLogin = useSelector(state => state.userReducer, []).isLogin
 
-    if (initUser.isLogin) {
-
-        let isTheme = initUser.isTheme;
+    if (isLogin) {
 
         return (
             // them-dark
-            <div className={`theme-${isTheme ? "light" : "dark"}`}>
+            <div className={`theme-${AppTheme()}`}>
                 <AppHeader/>
                 {/*<ProgressBar variant="danger" animated now={45} />*/}
                 <div className="d-flex  main-bg" id="wrapper">

@@ -6,6 +6,7 @@ import {$isOpen, $setMethod, $setIsSold, $deleteByProd, $setProduct} from "../..
 import {useDispatch, useSelector} from "react-redux";
 import Switch from "react-switch";
 import Spinner from "react-bootstrap/Spinner";
+import {AppReversTheme} from "../../modules/static/support";
 
 export default (props) => {
 
@@ -16,7 +17,7 @@ export default (props) => {
 
     if (typeof data == 'undefined') {
         return (
-            <Spinner animation="border" role="status">
+            <Spinner animation="border" role="status" variant={AppReversTheme}>
                 <span className="sr-only">Loading...</span>
             </Spinner>
         )

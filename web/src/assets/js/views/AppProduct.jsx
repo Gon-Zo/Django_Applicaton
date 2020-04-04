@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import AppProductGroup from "../components/app/AppProductGroup";
 import {Product} from "../modules/data/AppDto";
 import { ProductEditor} from "../components/app/AppModal";
-import AppPagination from "../components/app/AppPagination";
+import {AppTheme} from "../modules/static/support";
 
 export default () => {
 
@@ -26,7 +26,7 @@ export default () => {
         <Container fluid={true}>
 
             <div className="text-right p-3">
-                <Button variant="dark" className="ml-2" onClick={$onClick}>등록</Button>
+                <Button variant={AppTheme()} className="ml-2" onClick={$onClick}>등록</Button>
             </div>
 
             <ProductEditor isOpen={initProd.isOpen}

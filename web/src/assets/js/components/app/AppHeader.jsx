@@ -8,26 +8,22 @@ import {changeTheme} from "../../modules/reducer/user";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import {useHistory} from 'react-router-dom';
+import {AppTheme} from "../../modules/static/support";
 
 export default () => {
 
     let dispatch = useDispatch()
-    let initUser = useSelector(state => state.userReducer, []);
     let history = useHistory();
 
     let $offUser = () => {
         $httpLogout(dispatch, history)
     };
 
-
     let _goToHref = () => {
         history.push('/myinfo')
     }
 
-    let theme = initUser.isTheme ? "primary" : "dark";
-
     return (
-        // <Navbar bg="dark" variant="dark">
         <Navbar className="surface-bg">
             <Navbar.Brand href="#/home">
                 <span className="title-ft">
@@ -39,17 +35,17 @@ export default () => {
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
 
-                    <ThemeIcon dispatch={dispatch} theme={theme}/>
+                    <ThemeIcon dispatch={dispatch} theme={AppTheme()}/>
 
                     <HeadButton
                         icon={i.faAddressCard}
-                        theme={theme}
+                        theme={AppTheme()}
                         onClick={_goToHref}
                         tooltip={'내정보'}/>
 
                     <HeadButton
                         icon={i.faSignOutAlt}
-                        theme={theme}
+                        theme={AppTheme()}
                         onClick={$offUser}
                         tooltip={'로그아웃'}/>
 
