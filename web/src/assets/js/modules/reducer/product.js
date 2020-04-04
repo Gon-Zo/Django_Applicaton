@@ -1,13 +1,18 @@
+let SETPRODUCTS = 'product/setProducts'
+let SETPRODUCT  = "product/setProduct"
+let ISOPEN = 'product/isOpen'
+let SETMETHOD = "product/setMethod"
+let ISSOLD =  "product/isSold"
 
-export const setProducts = (data) => ({type: 'product/setProducts', data: data});
+export const setProducts = (data) => ({type: SETPRODUCTS , data: data});
 
-export const setProduct = (data) => ({type: "product/setProduct", data: data});
+export const setProduct = (data) => ({type: SETPRODUCT , data: data});
 
-export const isOpenProd = () => ({type : 'product/isOpen'});
+export const isOpenProd = () => ({type : ISOPEN });
 
-export const setType = (data) => ({type : "product/setMethod" , data : data});
+export const setType = (data) => ({type : SETMETHOD  , data : data});
 
-export const setIsSold = (idx , flag) => ({type : "product/isSold" , idx : idx , flag : flag})
+export const setIsSold = (idx , flag) => ({type : ISSOLD , idx : idx , flag : flag})
 
 const initProduct = {
     isOpen: false,
@@ -16,23 +21,24 @@ const initProduct = {
     products: [],
     product: {},
     category : {},
+    page : 1 ,
 };
 
-const productReducer = (state = initProduct, action) => {
+let productReducer = (state = initProduct, action) => {
     switch (action.type) {
-        case "product/setProducts":
+        case SETPRODUCTS :
             state.products = action.data;
             break;
-        case "product/setProduct":
+        case SETPRODUCT :
             state.product = action.data;
             break;
-        case "product/isOpen":
+        case ISOPEN :
             state.isOpen = !state.isOpen;
             break;
-        case "product/setMethod":
+        case SETMETHOD :
             state.methodType = action.data;
             break;
-        case "product/isSold":
+        case ISSOLD :
             state.products.data[action.idx].is_sold = action.flag
             break;
     }
