@@ -17,17 +17,17 @@ export default (props) => {
     let _clickCol = props.click
     let _isChange = props.switch
 
+    let theme = initUser.isTheme
+
     if (typeof payload == 'undefined' || payload.length == 0) {
         return (
             <div className="loading-wrap">
-                <Spinner animation="border" role="status" variant={AppReversTheme}>
+                <Spinner animation="border" role="status" variant={ theme ? "dark" : "light"}>
                     <span className="sr-only">Loading...</span>
                 </Spinner>
             </div>
         )
     }
-
-    let theme = initUser.isTheme
 
     let _checkToValue = (val, idx) => {
         if (typeof val === "boolean") {
