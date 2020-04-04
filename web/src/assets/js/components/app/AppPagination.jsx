@@ -14,6 +14,7 @@ export default (props) => {
     let numPage = props.numPage;
 
     let theme = initUser.isTheme ? "primary" : "dark";
+    let theme2 = initUser.isTheme ? "light" : "secondary";
 
     if (typeof numPage == 'undefined') {
         return null
@@ -71,7 +72,8 @@ export default (props) => {
                     </Button>
                     {
                        temp.map((m,i)=>(
-                            <Button variant={ m == page ? "danger" : theme} type="button" key={i} onClick={()=>_onClick(m)}>{m}</Button>
+                           <Button variant={m == page ? theme2 : theme} type="button" key={i}
+                                   onClick={() => _onClick(m)} >{m}</Button>
                        ))
                     }
                     <Button variant={theme} type="button" onClick={()=>_angleEvent('R')}>

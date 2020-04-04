@@ -1,20 +1,21 @@
-import axios from "axios";
 
-const User = 'user/login';
-const LOGOUT = 'user/logout'
-const PAGELIST = 'user/pageList'
-const SETUSER = 'user/setUser'
+let User = 'user/login';
+let LOGOUT = 'user/logout'
+let PAGELIST = 'user/pageList'
+let SETUSER = 'user/setUser'
+let CLICKPAGE = 'user/clickPage'
+let ISOPEN  =  'user/isOpen'
+let CHANGETHEME = 'user/changeTheme'
 
 export const onLogin = () => ({type: User});
 export const onLogout = () => ({type: LOGOUT});
 export const onUser = (data) => ({type: PAGELIST, data: data});
 export const setUser = (data) => ({type: SETUSER, data: data});
-export const clickPage = (data) => ({type: 'user/clickPage', data: data});
-export const isOpen = () => ({type: 'user/isOpen'});
-export const changeTheme = ()=>({type:'user/changeTheme'})
+export const clickPage = (data) => ({type: CLICKPAGE , data: data});
+export const isOpen = () => ({type: ISOPEN});
+export const changeTheme = ()=>({type:CHANGETHEME})
 
-
-const initUser = {
+let initUser = {
     isLogin: localStorage.getItem("Token") ? true : false,
     isTheme: true,
     page: 1,
@@ -38,13 +39,13 @@ const userReducer = (state = initUser, action) => {
         case SETUSER:
             state.user = action.data;
             break;
-        case 'user/changeTheme':
+        case CHANGETHEME:
             state.isTheme = !state.isTheme
             break;
-        case "user/clickPage":
+        case CLICKPAGE:
             state.page = action.data;
             break;
-        case "user/isOpen":
+        case ISOPEN:
             state.isOpen = !state.isOpen;
             break;
     }
