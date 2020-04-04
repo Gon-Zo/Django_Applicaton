@@ -35,7 +35,6 @@ axios.interceptors.response.use(response => {
     let err = error.response.data
     if (err.code === 'E001' || err.code === 'E002' || err.code === 'E003') {
         alert("세션 만료")
-        // AppAlert.AlertDismissible({isShow: true})
         localStorage.removeItem("Token")
         window.location.reload(true);
     }

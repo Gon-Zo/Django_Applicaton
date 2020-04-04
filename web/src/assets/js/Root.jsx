@@ -16,9 +16,9 @@ import {Container} from "react-bootstrap";
 
 function Root() {
 
-    let isLogin = useSelector(state => state.userReducer, []).isLogin
+    // let isLogin = useSelector(state => state.userReducer, []).isLogin
 
-    if (isLogin) {
+    // if (isLogin) {
 
         return (
             // them-dark
@@ -42,11 +42,11 @@ function Root() {
                 </div>
             </div>
         )
-    }
-
-    return (
-        <AppLogin/>
-    )
+    // }
+    //
+    // return (
+    //     <AppLogin/>
+    // )
 
 }
 

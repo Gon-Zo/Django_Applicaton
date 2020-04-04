@@ -9,6 +9,7 @@ export const $httpLogout = (dispatch , history) =>{
     // window.location.href = 'http://localhost:3000/';
     // todo : logout dev
     history.push("/")
+    // window.location.reload()
     dispatch(onLogout())
 };
 
