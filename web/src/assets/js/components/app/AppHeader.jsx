@@ -35,6 +35,12 @@ export default () => {
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
 
+                    <HeadButton
+                        icon={i.faBell}
+                        theme={AppTheme()}
+                        onClick={null}
+                        tooltip={'알람'}/>
+
                     <ThemeIcon dispatch={dispatch} theme={AppTheme()}/>
 
                     <HeadButton
