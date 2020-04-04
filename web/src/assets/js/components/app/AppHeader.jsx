@@ -5,10 +5,11 @@ import { Navbar , Button, ButtonGroup} from "react-bootstrap";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import * as i from '@fortawesome/free-solid-svg-icons'
 import {changeTheme} from "../../modules/reducer/user";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import {useHistory} from 'react-router-dom';
 import {AppTheme} from "../../modules/static/support";
+import Popover from "react-bootstrap/Popover";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 export default () => {
 
@@ -23,23 +24,34 @@ export default () => {
         history.push('/myinfo')
     }
 
+    let popover = (
+        <Popover id="popover-basic">
+            <Popover.Title as="h3">Popover right</Popover.Title>
+            <Popover.Content>
+                And here's some <strong>amazing</strong> content. It's very engaging.
+                right?
+            </Popover.Content>
+        </Popover>
+    );
+
     return (
         <Navbar className="surface-bg">
-            {/*<Navbar.Brand href="#/home">*/}
-            {/*    <span className="title-ft">*/}
-            {/*    Application Manager*/}
-            {/*    </span>*/}
-            {/*</Navbar.Brand>*/}
-            {/*app title*/}
-
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
 
-                    <HeadButton
-                        icon={i.faBell}
-                        theme={AppTheme()}
-                        onClick={null}
-                        tooltip={'알람'}/>
+                    {/*<HeadButton*/}
+                    {/*    icon={i.faBell}*/}
+                    {/*    theme={AppTheme()}*/}
+                    {/*    onClick={null}*/}
+                    {/*    tooltip={'알람'}/>*/}
+
+                    <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
+                        <HeadButton
+                            icon={i.faBell}
+                            theme={AppTheme()}
+                            onClick={null}
+                            tooltip={'알람'}/>
+                    </OverlayTrigger>
 
                     <ThemeIcon dispatch={dispatch} theme={AppTheme()}/>
 
@@ -60,7 +72,6 @@ export default () => {
         </Navbar>
     )
 }
-
 
 function HeadButton(props) {
     let icon = props.icon
