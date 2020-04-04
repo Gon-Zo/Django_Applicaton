@@ -57,8 +57,8 @@ export function getProduct(dispatch, seq) {
  * @returns {Promise<void>}
  */
 export function updateProduct(dispatch, payload) {
-    axios.put(`/admin/product/${payload.seq}`, payload)
-        .then(res => console.log('put', res.status))
+    axios.put(`/admin/product/${payload.seq}`, parserParam(payload))
+        .catch(err=>console.log(err))
 }
 
 /**
@@ -90,6 +90,14 @@ export function $setProduct(dispatch, payload) {
     dispatch(setProduct(payload))
 }
 
-export function $setIsSold(dispatch , idx , flag) {
+export function $setIsSold(dispatch ,data , idx , flag) {
     dispatch(setIsSold(idx, flag))
+    updateProduct(dispatch , data)
+}
+
+let parserParam = (param) => {
+    let keys = Object.keys(param)
+    let temp = {}
+    keys.filter(f => f !== 'store' && f != 'create_at').map(m => temp[m] = param[m])
+    return temp
 }

@@ -42,9 +42,7 @@ export default (props) => {
         if (typeof val == 'boolean') {
             return (
                 <Switch height={24}
-                        onChange={()=>{
-                            $setIsSold(dispatch, idx, !val)
-                        }}
+                        onChange={()=> $setIsSold(dispatch, data[idx] , idx, !val)}
                         onColor={ theme ? "#1976d2" : "#BB86FC" }
                         // onHandleColor="#f00"
                         checkedIcon={false}
