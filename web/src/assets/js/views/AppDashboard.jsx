@@ -1,13 +1,26 @@
 import React from "react";
-import LineChart from "../components/chart/LineChart";
 
 export default () => {
     return (
         <div className="container-main">
-            <span>dash</span>
-            <div >
-                <LineChart/>
-            </div >
+
+            <div className="card-group">
+                <div className="card card-demo card-bg"></div>
+                <div className="card card-demo card-bg"></div>
+                <div className="card card-demo card-bg"></div>
+            </div>
+
+
+            <div className="card-group">
+                <div className="card card-demo card-bg"></div>
+                <div className="card card-demo card-bg"></div>
+            </div>
+
+            <div className="card-group">
+                <div className="card card-demo card-bg"></div>
+                <div className="card card-demo card-bg"></div>
+            </div>
+
         </div>
     )
 }
