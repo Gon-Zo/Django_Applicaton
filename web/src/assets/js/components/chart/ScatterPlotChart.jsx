@@ -20,6 +20,8 @@ function Test(props) {
             yFormat={function(e){return e+" cm"}}
             blendMode="multiply"
             axisTop={null}
+            nodeSize={11}
+            colors={{ scheme: 'purple_red' }}
             axisRight={null}
             axisBottom={{
                 orient: 'bottom',
