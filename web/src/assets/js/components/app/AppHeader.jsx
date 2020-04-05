@@ -30,7 +30,14 @@ export default () => {
             <Popover.Content>
                 <ul>
                     <li>
-                        <span>TEST1</span>
+                        <div>
+                            <div className="content content-icon">
+                                <FontAwesomeIcon icon={i.faCommentSlash}/>
+                            </div>
+                            <div className="content content-text">
+                                content
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </Popover.Content>
@@ -42,7 +49,7 @@ export default () => {
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
 
-                    <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
+                    <OverlayTrigger trigger="click" placement="bottom" overlay={popover}>
                         <HeadButton
                             icon={i.faBell}
                             theme={AppTheme()}
