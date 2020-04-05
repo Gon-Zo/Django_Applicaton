@@ -1,13 +1,11 @@
 // todo : fetch to change ...
 import React, {useEffect, useState} from "react";
-import {Container} from "react-bootstrap";
-import AppTable from "../components/app/AppTable";
+import Table from "../components/app/Table";
 import {useSelector, useDispatch} from "react-redux";
 import {$fetchUsers, $isUserModalOpen, $setUser} from '../modules/api/user'
 import {UserInfoModal} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
-import {ListDto, UserDto} from "../modules/data/AppDto";
-import AppHeader from "../components/app/AppHeader";
+import { UserDto} from "../modules/data/AppDto";
 
 export default () => {
 
@@ -59,14 +57,13 @@ export default () => {
             <UserInfoModal initData={initUser} dispatch={dispatch}/>
 
             <div className="card-group">
-                <div className="card card-user card-test card-bg"></div>
-                <div className="card card-user card-test card-bg"></div>
-                <div className="card card-user card-test card-bg"></div>
+                <div className="card card-user  card-bg"></div>
+                <div className="card card-user  card-bg"></div>
+                <div className="card card-user  card-bg"></div>
             </div>
 
             <div className="mt-4">
-                <AppTable data={_bindData().data}
-                          click={_clickToCol}
+                <Table data={_bindData().data}
                           switch={_isUse}
                           keys={_bindData().key}
                 />

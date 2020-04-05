@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
-import {$httpProduct, $isOpen, $setIsSold, $setMethod, $setProduct} from '../modules/api/product'
+import {$deleteByProd, $httpProduct, $isOpen, $setIsSold, $setMethod, $setProduct} from '../modules/api/product'
 import {useDispatch, useSelector} from "react-redux";
 import { Product} from "../modules/data/AppDto";
 import { ProductEditor} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
-import AppTable from "../components/app/AppTable";
+import Table from "../components/app/Table";
 
 export default () => {
 
@@ -60,6 +60,17 @@ export default () => {
         }
     }
 
+    // let $onEdit = (idx) => {
+    //     $setMethod(dispatch, 'U');
+    //     $setProduct(dispatch, data[idx]);
+    //     $isOpen(dispatch)
+    // };
+    //
+    // let $onDelete = (idx) => {
+    //     let deleteNo = data[idx].seq;
+    //     $deleteByProd(dispatch, deleteNo)
+    // };
+
     return (
         <div className="container-main">
 
@@ -72,13 +83,14 @@ export default () => {
                            data={initProd}/>
 
             <div className="card-group">
-                <div className="card card-user card-test card-bg"></div>
-                <div className="card card-user card-test card-bg"></div>
-                <div className="card card-user card-test card-bg"></div>
+                <div className="card card-user  card-bg"></div>
+                <div className="card card-user  card-bg"></div>
+                <div className="card card-user  card-bg"></div>
             </div>
 
             <div className="mt-4">
-                <AppTable data={_bindData().data}
+
+                <Table data={_bindData().data}
                           keys={_bindData().keys}
                           switch={_isSold}/>
 

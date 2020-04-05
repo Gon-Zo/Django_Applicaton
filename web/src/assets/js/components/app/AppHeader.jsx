@@ -26,10 +26,13 @@ export default () => {
 
     let popover = (
         <Popover id="popover-basic">
-            <Popover.Title as="h3">Popover right</Popover.Title>
+            <Popover.Title as="h3">내소식</Popover.Title>
             <Popover.Content>
-                And here's some <strong>amazing</strong> content. It's very engaging.
-                right?
+                <ul>
+                    <li>
+                        <span>TEST1</span>
+                    </li>
+                </ul>
             </Popover.Content>
         </Popover>
     );
@@ -38,12 +41,6 @@ export default () => {
         <Navbar className="surface-bg">
             <Navbar.Collapse className="justify-content-end">
                 <ButtonGroup>
-
-                    {/*<HeadButton*/}
-                    {/*    icon={i.faBell}*/}
-                    {/*    theme={AppTheme()}*/}
-                    {/*    onClick={null}*/}
-                    {/*    tooltip={'알람'}/>*/}
 
                     <OverlayTrigger trigger="click" placement="bottom-end" overlay={popover}>
                         <HeadButton
