@@ -1,110 +1,187 @@
-import React, { useEffect} from "react";
-import {ButtonGroup, Col, Container, Form, Row} from "react-bootstrap";
-import {$setUpCategory, openToCategory} from "../modules/api/category";
-import {useDispatch, useSelector} from "react-redux";
-import Table from "react-bootstrap/Table";
-import Button from "react-bootstrap/Button";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import * as i from '@fortawesome/free-solid-svg-icons'
+import React, {Component} from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-export default () => {
+// export default () =>{
+//
+//     let grid = 8;
+//
+//     let reorder = (list, startIndex, endIndex) => {
+//         const result = Array.from(list);
+//         const [removed] = result.splice(startIndex, 1);
+//         result.splice(endIndex, 0, removed);
+//
+//         return result;
+//     };
+//
+//     let getItemStyle = (isDragging, draggableStyle) => ({
+//         // some basic styles to make the items look a bit nicer
+//         userSelect: 'none',
+//         padding: grid * 2,
+//         margin: `0 ${grid}px 0 0`,
+//
+//         // change background colour if dragging
+//         background: isDragging ? 'lightgreen' : 'grey',
+//
+//         // styles we need to apply on draggables
+//         ...draggableStyle,
+//     });
+//
+//     let getListStyle = isDraggingOver => ({
+//         background: isDraggingOver ? 'lightblue' : 'lightgrey',
+//         display: 'flex',
+//         padding: grid,
+//         overflow: 'auto',
+//     });
+//
+//     let onDragEnd = (result) => {
+//         // dropped outside the list
+//         if (!result.destination) {
+//             return;
+//         }
+//
+//         const items = reorder(
+//             this.state.items,
+//             result.source.index,
+//             result.destination.index
+//         );
+//
+//         this.setState({
+//             items,
+//         });
+//     }
+//
+//    return (
+//        <DragDropContext onDragEnd={this.onDragEnd}>
+//           <Droppable droppableId="droppable" direction="horizontal">
+//              {(provided, snapshot) => (
+//                  <div
+//                      ref={provided.innerRef}
+//                      style={getListStyle(snapshot.isDraggingOver)}
+//                      {...provided.droppableProps}
+//                  >
+//                     {this.state.items.map((item, index) => (
+//                         <Draggable key={item.id} draggableId={item.id} index={index}>
+//                            {(provided, snapshot) => (
+//                                <div
+//                                    ref={provided.innerRef}
+//                                    {...provided.draggableProps}
+//                                    {...provided.dragHandleProps}
+//                                    style={getItemStyle(
+//                                        snapshot.isDragging,
+//                                        provided.draggableProps.style
+//                                    )}
+//                                >
+//                                   {item.content}
+//                                </div>
+//                            )}
+//                         </Draggable>
+//                     ))}
+//                     {provided.placeholder}
+//                  </div>
+//              )}
+//           </Droppable>
+//        </DragDropContext>
+//    )
+// }
 
-    let dispatch = useDispatch();
+// fake data generator
+const getItems = count =>
+    Array.from({ length: count }, (v, k) => k).map(k => ({
+        id: `item-${k}`,
+        content: `item ${k}`,
+    }));
 
-    let initData = useSelector(state=>state.categoryReducer , []);
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
 
-    let isTheme = useSelector(state=>state.userReducer , []).isTheme;
+    return result;
+};
 
-    useEffect(() => {
-        $setUpCategory(dispatch)
-    }, [])
+const grid = 8;
 
+const getItemStyle = (isDragging, draggableStyle) => ({
+    // some basic styles to make the items look a bit nicer
+    userSelect: 'none',
+    padding: grid * 2,
+    margin: `0 ${grid}px 0 0`,
 
-    let data = initData.categories;
+    // change background colour if dragging
+    background: isDragging ? 'lightgreen' : 'grey',
 
-    if(typeof data === 'undefined'){
-       return (
-           <div>
-               <span>Loding</span>
-           </div>
-       )
+    // styles we need to apply on draggables
+    ...draggableStyle,
+});
+
+const getListStyle = isDraggingOver => ({
+    background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    display: 'flex',
+    padding: grid,
+    overflow: 'auto',
+});
+
+export default class AppCategory extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: getItems(6),
+        };
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
 
-    let keys = Object.keys(data[0]).filter(f => f !== 'create_at')
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
 
-    return (
-        <div className="container-main">
-            <Row>
-                <Col>
+        const items = reorder(
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );
 
+        this.setState({
+            items,
+        });
+    }
 
-
-                </Col>
-            </Row>
-            {/*<Row className="mt-3">*/}
-            {/*    <Col>*/}
-            {/*        <Button className="lf-btn" onClick={()=>{*/}
-            {/*            openToCategory(dispatch)*/}
-            {/*        }}>*/}
-            {/*            <FontAwesomeIcon icon={initData.isOpen ? i.faCaretSquareRight : i.faCaretSquareLeft}/>*/}
-            {/*        </Button>*/}
-            {/*        <Table striped bordered hover variant={isTheme ? "light" : "dark"}>*/}
-            {/*            <thead>*/}
-            {/*            <tr>*/}
-            {/*                <th>#</th>*/}
-            {/*                {*/}
-            {/*                    keys.map((k, i) => (*/}
-            {/*                        <th key={i}>{k}</th>*/}
-            {/*                    ))*/}
-            {/*                }*/}
-            {/*            </tr>*/}
-            {/*            </thead>*/}
-            {/*            <tbody>*/}
-            {/*            {*/}
-            {/*                data.map((d, i) => (*/}
-            {/*                    <tr key={i}>*/}
-            {/*                        <td>{i + 1}</td>*/}
-            {/*                        {*/}
-            {/*                            keys.map((k, i) => (*/}
-            {/*                                <td key={i}>{d[k]}</td>*/}
-            {/*                            ))*/}
-            {/*                        }*/}
-            {/*                    </tr>*/}
-            {/*                ))*/}
-            {/*            }*/}
-            {/*            </tbody>*/}
-            {/*        </Table>*/}
-            {/*    </Col>*/}
-            {/*    /!*Table end*!/*/}
-            {/*    <CategoryForm keys={keys} isOpen={initData.isOpen}/>*/}
-            {/*</Row>*/}
-        </div>
-    )
-
-}
-
-function CategoryForm(props) {
-
-    let isMake = props.isOpen
-    let keys = props.keys;
-
-    if (isMake) {
+    // Normally you would want to split things out into separate components.
+    // But in this example everything is just done in one place for simplicity
+    render() {
         return (
-            <Col>
-                {
-                    keys.filter(f => f !== 'seq').map((m, i) => (
-                        <Form.Group as={Col} controlId="formGridEmail" key={i}>
-                            <Form.Label className="main-ft">{m}</Form.Label>
-                            <Form.Control type="text" placeholder={m}/>
-                        </Form.Group>
-                    ))
-                }
-                <ButtonGroup size="sm">
-                    <Button>Right</Button>
-                </ButtonGroup>
-            </Col>
-        )
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="droppable" direction="horizontal">
+                    {(provided, snapshot) => (
+                        <div
+                            ref={provided.innerRef}
+                            style={getListStyle(snapshot.isDraggingOver)}
+                            {...provided.droppableProps}
+                        >
+                            {this.state.items.map((item, index) => (
+                                <Draggable key={item.id} draggableId={item.id} index={index}>
+                                    {(provided, snapshot) => (
+                                        <div
+                                            ref={provided.innerRef}
+                                            {...provided.draggableProps}
+                                            {...provided.dragHandleProps}
+                                            style={getItemStyle(
+                                                snapshot.isDragging,
+                                                provided.draggableProps.style
+                                            )}
+                                        >
+                                            {item.content}
+                                        </div>
+                                    )}
+                                </Draggable>
+                            ))}
+                            {provided.placeholder}
+                        </div>
+                    )}
+                </Droppable>
+            </DragDropContext>
+        );
     }
-
-    return null;
 }
