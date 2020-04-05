@@ -34,43 +34,50 @@ export default () => {
 
     return (
         <div className="container-main">
-            <Row className="mt-3">
+            <Row>
                 <Col>
-                    <Button className="lf-btn" onClick={()=>{
-                        openToCategory(dispatch)
-                    }}>
-                        <FontAwesomeIcon icon={initData.isOpen ? i.faCaretSquareRight : i.faCaretSquareLeft}/>
-                    </Button>
-                    <Table striped bordered hover variant={isTheme ? "light" : "dark"}>
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            {
-                                keys.map((k, i) => (
-                                    <th key={i}>{k}</th>
-                                ))
-                            }
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {
-                            data.map((d, i) => (
-                                <tr key={i}>
-                                    <td>{i + 1}</td>
-                                    {
-                                        keys.map((k, i) => (
-                                            <td key={i}>{d[k]}</td>
-                                        ))
-                                    }
-                                </tr>
-                            ))
-                        }
-                        </tbody>
-                    </Table>
+
+
+
                 </Col>
-                {/*Table end*/}
-                <CategoryForm keys={keys} isOpen={initData.isOpen}/>
             </Row>
+            {/*<Row className="mt-3">*/}
+            {/*    <Col>*/}
+            {/*        <Button className="lf-btn" onClick={()=>{*/}
+            {/*            openToCategory(dispatch)*/}
+            {/*        }}>*/}
+            {/*            <FontAwesomeIcon icon={initData.isOpen ? i.faCaretSquareRight : i.faCaretSquareLeft}/>*/}
+            {/*        </Button>*/}
+            {/*        <Table striped bordered hover variant={isTheme ? "light" : "dark"}>*/}
+            {/*            <thead>*/}
+            {/*            <tr>*/}
+            {/*                <th>#</th>*/}
+            {/*                {*/}
+            {/*                    keys.map((k, i) => (*/}
+            {/*                        <th key={i}>{k}</th>*/}
+            {/*                    ))*/}
+            {/*                }*/}
+            {/*            </tr>*/}
+            {/*            </thead>*/}
+            {/*            <tbody>*/}
+            {/*            {*/}
+            {/*                data.map((d, i) => (*/}
+            {/*                    <tr key={i}>*/}
+            {/*                        <td>{i + 1}</td>*/}
+            {/*                        {*/}
+            {/*                            keys.map((k, i) => (*/}
+            {/*                                <td key={i}>{d[k]}</td>*/}
+            {/*                            ))*/}
+            {/*                        }*/}
+            {/*                    </tr>*/}
+            {/*                ))*/}
+            {/*            }*/}
+            {/*            </tbody>*/}
+            {/*        </Table>*/}
+            {/*    </Col>*/}
+            {/*    /!*Table end*!/*/}
+            {/*    <CategoryForm keys={keys} isOpen={initData.isOpen}/>*/}
+            {/*</Row>*/}
         </div>
     )
 

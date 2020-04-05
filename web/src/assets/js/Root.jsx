@@ -7,27 +7,17 @@ import AppDashboard from "./views/AppDashboard";
 import AppProduct from "./views/AppProduct";
 import AppHeader from "./components/app/AppHeader";
 import AppMyInfo from "./views/AppMyInfo";
-import AppLogin from "./views/AppLogin";
 import AppSetting from "./views/AppSetting";
 import AppCategory from "./views/AppCategory";
-import {useSelector} from "react-redux";
 import {AppTheme} from "./modules/static/support";
 import {Container} from "react-bootstrap";
 
 function Root() {
-
-    // let isLogin = useSelector(state => state.userReducer, []).isLogin
-
-    // if (isLogin) {
-
         return (
-            // them-dark
             <div className={`theme-${AppTheme()}`}>
-                {/*<AppHeader/>*/}
-                {/*<ProgressBar variant="danger" animated now={45} />*/}
                 <div className="d-flex  main-bg" id="wrapper">
                     <AppSideBar/>
-                    <Container fluid={true}>
+                    <Container fluid={true} className="pb-4">
                         <AppHeader/>
                     <Switch>
                         <Route exact path="/home" component={Main}/>
@@ -42,12 +32,6 @@ function Root() {
                 </div>
             </div>
         )
-    // }
-    //
-    // return (
-    //     <AppLogin/>
-    // )
-
 }
 
 export default Root

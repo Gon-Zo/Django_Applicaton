@@ -16,12 +16,12 @@ function App() {
             forceRefresh={true}
         >
             {/*<Root/>*/}
-            <Test login={isLogin}/>
+            <MarketApp login={isLogin}/>
         </BrowserRouter>
     )
 }
 
-function Test(props) {
+function MarketApp(props) {
     let isLogin = props.login
 
     if(isLogin){

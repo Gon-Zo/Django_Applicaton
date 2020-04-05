@@ -7,9 +7,9 @@ export default () => {
     return (
         <div className="sidebar-bg" id="sidebar-wrapper">
             <div className="app-wrap surface-bg">
-                <h1 className="title-ft">
+                <a href="/#/home" className="title-ft">
                     Application Manager
-                </h1>
+                </a>
             </div>
 
             {/*app title*/}
