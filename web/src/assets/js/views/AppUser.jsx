@@ -6,6 +6,8 @@ import {$fetchUsers, $isUserModalOpen, $setUser} from '../modules/api/user'
 import {UserInfoModal} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
 import { UserDto} from "../modules/data/AppDto";
+import LineChart from "../components/chart/LineChart";
+import BarChart from "../components/chart/BarChart";
 
 export default () => {
 
@@ -57,9 +59,22 @@ export default () => {
             <UserInfoModal initData={initUser} dispatch={dispatch}/>
 
             <div className="card-group">
-                <div className="card card-user  card-bg"></div>
-                <div className="card card-user  card-bg"></div>
-                <div className="card card-user  card-bg"></div>
+                <div className="card card-user card-bg">
+                   <div className="card-title ml-2 mt-1">
+                      <span className="main-ft">사용자 추이</span>
+                   </div>
+                    <div className="card-body">
+                        <LineChart/>
+                    </div>
+                </div>
+                <div className="card card-user card-bg">
+                    <div className="card-title ml-2 mt-1">
+                        <span className="main-ft">사용자 추이</span>
+                    </div>
+                    <div className="card-body">
+                        <BarChart/>
+                    </div>
+                </div>
             </div>
 
             <div className="mt-4">
