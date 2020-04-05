@@ -5,6 +5,9 @@ import { Product} from "../modules/data/AppDto";
 import { ProductEditor} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
 import Table from "../components/app/Table";
+import RadarChart from "../components/chart/RadarChart";
+import PieChart from "../components/chart/PieChart";
+import BubbleChart from "../components/chart/BubbleChart";
 
 export default () => {
 
@@ -85,9 +88,30 @@ export default () => {
                            data={initProd}/>
 
             <div className="card-group">
-                <div className="card card-user  card-bg"></div>
-                <div className="card card-user  card-bg"></div>
-                <div className="card card-user  card-bg"></div>
+                <div className="card card-dash card-bg">
+                    <div className="card-title ml-2 mt-1">
+                        <span className="main-ft">TEST1</span>
+                    </div>
+                    <div className="card-body">
+                        <RadarChart/>
+                    </div>
+                </div>
+                <div className="card card-dash card-bg">
+                    <div className="card-title ml-2 mt-1">
+                        <span className="main-ft">TEST1</span>
+                    </div>
+                    <div className="card-body">
+                        <PieChart/>
+                    </div>
+                </div>
+                <div className="card card-dash card-bg">
+                    <div className="card-title ml-2 mt-1">
+                        <span className="main-ft">TEST1</span>
+                    </div>
+                    <div className="card-body">
+                        <BubbleChart/>
+                    </div>
+                </div>
             </div>
 
             <div className="mt-4">
