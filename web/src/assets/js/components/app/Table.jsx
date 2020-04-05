@@ -5,7 +5,6 @@ import Switch from "react-switch";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import * as icon from "@fortawesome/free-solid-svg-icons";
 import Spinner from "react-bootstrap/Spinner";
-import {AppReversTheme} from "../../modules/static/support";
 
 export default (props) => {
 
@@ -15,7 +14,12 @@ export default (props) => {
     let initUser = useSelector(state => state.userReducer, []);
 
     let _clickCol = props.click
+
     let _isChange = props.switch
+
+    let _isDelete = props.delete
+
+    let _isEdit = props.update
 
     let theme = initUser.isTheme
 
@@ -80,10 +84,10 @@ export default (props) => {
                                         ))
                                     }
                                     <td>
-                                        <button>
+                                        <button onClick={()=>_isEdit(i)}>
                                             <FontAwesomeIcon icon={icon.faEdit}/>
                                         </button>
-                                        <button>
+                                        <button  onClick={()=>_isDelete(i)}>
                                             <FontAwesomeIcon icon={icon.faTrashAlt}/>
                                         </button>
                                     </td>

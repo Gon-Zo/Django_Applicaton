@@ -67,9 +67,9 @@ export function updateProduct(dispatch, payload) {
  * @param seq
  * @returns {Promise<void>}
  */
-export function $deleteByProd(dispatch, seq) {
+export function $deleteByProd(dispatch, payload , seq) {
     axios.delete(`/admin/product/${seq}`)
-        .then(res => $httpProduct(dispatch))
+        .then(res => $httpProduct(dispatch , payload))
         .catch(err => console.log(err))
 }
 

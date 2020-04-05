@@ -60,16 +60,18 @@ export default () => {
         }
     }
 
-    // let $onEdit = (idx) => {
-    //     $setMethod(dispatch, 'U');
-    //     $setProduct(dispatch, data[idx]);
-    //     $isOpen(dispatch)
-    // };
-    //
-    // let $onDelete = (idx) => {
-    //     let deleteNo = data[idx].seq;
-    //     $deleteByProd(dispatch, deleteNo)
-    // };
+    let _onEdit = (idx) => {
+        let payload = initProd.products.data
+        $setMethod(dispatch, 'U');
+        $setProduct(dispatch, payload[idx]);
+        $isOpen(dispatch)
+    };
+
+    let _onDelete = (idx) => {
+        let data = initProd.products.data
+        let deleteNo = data[idx].seq;
+        $deleteByProd(dispatch, initProd , deleteNo)
+    };
 
     return (
         <div className="container-main">
@@ -92,6 +94,8 @@ export default () => {
 
                 <Table data={_bindData().data}
                           keys={_bindData().keys}
+                          delete={_onDelete}
+                          update={_onEdit}
                           switch={_isSold}/>
 
                 {/*<AppProductGroup data={initProd.products.data}/>*/}
