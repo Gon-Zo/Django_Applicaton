@@ -18,6 +18,14 @@ module.exports = {
     devServer: {
         port: 7000,
         open : true,
+
+        proxy : {
+            '/api/' :{
+                target : 'http://localhost:3030',
+                changeOrigin : true
+            }
+        }
+
     },
 
     module: {
@@ -40,7 +48,6 @@ module.exports = {
                     }
                 ]
             },
-
             // file
             {
                 test: /\.(png|jpg|svg|gif|jpeg|ico)$/,
@@ -48,16 +55,6 @@ module.exports = {
                     'file-loader'
                 ],
             },
-
-            // {
-            //     test: /\.json$/,
-            //     exclude: /node_modules/,
-            //     use: [
-            //         // 'file-loader?name=[name].[ext]&outputPath=portal/content/json'
-            //         'file-loader?name=[name].[ext]'
-            //     ]
-            // },
-
             {
                 test: /\.json$/,
                 loader: 'json-loader'
