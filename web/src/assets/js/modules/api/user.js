@@ -1,15 +1,12 @@
 import React from "react";
 import axios from 'axios'
-import {onUser, isOpen, clickPage, setUser, onLogout, onLogin} from '../reducer/user'
+import {onUser, isOpen, clickPage, setUser, onLogout, onLogin, isUse} from '../reducer/user'
 // import { useHistory } from "react-router-dom";
 
 export const $httpLogout = (dispatch , history) =>{
     axios.defaults.headers.common['Authorization'] = undefined;
     localStorage.removeItem('Token');
-    // window.location.href = 'http://localhost:3000/';
-    // todo : logout dev
     history.push("/")
-    // window.location.reload()
     dispatch(onLogout())
 };
 
@@ -38,11 +35,9 @@ export const $fetchUsers = (dispatch, payload) => {
 };
 
 export const $updateUser = (dispatch, payload) => {
-    let user = payload.user;
-    let seq = user.seq;
 
-    delete user.seq;
-    delete user.create_at;
+    let seq = payload.seq
+    let user = buildUser(user)
 
     axios.put(`/admin/user/${seq}`, user)
         .then((res) => {
@@ -53,6 +48,15 @@ export const $updateUser = (dispatch, payload) => {
         .catch((err) => console.log(err))
 };
 
+export const $deleteUser = (dispatch, payload) => {
+    let idx = payload.idx
+    let data = payload.data
+    axios.delete(`/admin/user/${idx}`)
+        .then(res => {
+          $fetchUsers(dispatch , data)
+        })
+        .catch(err => console.log(err))
+}
 
 export const $onPage = (dispatch, data) => {
     dispatch(clickPage(data))
@@ -64,4 +68,16 @@ export const $setUser = (dispatch, data) => {
 
 export const $isUserModalOpen = (dispatch) => {
     dispatch(isOpen())
+}
+
+export const $isUse = (dispatch, idx, payload, flag) => {
+    dispatch(isUse(idx))
+    $updateUser(dispatch, payload)
+}
+
+let buildUser = (payload) => {
+    let user = payload
+    delete user.seq;
+    delete user.create_at;
+    return user
 }

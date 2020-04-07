@@ -6,6 +6,7 @@ let SETUSER = 'user/setUser'
 let CLICKPAGE = 'user/clickPage'
 let ISOPEN  =  'user/isOpen'
 let CHANGETHEME = 'user/changeTheme'
+let ISUSE = 'user/isUse'
 
 export const onLogin = () => ({type: User});
 export const onLogout = () => ({type: LOGOUT});
@@ -14,6 +15,7 @@ export const setUser = (data) => ({type: SETUSER, data: data});
 export const clickPage = (data) => ({type: CLICKPAGE , data: data});
 export const isOpen = () => ({type: ISOPEN});
 export const changeTheme = ()=>({type:CHANGETHEME})
+export const isUse = (idx) => ({type: ISUSE, idx: idx})
 
 let initUser = {
     isLogin: localStorage.getItem("Token") ? true : false,
@@ -48,7 +50,11 @@ const userReducer = (state = initUser, action) => {
         case ISOPEN:
             state.isOpen = !state.isOpen;
             break;
+        case ISUSE:
+            state.users.data[action.idx] = !state.users.data[action.idx]
+            break;
     }
+
     return state;
 };
 

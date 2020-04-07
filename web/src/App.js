@@ -3,18 +3,15 @@ import Root from "./assets/js/Root";
 import {BrowserRouter} from 'react-router-dom';
 import AppLogin from "./assets/js/views/AppLogin";
 import {useSelector} from "react-redux";
-// import { hot } from 'react-hot-loader/root';
 
 function App() {
 
     let isLogin = useSelector(state => state.userReducer, []).isLogin
 
-
     return (
         <BrowserRouter
             basename="/#"
-            forceRefresh={true}
-        >
+            forceRefresh={true}>
             {/*<Root/>*/}
             <MarketApp login={isLogin}/>
         </BrowserRouter>

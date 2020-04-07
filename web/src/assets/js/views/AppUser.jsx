@@ -1,8 +1,9 @@
 // todo : fetch to change ...
+
 import React, {useEffect, useState} from "react";
 import Table from "../components/app/Table";
 import {useSelector, useDispatch} from "react-redux";
-import {$fetchUsers, $isUserModalOpen, $setUser} from '../modules/api/user'
+import {$deleteUser, $fetchUsers, $isUserModalOpen, $setUser} from '../modules/api/user'
 import {UserInfoModal} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
 import { UserDto} from "../modules/data/AppDto";
@@ -50,8 +51,19 @@ export default () => {
         $isUserModalOpen(dispatch)
     }
 
-    let _isUse = (flag) => {
+    let _isUse = (idx , flag) => {
+        let data = initUser.users.data[idx]
+        console.log('_isUse', JSON.stringify(data))
+        // $isUse(dispatch, idx , data , flag )
+    }
 
+    let _onEdit = () => {
+
+    }
+
+    let _onDelete = (idx) => {
+        let seq = initUser.users.data[idx].seq;
+        $deleteUser(dispatch, {idx: seq, data: initUser})
     }
 
     return (
@@ -81,6 +93,8 @@ export default () => {
                 <Table data={_bindData().data}
                           switch={_isUse}
                           keys={_bindData().key}
+                          update={_onEdit}
+                          delete={_onDelete}
                 />
                 <Pagination count={_bindData().count}
                             numPages={_bindData().numPages}
@@ -90,5 +104,3 @@ export default () => {
     </div>
     )
 }
-
-
