@@ -7,6 +7,8 @@ import json
 # 트랜잭션
 from django.db import transaction
 
+from App.util.app_exception import AppException
+
 
 @api_view(['POST'])
 @transaction.atomic
@@ -14,8 +16,12 @@ def user_login(request):
     method = request.method
     if method == 'POST':
         data = json.loads(request.body)
-        user = User.objects.filter(**data)
-        jwt = __encode_jwt__(user[0])
+        try:
+            user = User.objects.filter(**data)
+            jwt = __encode_jwt__(user[0])
+        except IndexError:
+            raise AppException("IS NOT USER")
+
         return Response(jwt, status=200)
     else:
         return Response(status=404)
