@@ -10,6 +10,7 @@ import {Provider, useDispatch} from 'react-redux';
 
 import './assets/styles/index.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "react-day-picker/lib/style.css";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
