@@ -90,7 +90,7 @@ export default () => {
             <div className="card-group">
                 <div className="card card-dash card-bg">
                     <div className="card-title ml-2 mt-1">
-                        <span className="main-ft">TEST1</span>
+                        <span className="main-ft">상품 분석</span>
                     </div>
                     <div className="card-body">
                         <RadarChart/>
@@ -98,7 +98,7 @@ export default () => {
                 </div>
                 <div className="card card-dash card-bg">
                     <div className="card-title ml-2 mt-1">
-                        <span className="main-ft">TEST1</span>
+                        <span className="main-ft">상품 추이</span>
                     </div>
                     <div className="card-body">
                         <PieChart/>
@@ -106,7 +106,7 @@ export default () => {
                 </div>
                 <div className="card card-dash card-bg">
                     <div className="card-title ml-2 mt-1">
-                        <span className="main-ft">TEST1</span>
+                        <span className="main-ft">상품 분석</span>
                     </div>
                     <div className="card-body">
                         <BubbleChart/>
@@ -121,8 +121,6 @@ export default () => {
                           delete={_onDelete}
                           update={_onEdit}
                           switch={_isSold}/>
-
-                {/*<AppProductGroup data={initProd.products.data}/>*/}
 
                 <Pagination count={initProd.products.count}
                             numPages={initProd.products.numPages}

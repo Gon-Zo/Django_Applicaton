@@ -20,7 +20,10 @@ export const $httpLogin = (dispatch, payload , history) => {
             dispatch(onLogin())
             history.push('/home')
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            alert("로그인 실패")
+        })
 };
 
 export const $fetchUsers = (dispatch, payload) => {
@@ -37,7 +40,9 @@ export const $fetchUsers = (dispatch, payload) => {
 export const $updateUser = (dispatch, payload) => {
 
     let seq = payload.seq
-    let user = buildUser(user)
+    let user = buildUser(payload)
+
+    console.log('update User', JSON.stringify(payload))
 
     axios.put(`/admin/user/${seq}`, user)
         .then((res) => {
@@ -71,13 +76,15 @@ export const $isUserModalOpen = (dispatch) => {
 }
 
 export const $isUse = (dispatch, idx, payload, flag) => {
-    dispatch(isUse(idx))
+    dispatch(isUse(idx , flag))
+    payload['is_use'] = flag
     $updateUser(dispatch, payload)
 }
 
 let buildUser = (payload) => {
     let user = payload
-    delete user.seq;
-    delete user.create_at;
-    return user
+    let keys = Object.keys(user)
+    let temp = {}
+    keys.filter(f => f !== 'seq' && f !== 'create_at').map(m => temp[m] = user[m]);
+    return temp
 }

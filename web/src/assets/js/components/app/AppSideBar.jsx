@@ -24,52 +24,6 @@ export default () => {
                         />
                     ))
                 }
-
-
-                {/*<Link to="/home"*/}
-                {/*      className="list-group-item list-group-item-action main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faHome}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*    Home*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-
-                {/*<Link to="/dashboard"*/}
-                {/*      className="list-group-item list-group-item-action  main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faChartBar}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*    Dashboard*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-                {/*<Link to="/user"*/}
-                {/*      className="list-group-item list-group-item-action main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faUser}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*    User*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-                {/*<Link to="/product"*/}
-                {/*      className="list-group-item list-group-item-action main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faShoppingCart}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*    Product*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-                {/*<Link to="/category"*/}
-                {/*      className="list-group-item list-group-item-action main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faClipboardList}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*        Category*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-                {/*<Link to="/setting"*/}
-                {/*      className="list-group-item list-group-item-action main-ft sidebar-bg">*/}
-                {/*    <FontAwesomeIcon icon={i.faCog}/>*/}
-                {/*    <span className="ml-2">*/}
-                {/*    Setting*/}
-                {/*    </span>*/}
-                {/*</Link>*/}
-
             </div>
         </div>
     );
@@ -81,6 +35,7 @@ let menuList = [
     {url: '/user', icon: i.faUsers, title: "users"},
     {url: '/product', icon: i.faShoppingCart, title: "product"},
     {url: '/category', icon: i.faClipboardList, title: "category"},
+    {url: '/order', icon: i.faListAlt, title: "order"},
     {url: '/setting', icon: i.faCog, title: "setting"},
 ]
 

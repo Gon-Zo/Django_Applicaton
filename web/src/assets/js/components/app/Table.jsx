@@ -9,6 +9,7 @@ import Spinner from "react-bootstrap/Spinner";
 export default (props) => {
 
     let payload = props.data
+
     let keys = props.keys
 
     let initUser = useSelector(state => state.userReducer, []);

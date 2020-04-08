@@ -15,6 +15,9 @@ const store = createStore(rootReducer, composeWithDevTools());
 
 axios.defaults.baseURL = 'http://localhost:3030/api'
 
+// 10 초
+axios.defaults.timeout = 10000
+
 axios.interceptors.request.use(request => {
     console.log('request', request);
     let authToken = request.headers.common.Authorization;

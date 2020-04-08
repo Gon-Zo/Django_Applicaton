@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from "react";
 import Table from "../components/app/Table";
 import {useSelector, useDispatch} from "react-redux";
-import {$deleteUser, $fetchUsers, $isUserModalOpen, $setUser} from '../modules/api/user'
+import {$deleteUser, $fetchUsers, $isUserModalOpen, $setUser , $isUse} from '../modules/api/user'
 import {UserInfoModal} from "../components/app/AppModal";
 import Pagination from "../components/app/Pagination";
 import { UserDto} from "../modules/data/AppDto";
@@ -53,8 +53,7 @@ export default () => {
 
     let _isUse = (idx , flag) => {
         let data = initUser.users.data[idx]
-        console.log('_isUse', JSON.stringify(data))
-        // $isUse(dispatch, idx , data , flag )
+        $isUse(dispatch, idx , data , flag )
     }
 
     let _onEdit = () => {
