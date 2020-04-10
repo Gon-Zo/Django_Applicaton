@@ -8,6 +8,8 @@ export default (props) => {
 
     let cnt = props.count
     let page = props.page;
+    let showPages = props.showPages;
+
     let _onReFresh = props.refresh;
 
     let numPage = Array.from(Array(props.numPages).keys()).map(m => m + 1)
@@ -43,7 +45,9 @@ export default (props) => {
         <Row>
             <Col>
                 <div>
-                    <h6 className="pagination-sm-title main-ft">전체 수 <span>{cnt}</span></h6>
+                    <h6 className="pagination-sm-title main-ft">
+                        All is {cnt} ShowPage is {showPages}
+                    </h6>
                 </div>
             </Col>
             <Col>

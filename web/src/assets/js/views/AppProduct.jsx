@@ -18,11 +18,11 @@ export default () => {
         $httpProduct(dispatch, initProd);
     }, []);
 
-    let $onClick = () => {
-        $setMethod(dispatch, 'I');
-        $setProduct(dispatch, new Product());
-        $isOpen(dispatch)
-    };
+    // let $onClick = () => {
+    //     $setMethod(dispatch, 'I');
+    //     $setProduct(dispatch, new Product());
+    //     $isOpen(dispatch)
+    // };
 
     let _onReFresh = (val) =>{
         initProd.page = val
@@ -38,6 +38,7 @@ export default () => {
         let payload = initProd.products;
         let count = payload.count;
         let numPages = payload.numPages;
+        let showPages = payload.showPages;
         let result = []
         let keys = []
 
@@ -56,10 +57,11 @@ export default () => {
         }
 
         return {
-            count : count ,
-            numPages : numPages ,
-            data : result ,
-            keys : keys
+            count: count,
+            numPages: numPages,
+            showPages: showPages,
+            data: result,
+            keys: keys
         }
     }
 

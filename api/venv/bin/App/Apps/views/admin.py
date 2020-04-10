@@ -47,14 +47,10 @@ def user_api(request):
             page_data = page_list.page(page)
             serializer = UserSerializer(page_data, many=True)
             temp_array = serializer.data
-
-            # for t in temp_array:
-            #     src = "App" + t['img']
-            #     t['img'] = image_as_base64(src)
-
             temp = {
                 "count": page_list.count,
                 "numPages": page_list.num_pages,
+                "showPages": pageNum,
                 "data": temp_array,
             }
             return Response(temp, status=200)

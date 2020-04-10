@@ -28,6 +28,8 @@ export default () => {
         let payload = initUser.users;
         let count = payload.count;
         let numPages = payload.numPages;
+        let showPages = payload.showPages;
+
         let data = undefined
         let keys = []
 
@@ -41,8 +43,9 @@ export default () => {
         return {
             count: count,
             numPages: numPages,
+            showPages: showPages,
             data: data,
-            key: keys
+            key: keys,
         }
     }
 
@@ -97,6 +100,7 @@ export default () => {
                 />
                 <Pagination count={_bindData().count}
                             numPages={_bindData().numPages}
+                            showPages={_bindData().showPages}
                             refresh={_onReFresh}
                             page={initUser.page}/>
             </div>
