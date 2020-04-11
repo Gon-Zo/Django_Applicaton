@@ -32,3 +32,7 @@ class Order(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     product = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
     cnt = models.IntegerField()
+    create_at = models.DateTimeField(auto_now_add=True)
+
+
+
