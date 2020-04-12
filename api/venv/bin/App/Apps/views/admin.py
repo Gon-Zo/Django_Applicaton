@@ -54,6 +54,11 @@ def user_api(request):
                 "data": temp_array,
             }
             return Response(temp, status=200)
+    elif method == 'POST':
+        data = json.loads(request.body)
+        User.objects.create(**data)
+        return Response(status=200)
+
     else:
         return Response(status=404)
 
@@ -200,7 +205,7 @@ def category_api(request):
 
 
 @api_view(['GET', 'POST', 'PUT', 'DELETE'])
-def image_rest_api(request , seq):
+def image_rest_api(request, seq):
     method = request.method
     if method == 'GET':
         type = request.GET.get('type')
@@ -223,3 +228,15 @@ def image_rest_api(request , seq):
         return Response(status=200)
     else:
         return Response(status=404)
+
+
+@api_view(['GET', 'POST'])
+def order_api(request):
+    method = request.method
+    if method == 'GET':
+        return Response(status=200)
+    elif method == 'POST':
+        return Response(status=200)
+    else:
+        return Response(status=404)
+

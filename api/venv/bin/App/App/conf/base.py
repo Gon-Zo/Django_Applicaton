@@ -10,17 +10,7 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:3030'
 )
 
-# Market Application to Setting
 MY_APPLICATION = [
-    # 'User',
-    # 'Store',
-    # 'Product',
-    # 'Category',
-    # 'Image',
-    # 'Basket',
-    # 'Like',
-    # 'Review',
-    # 'Question',
     'Apps',
 ]
 
@@ -55,7 +45,3 @@ TEMPLATES = [
         },
     },
 ]
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,5 +1,6 @@
 from django.db import models
 # from my_app.models import ImageModel, FileModel
+import hashlib
 
 # Create your models here.
 class User(models.Model):
@@ -26,3 +27,8 @@ class User(models.Model):
     # state
     is_use = models.BooleanField()
     create_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if self.pwd is None:
+            self.pwd = hashlib.sha256(self.raw_line).hexdigest()
+        super().save(*args, **kwargs)  # Call the "real" save() method.

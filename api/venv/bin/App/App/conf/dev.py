@@ -3,6 +3,10 @@ from .base import *
 from App.conf.setting import __get_db_conf__, __open_key__
 from django.core.management.commands.runserver import Command as runserver
 
+# 미디어
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # 기본 포트 설정
 runserver.default_port = "3030"
 
@@ -19,13 +23,8 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 DATABASES = __get_db_conf__()
 
 
-# REST_FRAMEWORK = {
-#     'EXCEPTION_HANDLER': 'App.util.exception_handlers.get_exception_handler'
-# }
-
 # 커스텀 미들웨어
 MY_MIDDLEWARE = [
-    # 'App.util.test.StackOverflowMiddleware',
     'App.util.response_middleware.ResponseFormattingMiddleware',
 ]
 
@@ -39,7 +38,6 @@ MIDDLEWARE = [
                  'django.contrib.messages.middleware.MessageMiddleware',
                  'django.middleware.clickjacking.XFrameOptionsMiddleware',
                  'corsheaders.middleware.CorsMiddleware',
-                 # "debug_toolbar.middleware.DebugToolbarMiddleware"
              ] + MY_MIDDLEWARE
 
 WSGI_APPLICATION = 'App.wsgi.application'
@@ -73,7 +71,6 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-
 
 LOGGING = {
     'version': 1,
