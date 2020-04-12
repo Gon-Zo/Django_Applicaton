@@ -1,45 +1,58 @@
 import React, {useState} from "react";
 import Table from "react-bootstrap/Table";
-import Popover from "react-bootstrap/Popover";
-import DayPicker from "react-day-picker";
 import DayPickerInput from 'react-day-picker/DayPickerInput';
-import {useSelector} from "react-redux";
-
-
+import {useDispatch, useSelector} from "react-redux";
+import MomentLocaleUtils, {
+    formatDate,
+    parseDate,
+} from 'react-day-picker/moment';
+import Button from "react-bootstrap/Button";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import * as i from '@fortawesome/free-solid-svg-icons'
+import {AppTheme} from "../modules/static/support";
+import {setDay} from "../modules/api/order";
 
 export default () => {
 
     let testArray = Array.from(Array(10))
 
-    let popover = (
-        <Popover id="popover-basic">
-            <DayPicker/>
-            {/*<DayPicker/>*/}
-        </Popover>
-    );
-
     let theme = useSelector(state => state.userReducer, []).isTheme;
+
+    let order = useSelector(state => state.orderReducer, []);
+
+    let dispatch = useDispatch()
 
     return (
         <div className="container-main">
 
             <div className="mt-4">
-                {/*<div className="text-right">*/}
+
+                <div>
 
                     <DayPickerInput
-                        onDayChange={day => console.log(day)}
+                        locale="ko"
+                        placeholder="Start Day"
+                        format="YYYY-MM-DD"
+                        formatDate={formatDate}
+                        parseDate={parseDate}
+                        value = {order.startDay}
+                        onTodayButtonClick={(day, modifiers) => console.log(day, modifiers)}
+                        onDayChange={day => setDay(dispatch, {type: 'F', day: day})}
+                        todayButton="Go to Today"
                     ></DayPickerInput>
                     <DayPickerInput
-                        onDayChange={day => console.log(day)}
+                        onDayChange={day => setDay(dispatch, {type: 'T', day: day})}
                     ></DayPickerInput>
 
+                    {/*<Button*/}
+                    {/*    size="sm"*/}
+                    {/*    variant={AppTheme()}*/}
+                    {/*    onClick={() => setDay(dispatch, {type: 'F', day: null})}*/}
+                    {/*>*/}
+                    {/*    <FontAwesomeIcon icon={i.faRedo}/>*/}
+                    {/*</Button>*/}
 
-                    {/*<OverlayTrigger trigger="click" placement="bottom-start" overlay={popover}>*/}
-                    {/*    <Button variant={AppTheme()}>*/}
-                    {/*        <FontAwesomeIcon icon={i.faCalendar}/>*/}
-                    {/*    </Button>*/}
-                    {/*</OverlayTrigger>*/}
-                {/*</div>*/}
+                </div>
 
                 <div className="tableFixHead mt-3" >
                     <Table striped bordered hover variant={theme ? "light" : "dark"}>
