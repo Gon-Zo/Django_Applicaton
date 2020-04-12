@@ -11,6 +11,8 @@ import AppSetting from "./views/AppSetting";
 import AppCategory from "./views/AppCategory";
 import {AppTheme} from "./modules/static/support";
 import {Container} from "react-bootstrap";
+import AppOrder from "./views/AppOrder";
+import AppUserTest from "./views/AppUserTest";
 
 function Root() {
         return (
@@ -27,6 +29,7 @@ function Root() {
                         <Route path="/myinfo" component={AppMyInfo}/>
                         <Route path="/category" component={AppCategory}/>
                         <Route path="/setting" component={AppSetting}/>
+                        <Route path="/order" component={AppOrder}/>
                     </Switch>
                     </Container>
                 </div>

@@ -25,21 +25,27 @@ export default () => {
     }
 
     let _bindData = () => {
-        let payload = initUser.users;
-        let count = payload.count;
-        let numPages = payload.numPages;
-        let showPages = payload.showPages;
 
-        let data = undefined
+        let payload = initUser.users;
+        let count = 0
+        let numPages = 0
+        let showPages = 0
+        let data = []
         let keys = []
 
-        if (typeof payload.data !== 'undefined') {
+        if (typeof payload !== 'undefined') {
+            count = payload.count;
+            numPages = payload.numPages;
+            showPages = payload.showPages;
+
             data = payload.data.map((m) =>
                 new UserDto(m.seq, m.id, m.pwd, m.name, m.birthDate, m.address, m.type, m.is_use, m.create_at))
 
-            keys = Object.keys(data[0]).filter(f=>f!=='seq')
+            if (data.length > 0) {
+                keys = Object.keys(data[0]).filter(f => f !== 'seq')
+            }
         }
-        // return new ListDto(count, numPages, data)
+
         return {
             count: count,
             numPages: numPages,
@@ -47,12 +53,13 @@ export default () => {
             data: data,
             key: keys,
         }
+
     }
 
-    let _clickToCol = (idx) =>{
-        $setUser(dispatch, _bindData().data[idx]);
-        $isUserModalOpen(dispatch)
-    }
+    // let _clickToCol = (idx) =>{
+    //     $setUser(dispatch, _bindData().data[idx]);
+    //     $isUserModalOpen(dispatch)
+    // }
 
     let _isUse = (idx , flag) => {
         let data = initUser.users.data[idx]
@@ -74,9 +81,9 @@ export default () => {
 
             <div className="card-group">
                 <div className="card card-user card-bg">
-                   <div className="card-title ml-2 mt-1">
-                      <span className="main-ft">사용자 추이</span>
-                   </div>
+                    <div className="card-title ml-2 mt-1">
+                        <span className="main-ft">사용자 추이</span>
+                    </div>
                     <div className="card-body">
                         <LineChart/>
                     </div>
@@ -92,18 +99,20 @@ export default () => {
             </div>
 
             <div className="mt-4">
+
                 <Table data={_bindData().data}
-                          switch={_isUse}
-                          keys={_bindData().key}
-                          update={_onEdit}
-                          delete={_onDelete}
+                       switch={_isUse}
+                       keys={_bindData().key}
+                       update={_onEdit}
+                       delete={_onDelete}
                 />
+
                 <Pagination count={_bindData().count}
                             numPages={_bindData().numPages}
                             showPages={_bindData().showPages}
                             refresh={_onReFresh}
                             page={initUser.page}/>
             </div>
-    </div>
+        </div>
     )
 }

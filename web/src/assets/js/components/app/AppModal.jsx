@@ -121,10 +121,16 @@ function ProductEditor(props) {
  * @constructor
  */
 function UserInfoModal(props) {
+
+
     let initData = props.initData;
     let isOpen = initData.isOpen;
     let dispatch = props.dispatch;
     let userData = initData.user;
+
+    if (typeof userData === 'undefined' || userData == null) {
+        return null
+    }
 
     let keys = Object.keys(userData).filter(f => f !== 'create_at');
 

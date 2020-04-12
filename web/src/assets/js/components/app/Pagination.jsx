@@ -14,7 +14,7 @@ export default (props) => {
 
     let numPage = Array.from(Array(props.numPages).keys()).map(m => m + 1)
 
-    if (typeof cnt === 'undefined') {
+    if (typeof cnt === 'undefined' || cnt === 0) {
         return null
     }
 

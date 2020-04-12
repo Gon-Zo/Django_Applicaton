@@ -22,8 +22,8 @@ let initUser = {
     isTheme: true,
     page: 1,
     numPage: 10,
-    users: [],
-    user: {},
+    users: undefined,
+    user: undefined,
     isOpen: false,
 }
 

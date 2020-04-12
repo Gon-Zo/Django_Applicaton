@@ -31,3 +31,26 @@
   line-height: 25rem;
   text-align: center;
 }
+
+// Header fix
+.tableFixHead {
+  overflow-y: auto;
+  height: 45vh;
+  //background-color: #f00;
+}
+
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+}
+
+/* Just common table stuff. Really. */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px 16px;
+}
+
