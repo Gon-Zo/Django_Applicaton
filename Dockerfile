@@ -1,7 +1,6 @@
 FROM python:3.7.4
 RUN mkdir ./webapp
 ADD ./api ./webapp/api
-#ADD ./web ./webapp/web
 WORKDIR ./webapp
 RUN /bin/bash -c  "source api/venv/bin/activate"
 WORKDIR api/venv/bin

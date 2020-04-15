@@ -1,36 +1,29 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const
 
-
-let outPath = __dirname.replace('web', 'api') + '/venv/bin/App/Apps'
+// let outPath = __dirname.replace('web', 'api') + '/venv/bin/App/Apps'
 
 module.exports = {
-
     entry: "./src/index.js",
-
     output: {
-        filename: "bundle.js",
+        filename: "./bundle.js",
         publicPath: "/",
-        path: outPath + "/templates",
+        // path: outPath ,
     },
-
     resolve: {
         extensions: [".jsx", ".js", '.css', '.scss' , '.json']
     },
-
     devServer: {
         port: 7000,
         open : true,
-
         proxy : {
             '/api/' :{
                 target : 'http://localhost:3030',
                 changeOrigin : true
             }
         }
-
     },
-
     module: {
         rules: [
             // babel
@@ -78,18 +71,12 @@ module.exports = {
 
     },
     plugins: [
-
         new HtmlWebPackPlugin({
             template: "./public/index.html",
             filename: "./index.html"
         }),
-
         new MiniCssExtractPlugin({
-            filename: 'style.css'
+            filename: './style.css'
         }),
-
-
-        new BundleTracker({filename: './webpack-stats.json'})
-
     ]
 };
