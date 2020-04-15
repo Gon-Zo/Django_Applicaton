@@ -2,6 +2,8 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+testPath = os.path.join(BASE_DIR, 'static')
+
 # CORS_ORIGIN_ALLOW_ALL
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -18,6 +20,7 @@ MY_APPLICATION = [
 ADD_PLUGIN = [
     'django_jenkins',
     'rest_framework',
+    # 'webpack_loader',
 ]
 
 # ALL Application
@@ -33,7 +36,7 @@ INSTALLED_APPS = MY_APPLICATION + ADD_PLUGIN + [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [testPath],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -45,3 +48,7 @@ TEMPLATES = [
         },
     },
 ]
+
+STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

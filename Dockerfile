@@ -6,11 +6,9 @@ WORKDIR ./webapp
 RUN /bin/bash -c  "source api/venv/bin/activate"
 WORKDIR api/venv/bin
 RUN pip install --upgrade pip
-RUN pip freeze > requirements.txt
 RUN pip install -r requirements.txt
 ENV SETTING=App.conf.dev
 WORKDIR App
-CMD ['python3' , 'manage.py' , 'runserver']
-#RUN python manage.py makemigrations
-#RUN python manage.py migrate
-#RUN python3 manage.py runserver
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+ENTRYPOINT ["python3" , "manage.py" , "runserver"]

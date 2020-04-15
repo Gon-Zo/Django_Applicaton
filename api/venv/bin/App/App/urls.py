@@ -13,6 +13,9 @@ from Apps.views.admin import product_rest_api
 from Apps.views.admin import category_api
 from Apps.views.admin import image_rest_api
 
+from Apps.views.client import test
+
+
 urlpatterns = [
 
     path('api/login', user_login),
@@ -33,6 +36,8 @@ urlpatterns = [
     path('api/admin/category', category_api),
 
     path('api/admin/img/<int:seq>', image_rest_api),
+
+    path('index', test),
 
 ]
 

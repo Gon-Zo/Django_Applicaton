@@ -9,6 +9,11 @@ from django.db import transaction
 
 from App.util.app_exception import AppException
 
+from django.shortcuts import render
+
+def test(request):
+    return render(request , 'index.html')
+
 
 @api_view(['POST'])
 @transaction.atomic

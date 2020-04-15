@@ -1,14 +1,17 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+
+let outPath = __dirname.replace('web', 'api') + '/venv/bin/App/Apps'
+
 module.exports = {
 
     entry: "./src/index.js",
 
     output: {
         filename: "bundle.js",
-        publicPath : "/",
-        // path: path.resolve(__dirname + "/build")
+        publicPath: "/",
+        path: outPath + "/templates",
     },
 
     resolve: {
@@ -84,6 +87,9 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'style.css'
         }),
+
+
+        new BundleTracker({filename: './webpack-stats.json'})
 
     ]
 };
