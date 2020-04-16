@@ -18,7 +18,7 @@ export const changeTheme = ()=>({type:CHANGETHEME})
 export const isUse = (idx , flag) => ({type: ISUSE, idx: idx , flag : flag})
 
 let initUser = {
-    isLogin: localStorage.getItem("Token") ? true : false,
+    isLogin: sessionStorage.getItem("Token") ? true : false,
     isTheme: true,
     page: 1,
     numPage: 10,

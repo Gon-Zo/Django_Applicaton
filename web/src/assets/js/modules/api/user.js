@@ -5,7 +5,7 @@ import {onUser, isOpen, clickPage, setUser, onLogout, onLogin, isUse} from '../r
 
 export const $httpLogout = (dispatch , history) =>{
     axios.defaults.headers.common['Authorization'] = undefined;
-    localStorage.removeItem('Token');
+    sessionStorage.removeItem('Token');
     history.push("/")
     dispatch(onLogout())
 };
@@ -14,7 +14,7 @@ export const $httpLogin = (dispatch, payload , history) => {
     axios.post(`/login`, payload)
         .then((res) => {
             let token = res.data;
-            localStorage.setItem("Token", token);
+            sessionStorage.setItem("Token", token);
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             // context.router.history.push("/home")
             dispatch(onLogin())

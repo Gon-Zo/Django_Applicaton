@@ -4,7 +4,7 @@ import axios from "axios";
 export const decodeJwt = () => {
     let jwt = axios.defaults.headers.common['Authorization'];
     if (typeof jwt === 'undefined') {
-        jwt = localStorage.getItem("Token")
+        jwt = sessionStorage.getItem("Token")
     }
     let token = jwt.replace('Bearer ', '');
     let base64Url = token.split('.')[1];

@@ -23,8 +23,8 @@ axios.interceptors.request.use(request => {
     console.log('request', request);
     let authToken = request.headers.common.Authorization;
     if(typeof authToken === 'undefined'){
-        request.headers.common.Authorization = localStorage.getItem("Token")
-        axios.defaults.headers.common['Authorization'] = localStorage.getItem("Token")
+        request.headers.common.Authorization = sessionStorage.getItem("Token")
+        axios.defaults.headers.common['Authorization'] = sessionStorage.getItem("Token")
     }
     return request;
 }, error => {
@@ -39,7 +39,7 @@ axios.interceptors.response.use(response => {
     let err = error.response.data
     if (err.code === 'E001' || err.code === 'E002' || err.code === 'E003') {
         alert("세션 만료")
-        localStorage.removeItem("Token")
+        sessionStorage.removeItem("Token")
         window.location.reload(true);
     }
     return Promise.reject(error);
