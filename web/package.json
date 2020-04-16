@@ -52,8 +52,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
-    "start": "webpack --mode development && webpack-dev-server --mode development",
-    "build": "webpack --mode development",
+    "start": "webpack --env.NODE_ENV=dev && webpack-dev-server --env.NODE_ENV=dev",
+    "build:dev": "webpack --env.NODE_ENV=dev",
+    "build:prod": "webpack --env.NODE_ENV=prod",
     "error": "webpack --display-error-details",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
