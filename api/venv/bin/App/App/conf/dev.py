@@ -8,7 +8,7 @@ from django.core.management.commands.runserver import Command as runserver
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # 기본 포트 설정
-runserver.default_port = "3030"
+# runserver.default_port = "3030"
 
 # 시크릿 키 설정
 SECRET_KEY = __open_key__()

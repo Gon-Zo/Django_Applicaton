@@ -11,4 +11,4 @@ ENV SETTING=App.conf.dev
 WORKDIR App
 RUN python manage.py makemigrations
 RUN python manage.py migrate
-ENTRYPOINT ["python3" , "manage.py" , "runserver"]
+ENTRYPOINT ["python3" , "manage.py" , "runserver" , "0.0.0.0:8000"]
