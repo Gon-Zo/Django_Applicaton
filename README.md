@@ -1,7 +1,9 @@
-## Project Contents
+# Django Application
 
-### Rest Package
+<p align="center">
+ <img src="https://user-images.githubusercontent.com/53357210/117005299-089e0880-ad22-11eb-96c6-da413cc40dbc.png"  width="500" />
+</p>
 
-> `Django` 를 이용한 `Restful Api` 개발 <br/>
-> 기본 시큐리티로 작성 및 필터 처리 
-______
+### Contents
+
+> REST API (Representational State Transfer)  
